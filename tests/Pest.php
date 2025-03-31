@@ -1,5 +1,10 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Tests\TestCase;
+use function Pest\Laravel\actingAs;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -7,13 +12,11 @@
 |
 | The closure you provide to your test functions is always bound to a specific PHPUnit test
 | case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
-| need to change it using the "pest()" function to bind a different classes or traits.
+| need to change it using the "uses()" function to bind a different classes or traits.
 |
 */
 
-pest()->extend(Tests\TestCase::class)
-    ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+uses(TestCase::class, LazilyRefreshDatabase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,15 @@ pest()->extend(Tests\TestCase::class)
 | to assert different things. Of course, you may extend the Expectation API at any time.
 |
 */
+
+function loginAsUser(User $user = null)
+{
+    $user = $user ?? User::factory()->create();
+
+    actingAs($user);
+
+    return $user;
+}
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);

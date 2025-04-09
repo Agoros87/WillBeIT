@@ -15,7 +15,7 @@ Difinir tablas 3,5 horas
     * teléfono del centro
     * Badges
 
-* Users
+* Usersssss
   * id
     * center_id
     * type (nullable)

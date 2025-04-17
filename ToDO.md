@@ -6,7 +6,7 @@
 
 * Creación edición y eliminación de Posts, Videos y Podcasts, Comentarios
 
-* Usar Wysiwyg para la creación de Posts, Videos y Podcasts
+* Usar Wysiwyg para la creación de Posts, Videos y Podcasts 
 
 * Aprobación o rechazo de Posts, Videos y Podcasts por parte de un profesor
 
@@ -39,6 +39,8 @@
 * Crear comando para el superadmin
 
 * Crear vistas (home, dashboards, post, videos , podcasts, etc)
+
+* Traducir a diferentes idiomas
 
 
 

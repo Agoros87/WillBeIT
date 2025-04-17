@@ -1,5 +1,5 @@
 # TABLES
-Difinir tablas 3,5 horas
+Definir tablas 3,5 horas
 * Centers
     * ID 
     * Nombre del centro, 

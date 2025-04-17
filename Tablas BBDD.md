@@ -1,6 +1,6 @@
 # TABLES
 Definir tablas 3,5 horas
-* Centers
+* Centers x
     * ID 
     * Nombre del centro, 
     * domicilio, 
@@ -15,7 +15,7 @@ Definir tablas 3,5 horas
     * teléfono del centro
     * Badges
 
-* Users
+* Users x
   * id
     * center_id
     * type (nullable)
@@ -25,7 +25,7 @@ Definir tablas 3,5 horas
     * password
     * timestamps
 
-* Posts
+* Posts 
    * id
    * id_video
    * id_podcasts
@@ -56,6 +56,13 @@ Definir tablas 3,5 horas
     * id_user
     * id_post
     * body
+
+* Post_images
+
+    * id
+    * id_post
+    * image_path
+    
 
 * Favourites (pivote (usuarios,posts))
     * id

@@ -14,6 +14,7 @@ Difinir tablas 3,5 horas
     * director 
     * teléfono del centro
     * Badges
+    * pinga
 
 * Users
   * id

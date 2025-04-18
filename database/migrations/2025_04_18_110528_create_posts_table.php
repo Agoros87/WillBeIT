@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('video_id')->constrained();
             $table->foreignId('podcasts_id')->constrained();
             $table->foreignId('user_id')->constrained();
-//            $table->foreignId('tag_id')->constrained();
             $table->string('title');
             $table->string('slug')->default('');
             $table->string('body');

@@ -58,11 +58,9 @@ Definir tablas 3,5 horas
     * body
 
 * Post_images
-
     * id
     * id_post
     * image_path
-    
 
 * Favourites (pivote (usuarios,posts))
     * id

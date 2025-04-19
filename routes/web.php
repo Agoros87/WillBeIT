@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,14 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+});
+
+// Rutas públicas
+Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
+
+// Rutas protegidas por auth y verified
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
 });
 
 Route::get('/video', [VideoController::class, 'index'])->name('video.index');

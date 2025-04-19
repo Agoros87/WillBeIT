@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('slug')->default('');
+            $table->string('podcast_path')->nullable();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

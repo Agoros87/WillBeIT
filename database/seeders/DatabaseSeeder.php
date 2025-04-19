@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             CenterSeeder::class,
             UserSeeder::class,
+            VideoSeeder::class,
         ]);
     }
 }

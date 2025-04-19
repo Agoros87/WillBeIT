@@ -17,5 +17,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('123'),
         ]);
+        User::factory(10)->create();
+
     }
 }

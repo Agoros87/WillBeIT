@@ -20,7 +20,7 @@ class PodcastFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->text,
             'slug' => $this->faker->slug,
             'podcast_path' => $this->faker->optional()->url,
             'image_path' => $this->faker->optional()->imageUrl,

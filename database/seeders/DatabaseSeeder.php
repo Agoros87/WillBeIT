@@ -17,12 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Center::factory(1)->create();
-        User::factory(1)->create();
-        Video::factory(1)->create();
-        Tag::factory(1)->create();
-        $video = Video::first();
-        $tag = Tag::first();
-        $video->tags()->attach($tag);
+        $this->call([
+            RoleSeeder::class,
+        ]);
     }
 }

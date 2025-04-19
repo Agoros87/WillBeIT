@@ -13,15 +13,15 @@ class CenterFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->company(),
+            'name' => $this->faker->name(),
             'address' => $this->faker->address(),
             'city' => $this->faker->city(),
-            'province' => $this->faker->state(),
+            'province' => $this->faker->word(),
             'postal_code' => $this->faker->postcode(),
             'email' => $this->faker->unique()->safeEmail(),
             'director_email' => $this->faker->unique()->safeEmail(),
             'director_name' => $this->faker->name(),
-            'erasmus_coordinator' => $this->faker->name(),
+            'erasmus_coordinator' => $this->faker->word(),
             'phone' => $this->faker->phoneNumber(),
             'badge' => $this->faker->word(),
             'created_at' => Carbon::now(),

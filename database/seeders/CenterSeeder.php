@@ -9,6 +9,6 @@ class CenterSeeder extends Seeder
 {
     public function run(): void
     {
-        Center::factory(5)->create();
+        Center::factory(4)->create();
     }
 }

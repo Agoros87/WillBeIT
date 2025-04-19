@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -58,12 +60,12 @@ class User extends Authenticatable implements MustVerifyEmail
             ->implode('');
     }
 
-    public function videos()
+    public function videos(): HasMany
     {
         return $this->hasMany(Video::class);
     }
 
-    public function center()
+    public function center(): BelongsTo
     {
         return $this->belongsTo(Center::class);
     }

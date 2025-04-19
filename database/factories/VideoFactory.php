@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Center;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,9 +15,9 @@ class VideoFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::inRandomOrder()->first() ?? User::factory(),
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->text(),
             'slug' => $this->faker->slug(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

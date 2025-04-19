@@ -57,10 +57,10 @@ Definir tablas 3,5 horas
     * id_post
     * body
 
-* Post_images
-    * id
-    * id_post
-    * image_path
+* post_images
+  * $table->id();
+  * $table->foreignId('post_id')->constrained()->onDelete('cascade');
+  * $table->string('image_path');
 
 * Favourites (pivote (usuarios,posts))
     * id
@@ -72,7 +72,7 @@ Definir tablas 3,5 horas
     * id_user
     * id_post
 
-* Tags (pivote (tags-(posts,videos,podcasts))
+* Tags (pivote (tags-(posts,videos,podcasts)) poliformica
     * id
     * id_post
     * id_videos

@@ -1,16 +1,16 @@
 # Controllers
 
-* PostController
+* PostController + vista(fea) david 
 
-* VideoController
+* VideoController + vista(fea)  ivan
 
-* PodcastController
+* PodcastController vista(fea) antonio
 
-* CommentController
+* CommentController vista(fea)  kemacho 
+
+* CenterController vista(fea)  daniel
 
 * FavoriteController
-
-* CenterController
 
 * HomeController (invocable)
 

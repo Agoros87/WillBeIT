@@ -1,18 +1,18 @@
 # Functionalities
 
-* Introducción y exportación de datos vía Excel
+* Introducción y exportación de datos vía Excel 
 
 * Invitaciones temporales a usuarios para registro con Signed Urls laravel (Documentación) https://laravel.com/docs/12.x/urls#main-content
 
-* Creación edición y eliminación de Posts, Videos y Podcasts, Comentarios
+* Creación edición y eliminación de Posts, Videos y Podcasts, Comentarios 
 
 * Usar Wysiwyg para la creación de Posts, Videos y Podcasts 
 
-* Aprobación o rechazo de Posts, Videos y Podcasts por parte de un profesor
+* Aprobación o rechazo de Posts, Videos y Podcasts por parte de un profesor 
 
 * Filtrado de post, videos y podcasts 
 
-* Creación de Tags
+* Creación de Tags 
 
 * Añadir y eliminar favoritos
 

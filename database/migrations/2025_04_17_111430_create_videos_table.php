@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('slug')->default('');
+            $table->string('video_path')->nullable();
             $table->timestamps();
         });
     }

@@ -2,11 +2,26 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Podcast extends Model
 {
-    public function tags()
+    use HasFactory;
+
+    public function getRouteKeyName() // Me ahorro poner en las rutas {modelo:slug} para que sea por slug en lugar de id
+    {
+        return 'slug';
+    }
+    protected $fillable = ['user_id', 'title', 'description', 'slug', 'podcast_path' , 'image_path'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }

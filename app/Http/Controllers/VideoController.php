@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VideoRequest;
+use App\Http\Requests\VideoUpdateRequest;
 use App\Models\Video;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -21,10 +22,10 @@ class VideoController extends Controller
         return view('video.create');
     }
 
-    public function store(Request $request)
+    public function store(VideoRequest $request)
     {
         $data = $request->all();
-        $data['user_id'] = 1; // Usuario temporal, en un futuro sera el usuario registrado
+        $data['user_id'] = 1; // Usuario temporal, en un futuro sera el usuario registrado, tal que asi ($data['user_id'] = auth()->id();)
 
         if ($request->hasFile('video_path')) {
             $file = $request->file('video_path');
@@ -55,7 +56,7 @@ class VideoController extends Controller
         return view('video.edit', compact('video'));
     }
 
-    public function update(Request $request, $id)
+    public function update(VideoUpdateRequest $request, $id)
     {
         $video = Video::findOrFail($id);
         $data = $request->all();

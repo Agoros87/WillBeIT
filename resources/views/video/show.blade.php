@@ -5,5 +5,5 @@
             Tu navegador no soporta la reproducción de videos.
         </video>
         <p>{{ $video->description }}</p>
-        <a href="{{ route('video.index') }}" class="btn btn-secondary">Volver</a>
+        <button><a href="{{ route('video.index') }}" class="btn btn-secondary">Volver</a></button>
     </div>

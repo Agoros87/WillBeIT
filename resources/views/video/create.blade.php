@@ -1,8 +1,7 @@
 <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
-    {{-- Título del video --}}
-    <div>
+    <div class="mb-3">
         <label for="title">Título del video</label>
         <input
             type="text"
@@ -17,21 +16,22 @@
         @enderror
     </div>
 
-    {{-- Descripción del video --}}
-    <div>
+    <div class="mb-3">
         <label for="description">Descripción</label>
         <textarea
             id="description"
             name="description"
             placeholder="Describe brevemente el contenido"
-        >{{ old('description') }}</textarea>
+            required
+        >
+            {{ old('description') }}
+        </textarea>
         @error('description')
         <div style="color: red;">{{ $message }}</div>
         @enderror
     </div>
 
-    {{-- Archivo de video --}}
-    <div>
+    <div class="mb-3">
         <label for="video_path">Archivo de video</label>
         <input
             type="file"
@@ -45,8 +45,8 @@
         @enderror
     </div>
 
-    {{-- Botón para enviar --}}
-    <div>
-        <button type="submit">Subir Video</button>
-    </div>
+    <button type="submit" class="btn btn-primary">Subir Video</button>
+    <br>
+    <button><a href="{{ route('video.index') }}" class="btn btn-secondary">Volver</a></button>
+
 </form>

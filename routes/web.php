@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -38,6 +39,13 @@ Route::get('/video/{id}', [VideoController::class, 'show'])->name('video.show');
 Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
 Route::put('/video/{id}', [VideoController::class, 'update'])->name('video.update');
 Route::delete('/video/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
+
+Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
+Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
+Route::post('/tags', [TagsController::class, 'store'])->name('tags.store');
+Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
+Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
+Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
 
 Route::middleware(RoleMiddleware::using('super-admin'))->group(function () {
     Route::resource('centers', CenterController::class);

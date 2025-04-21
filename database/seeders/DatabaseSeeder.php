@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             CenterSeeder::class,
             UserSeeder::class,
             VideoSeeder::class,
-            PodcastSeeder::class
+            PodcastSeeder::class,
+            TagSeeder::class,
         ]);
     }
 }

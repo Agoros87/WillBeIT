@@ -4,6 +4,7 @@
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('home') }}">{{ __('Posts') }}</a>
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('podcasts.index') }}">{{ __('Podcasts') }}</a>
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('video.index') ?: 'underline' }}" href="{{ route('video.index') }}">{{ __('Videos') }}</a>
+        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('tags.index') ?: 'underline' }}" href="{{ route('tags.index') }}">{{ __('Tags') }}</a><!-- PRUEBA -->
     </div>
     <div class="flex flex-row justify-center">
         @if (Route::has('login'))

@@ -21,7 +21,7 @@ class CenterFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'director_email' => $this->faker->unique()->safeEmail(),
             'director_name' => $this->faker->name(),
-            'erasmus_coordinator' => $this->faker->word(),
+            'erasmus_coordinator' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'badge' => $this->faker->word(),
             'created_at' => Carbon::now(),

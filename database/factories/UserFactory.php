@@ -26,12 +26,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'center_id' => Center::inRandomOrder()->first() ?? Center::factory(1)->create(),
+            'center_id' => Center::inRandomOrder()->firstOrFail(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'center_id' => Center::factory(),
         ];
     }
 

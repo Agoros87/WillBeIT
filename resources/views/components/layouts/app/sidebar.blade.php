@@ -20,6 +20,11 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    @role('super-admin')
+                    <flux:navlist.item icon="home" :href="route('centers.index')" :current="request()->routeIs('centers.index')" wire:navigate>{{ __('Centers') }}</flux:navlist.item>
+                    @endrole
+                    <flux:navlist.item icon="home" :href="route('podcasts.index')" :current="request()->routeIs('centers.index')" wire:navigate>{{ __('Podcasts') }}</flux:navlist.item>
+                    <flux:navlist.item icon="home" :href="route('video.index')" :current="request()->routeIs('centers.index')" wire:navigate>{{ __('Videos') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

@@ -15,7 +15,7 @@ class VideoFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first() ?? User::factory(),
+            'user_id' => User::inRandomOrder()->firstOrFail(),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->text(),
             'slug' => $this->faker->slug(),

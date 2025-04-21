@@ -5,6 +5,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +39,8 @@ Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.ed
 Route::put('/video/{id}', [VideoController::class, 'update'])->name('video.update');
 Route::delete('/video/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 
-Route::get('/centers', [CenterController::class, 'index'])->name('centers.index');
+Route::middleware(RoleMiddleware::using('super-admin'))->group(function () {
+    Route::resource('centers', CenterController::class);
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

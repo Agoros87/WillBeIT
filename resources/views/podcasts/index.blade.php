@@ -4,54 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podcasts</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-900 p-8">
+<body class="bg-gray-100 text-gray-900">
+@include('partials.navigation')
+<div class="p-8">
+    <h1 class="text-2xl font-bold mb-4">Podcasts</h1>
+    @can('create', App\Models\Podcast::class)
+        <a href="{{ route('podcasts.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block mb-6">
+            Crear nuevo </a>
+    @endcan
 
-<h1 class="text-2xl font-bold mb-4">Podcasts</h1>
+    @if($podcasts->isEmpty())
+        <p class="text-gray-600">No hay podcasts disponibles.</p>
+    @else
+        <div class="space-y-4">
+            @foreach($podcasts as $podcast)
+                <div class="border p-4 rounded shadow bg-white">
+                    <h2 class="text-xl font-semibold text-blue-600 hover:underline">
+                        <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>
+                    </h2>
+                    <p class="text-gray-700 mb-2">{{ Str::limit($podcast->description, 100) }}</p>
+                    <div class="flex space-x-2">
+                        @can('update', $podcast)
+                            <a href="{{ route('podcasts.edit', $podcast) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
+                                Editar </a>
+                        @endcan
 
-@can('create', App\Models\Podcast::class)
-    <a href="{{ route('podcasts.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block mb-6">
-        Crear nuevo
-    </a>
-@endcan
-
-@if($podcasts->isEmpty())
-    <p class="text-gray-600">No hay podcasts disponibles.</p>
-@else
-    <div class="space-y-4">
-        @foreach($podcasts as $podcast)
-            <div class="border p-4 rounded shadow bg-white">
-                <h2 class="text-xl font-semibold text-blue-600 hover:underline">
-                    <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>
-                </h2>
-                <p class="text-gray-700 mb-2">{{ Str::limit($podcast->description, 100) }}</p>
-
-                <div class="flex space-x-2">
-                    @can('update', $podcast)
-                        <a href="{{ route('podcasts.edit', $podcast) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
-                            Editar
-                        </a>
-                    @endcan
-
-                    @can('delete', $podcast)
-                        <form action="{{ route('podcasts.destroy', $podcast) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este podcast?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-                                Eliminar
-                            </button>
-                        </form>
-                    @endcan
+                        @can('delete', $podcast)
+                            <form action="{{ route('podcasts.destroy', $podcast) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este podcast?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                                    Eliminar
+                                </button>
+                            </form>
+                        @endcan
+                    </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
 
-    <div class="mt-6">
-        {{ $podcasts->links() }}
-    </div>
-@endif
-
+        <div class="mt-6">
+            {{ $podcasts->links() }}
+        </div>
+    @endif
+</div>
 </body>
 </html>

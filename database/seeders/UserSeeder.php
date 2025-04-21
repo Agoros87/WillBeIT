@@ -10,14 +10,20 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::create([
-            'center_id' => Center::inRandomOrder()->firstOrFail()->id,
-            'name' => 'Test User',
-            'email' => 'test@test.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('123'),
-        ]);
-        User::factory(10)->create();
+        $roles = ['super-admin', 'admin', 'teacher', 'student'];
 
+        foreach ($roles as $role) {
+            $user = User::create([
+                'center_id' => Center::inRandomOrder()->firstOrFail()->id,
+                'name' => ucfirst(str_replace('-', ' ', $role)),
+                'email' => str_replace('-', '', $role) . '@mail.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('123'),
+            ]);
+
+            $user->assignRole($role);
+        }
+
+        User::factory(10)->create();
     }
 }

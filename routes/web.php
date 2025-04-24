@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CommentReactionController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +33,13 @@ Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 // Rutas protegidas por auth y verified
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
+    Route::resource('posts', PostController::class)->except(['index', 'show']);
+
 });
+// Rutas publicas
+Route::resource('posts', PostController::class)->only(['index', 'show']);
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 
 Route::get('/video', [VideoController::class, 'index'])->name('video.index');
 Route::get('video/create', [VideoController::class, 'create'])->name('video.create');

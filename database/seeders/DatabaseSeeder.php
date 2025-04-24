@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             VideoSeeder::class,
             PodcastSeeder::class,
             TagSeeder::class,
+            PostSeeder::class,
         ]);
     }
 }

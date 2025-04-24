@@ -1,7 +1,7 @@
 <header class="w-full flex flex-row justify-around bg-white shadow">
     <div class="flex flex-row justify-center">
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('home') ?: 'underline' }}" href="{{ route('home') }}">{{ __('Home') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('home') }}">{{ __('Posts') }}</a>
+        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('podcasts.index') }}">{{ __('Podcasts') }}</a>
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('video.index') ?: 'underline' }}" href="{{ route('video.index') }}">{{ __('Videos') }}</a>
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('tags.index') ?: 'underline' }}" href="{{ route('tags.index') }}">{{ __('Tags') }}</a><!-- PRUEBA -->

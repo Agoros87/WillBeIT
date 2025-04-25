@@ -27,8 +27,8 @@ class PodcastRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'audio_file' => 'required|mimes:mp3,wav,ogg|max:100240',
+            'description' => 'required|string|max:1000',
+            'audio_file' => $this->isMethod('post') ? 'required|mimes:mp3,wav,ogg|max:100240' : 'nullable|mimes:mp3,wav,ogg|max:100240',
             'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:6048',
 
         ];

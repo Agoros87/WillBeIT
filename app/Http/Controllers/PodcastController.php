@@ -34,7 +34,7 @@ class PodcastController extends Controller
 
         $podcast = auth()->user()->podcasts()->make($validated);
         $podcast['slug'] = Str::slug($podcast ['title'].'-'.Str::random(6));
-        $podcast ->save();
+        $podcast->save();
 
         return to_route('podcasts.index')->with('success', 'Podcast creado correctamente.');
     }

@@ -10,7 +10,7 @@
 
 <h1 class="text-2xl font-bold mb-6">Editar podcast</h1>
 
-<form action="{{ route('podcasts.update', $podcast) }}" method="POST" class="space-y-4">
+<form action="{{ route('podcasts.update', $podcast) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
     @csrf
     @method('PUT')
 
@@ -32,7 +32,31 @@
         @enderror
     </div>
 
-    <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+    <div>
+        <label for="audio_file" class="block font-semibold">Archivo de audio</label>
+        <input type="file" name="audio_file" id="audio_file"
+               class="w-full border border-gray-300 p-2 rounded">
+        @error('audio_file')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+        @if($podcast->podcast_path)
+            <p class="text-gray-700 mt-2">Archivo actual: <a href="{{ asset('storage/' . $podcast->podcast_path) }}" class="text-blue-600 hover:underline" target="_blank">Escuchar</a></p>
+        @endif
+    </div>
+
+    <div>
+        <label for="image" class="block font-semibold">Imagen (opcional)</label>
+        <input type="file" name="image" id="image"
+               class="w-full border border-gray-300 p-2 rounded">
+        @error('image')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+        @if($podcast->image_path)
+            <p class="text-gray-700 mt-2">Imagen actual: <img src="{{ asset('storage/' . $podcast->image_path) }}" alt="Imagen del podcast" class="w-32 h-32 object-cover mt-2"></p>
+        @endif
+    </div>
+
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Actualizar
     </button>
 
@@ -41,4 +65,3 @@
 
 </body>
 </html>
-

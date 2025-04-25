@@ -24,18 +24,31 @@
                     <h2 class="text-xl font-semibold text-blue-600 hover:underline">
                         <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>
                     </h2>
+
                     <p class="text-gray-700 mb-2">{{ Str::limit($podcast->description, 100) }}</p>
-                    <div class="flex space-x-2">
+
+                    @if($podcast->image_path)
+                        <div class="my-2">
+                            <img src="{{ asset('storage/' . $podcast->image_path) }}" alt="Imagen del podcast"
+                                 class="w-16 h-16 object-cover rounded">
+                        </div>
+                    @endif
+
+                    <div class="flex space-x-2 mt-2">
                         @can('update', $podcast)
-                            <a href="{{ route('podcasts.edit', $podcast) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
-                                Editar </a>
+                            <a href="{{ route('podcasts.edit', $podcast) }}"
+                               class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
+                                Editar
+                            </a>
                         @endcan
 
                         @can('delete', $podcast)
-                            <form action="{{ route('podcasts.destroy', $podcast) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este podcast?');">
+                            <form action="{{ route('podcasts.destroy', $podcast) }}" method="POST"
+                                  onsubmit="return confirm('¿Estás seguro de eliminar este podcast?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                                <button type="submit"
+                                        class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
                                     Eliminar
                                 </button>
                             </form>
@@ -43,6 +56,8 @@
                     </div>
                 </div>
             @endforeach
+
+
         </div>
 
         <div class="mt-6">

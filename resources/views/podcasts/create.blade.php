@@ -10,7 +10,7 @@
 
 <h1 class="text-2xl font-bold mb-6">Crear nuevo podcast</h1>
 
-<form action="{{ route('podcasts.store') }}" method="POST" class="space-y-4">
+<form action="{{ route('podcasts.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
     @csrf
 
     <div>
@@ -31,6 +31,24 @@
         @enderror
     </div>
 
+    <div>
+        <label for="audio_file" class="block font-semibold">Archivo de audio</label>
+        <input type="file" name="audio_file" id="audio_file"
+               class="w-full border border-gray-300 p-2 rounded" required>
+        @error('audio_file')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
+        <label for="image" class="block font-semibold">Imagen (opcional)</label>
+        <input type="file" name="image" id="image"
+               class="w-full border border-gray-300 p-2 rounded">
+        @error('image')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Crear
     </button>
@@ -38,6 +56,6 @@
     <a href="{{ route('podcasts.index') }}" class="text-gray-700 hover:underline ml-4">Cancelar</a>
 </form>
 
+
 </body>
 </html>
-

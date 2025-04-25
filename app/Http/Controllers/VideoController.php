@@ -56,7 +56,7 @@ class VideoController extends Controller
         return view('video.edit', compact('video'));
     }
 
-    public function update(VideoUpdateRequest $request, $id)
+    public function update(VideoRequest $request, $id)
     {
         $video = Video::findOrFail($id);
         $data = $request->all();

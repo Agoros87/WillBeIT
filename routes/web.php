@@ -27,9 +27,6 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-// Rutas públicas
-Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
-
 // Rutas protegidas por auth y verified
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
@@ -40,6 +37,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
+
+// Rutas públicas
+Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 
 Route::get('/video', [VideoController::class, 'index'])->name('video.index');
 Route::get('video/create', [VideoController::class, 'create'])->name('video.create');

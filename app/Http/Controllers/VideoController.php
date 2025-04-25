@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VideoRequest;
-use App\Http\Requests\VideoUpdateRequest;
 use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -12,7 +11,7 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $videos = Video::all();
+        $videos = Video::latest()->paginate(5);
 
         return view('video.index', compact('videos'));
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('erasmus_coordinator');
             $table->string('phone');
             $table->string('badge')->nullable();
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->timestamps();
         });
     }

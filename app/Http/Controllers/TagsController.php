@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TagsRequest;
 use App\Models\Tag;
+use App\Models\Video;
 
 class TagsController extends Controller
 {
@@ -24,6 +25,7 @@ class TagsController extends Controller
 
         return redirect()->route('tags.index')->with('success', 'Tag created successfully.');
     }
+
     public function edit(Tag $tag)
     {
         return view('tags.edit', compact('tag'));

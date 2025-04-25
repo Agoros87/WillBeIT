@@ -6,13 +6,16 @@
     <title>Posts</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-900 p-8">
+<body>
+@include('partials.navigation')
 
 <h1 class="text-2xl font-bold mb-6">Listado de Posts</h1>
 
+@role('super-admin')
 <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-6 inline-block">
     Crear nuevo post
 </a>
+@endrole
 
 @foreach ($posts as $post)
     <div class="bg-white rounded shadow p-4 mb-4">
@@ -21,12 +24,17 @@
         <p class="text-sm text-gray-500">Autor: {{ $post->user->name ?? 'Desconocido' }}</p>
 
         <div class="mt-2 flex gap-4">
+            <a href="{{ route('posts.show', $post) }}" class="text-blue-600 hover:underline">Ver</a>
+
+            @role('super-admin')
             <a href="{{ route('posts.edit', $post) }}" class="text-green-600 hover:underline">Editar</a>
             <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('¿Eliminar este post?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
             </form>
+            @endrole
+
         </div>
     </div>
 @endforeach

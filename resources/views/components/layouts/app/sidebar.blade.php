@@ -7,38 +7,92 @@
         <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-            <a href="{{ route('dashboard') }}" class="mr-5 flex items-center space-x-2" wire:navigate>
-                <x-app-logo />
-            </a>
+            <span class="font-bold text-blue-500"><strong>WillBeIt</strong></span> <!--Cuando tengamos logo, metemos logo-->
 
             <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Main')" class="grid">
                 <flux:navlist.group class="grid">
                     <flux:navlist.item icon="home" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>{{ __('Inicio') }}</flux:navlist.item>
+                </flux:navlist.group>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                <flux:navlist.group :heading="__('Centers')" class="grid">
                     @role('super-admin')
-                    <flux:navlist.item icon="home" :href="route('centers.index')" :current="request()->routeIs('centers.index')" wire:navigate>{{ __('Centers') }}</flux:navlist.item>
+                    <flux:navlist.item :href="route('centers.index')" :current="request()->routeIs('centers.index')" wire:navigate>
+                        <i class="fas fa-school"></i>
+                        {{ __('Centers') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('centers.create')" :current="request()->routeIs('centers.create')" wire:navigate>
+                        <i class="fas fa-school"></i>
+                        {{ __('Create centers') }}
+                    </flux:navlist.item>
                     @endrole
-                    <flux:navlist.item icon="home" :href="route('podcasts.index')" :current="request()->routeIs('centers.index')" wire:navigate>{{ __('Podcasts') }}</flux:navlist.item>
-                    <flux:navlist.item icon="home" :href="route('video.index')" :current="request()->routeIs('centers.index')" wire:navigate>{{ __('Videos') }}</flux:navlist.item>
+                </flux:navlist.group>
+            </flux:navlist>
+
+            <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Posts')" class="grid">
+                    @role('super-admin')
+                    <flux:navlist.item :href="route('posts.index')" :current="request()->routeIs('posts.index')" wire:navigate>
+                        <i class="fas fa-podcast"></i>
+                        {{ __('Posts') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('posts.create')" :current="request()->routeIs('posts.create')" wire:navigate>
+                        <i class="fas fa-podcast"></i>
+                        {{ __('Create post') }}
+                    </flux:navlist.item>
+                    @endrole
+                </flux:navlist.group>
+            </flux:navlist>
+
+            <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Podcast')" class="grid">
+                    @role('super-admin')
+                    <flux:navlist.item :href="route('podcasts.index')" :current="request()->routeIs('podcasts.index')" wire:navigate>
+                        <i class="fas fa-podcast"></i>
+                        {{ __('Podcasts') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('podcasts.create')" :current="request()->routeIs('podcasts.create')" wire:navigate>
+                        <i class="fas fa-podcast"></i>
+                        {{ __('Create podcasts') }}
+                    </flux:navlist.item>
+                    @endrole
+                </flux:navlist.group>
+            </flux:navlist>
+
+            <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Videos')" class="grid">
+                    @role('super-admin')
+                    <flux:navlist.item :href="route('video.index')" :current="request()->routeIs('video.index')" wire:navigate>
+                        <i class="fas fa-video"></i>
+                        {{ __('See videos') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('video.create')" :current="request()->routeIs('video.create')" wire:navigate>
+                        <i class="fas fa-video"></i>
+                        {{ __('Create videos') }}
+                    </flux:navlist.item>
+                    @endrole
+                </flux:navlist.group>
+            </flux:navlist>
+
+            <flux:navlist variant="outline">
+                <flux:navlist.group :heading="__('Tags')" class="grid">
+                    @role('super-admin')
+                    <flux:navlist.item :href="route('tags.index')" :current="request()->routeIs('tags.index')" wire:navigate>
+                        <i class="fas fa-tags"></i>
+                        {{ __('See tags') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('tags.create')" :current="request()->routeIs('tags.create')" wire:navigate>
+                        <i class="fas fa-tags"></i>
+                        {{ __('Create tags') }}
+                    </flux:navlist.item>
+                    @endrole
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="bottom" align="start">

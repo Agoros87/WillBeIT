@@ -1,10 +1,9 @@
 <header class="w-full flex flex-row justify-around bg-white shadow">
     <div class="flex flex-row justify-center">
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('home') ?: 'underline' }}" href="{{ route('home') }}">{{ __('Home') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('') ?: 'underline' }}" href="{{ route('podcasts.index') }}">{{ __('Podcasts') }}</a>
+        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('posts.index') ?: 'underline' }}" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
+        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('podcasts.index') ?: 'underline' }}" href="{{ route('podcasts.index') }}">{{ __('Podcasts') }}</a>
         <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('video.index') ?: 'underline' }}" href="{{ route('video.index') }}">{{ __('Videos') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('tags.index') ?: 'underline' }}" href="{{ route('tags.index') }}">{{ __('Tags') }}</a><!-- PRUEBA -->
     </div>
     <div class="flex flex-row justify-center">
         @if (Route::has('login'))
@@ -40,9 +39,15 @@
 
                             <flux:menu.separator />
 
+                            <!--Damos diferente dashboard según el rol que tenga-->
                             <flux:menu.radio.group>
+                                @role('super-admin')
+                                <flux:menu.item :href="route('admin.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
+                                <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                                @else
                                 <flux:menu.item :href="route('dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
                                 <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                                    @endrole
                             </flux:menu.radio.group>
 
                             <flux:menu.separator />

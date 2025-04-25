@@ -10,7 +10,7 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gray-100">
+<body>
 @include('partials.navigation')
 <div class="flex items-center justify-center w-full">
 

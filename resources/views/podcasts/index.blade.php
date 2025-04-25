@@ -10,10 +10,10 @@
 @include('partials.navigation')
 <div class="p-8">
     <h1 class="text-2xl font-bold mb-4">Podcasts</h1>
-    @can('create', App\Models\Podcast::class)
+    @role('super-admin')
         <a href="{{ route('podcasts.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block mb-6">
             Crear nuevo </a>
-    @endcan
+    @endrole
 
     @if($podcasts->isEmpty())
         <p class="text-gray-600">No hay podcasts disponibles.</p>
@@ -34,6 +34,7 @@
                         </div>
                     @endif
 
+                    @role('super-admin')
                     <div class="flex space-x-2 mt-2">
                         @can('update', $podcast)
                             <a href="{{ route('podcasts.edit', $podcast) }}"
@@ -54,6 +55,7 @@
                             </form>
                         @endcan
                     </div>
+                    @endrole
                 </div>
             @endforeach
 

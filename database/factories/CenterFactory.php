@@ -24,6 +24,7 @@ class CenterFactory extends Factory
             'erasmus_coordinator' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'badge' => $this->faker->word(),
+            'status' => $this->faker->randomElement(['active', 'inactive']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
 use App\Http\Controllers\PodcastController;
-use App\Http\Controllers\CenterController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -12,7 +13,7 @@ use Livewire\Volt\Volt;
 use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
@@ -59,5 +60,8 @@ Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.des
 Route::middleware(RoleMiddleware::using('super-admin'))->group(function () {
     Route::resource('centers', CenterController::class);
 });
+
+//SUPER-ADMIN
+Route::get('/admin/dashboard', [SuperAdminController::class, 'index'])->name('admin.dashboard');
 
 require __DIR__ . '/auth.php';

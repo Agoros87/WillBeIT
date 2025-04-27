@@ -16,9 +16,13 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+    //Route::get('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    //Route::get('teacher/dashboard', 'teacher.dashboard')->name('teacher.dashboard');
+    //Route::get('student/dashboard', 'student.dashboard')->name('student.dashboard');
+    Route::view('dashboard', 'dashboard')->name('dashboard');//QUITAR CUANDO ESTEN HECHAS CADA UNA Y DESCOMENTA ARRIBA
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -32,7 +36,6 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
     Route::resource('posts', PostController::class)->except(['index', 'show']);
-
 });
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
@@ -57,11 +60,10 @@ Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit
 Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
 Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
 
-Route::middleware(RoleMiddleware::using('super-admin'))->group(function () {
+Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::resource('centers', CenterController::class);
 });
 
-//SUPER-ADMIN
-Route::get('/admin/dashboard', [SuperAdminController::class, 'index'])->name('admin.dashboard');
+
 
 require __DIR__ . '/auth.php';

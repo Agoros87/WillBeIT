@@ -10,19 +10,11 @@ class SuperAdminController extends Controller
 {
     public function index()
     {
-        // Obtener datos para el dashboard
-        $totalUsuarios = User::count();
-        $centrosActivos = Center::where('status', 'active')->count();
-        $centrosInactivos = Center::where('status', 'inactive')->count();
-        $usuariosHoy = User::whereDate('created_at', now()->toDateString())->count();
-
-
-        // Datos para la vista
-        return view('admin.adminDashboard', [
-            'totalUsuarios' => $totalUsuarios,
-            'centrosActivos' => $centrosActivos,
-            'centrosInactivos' => $centrosInactivos,
-            'usuariosHoy' => $usuariosHoy,
+        return view('superadmin.dashboard', [
+            'totalUsuarios' => User::count(),
+            'centrosActivos' => Center::where('status', 'activo')->count(),
+            'centrosInactivos' => Center::where('status', 'inactivo')->count(),
+            'usuariosHoy' => User::whereDate('created_at', today())->count(),
         ]);
     }
 }

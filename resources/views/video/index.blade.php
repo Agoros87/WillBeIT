@@ -13,7 +13,7 @@
 <div class="max-w-5xl mx-auto px-4 py-8">
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-3xl font-bold">Videos</h1>
-        @role('super-admin')
+        @role('super-superadmin')
         <a href="{{ route('video.create') }}"
            class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
             + Nuevo Video
@@ -44,7 +44,7 @@
                        class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition">
                         Ver
                     </a>
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <a href="{{ route('video.edit', $video->id) }}"
                        class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">
                         Editar

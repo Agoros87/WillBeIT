@@ -22,7 +22,7 @@
 <p class="text-sm text-gray-500 mb-2">Slug: {{ $post->slug }}</p>
 <p class="text-sm text-gray-500 mb-2">Video ID: {{ $post->video_id }}</p>
 <p class="text-sm text-gray-500 mb-6">Podcast ID: {{ $post->podcasts_id }}</p>
-@role('super-admin')
+@role('super-superadmin')
 <div class="flex gap-4">
     <a href="{{ route('posts.edit', $post) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Editar</a>
 

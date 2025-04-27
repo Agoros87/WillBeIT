@@ -19,7 +19,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Centers')" class="grid">
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <flux:navlist.item :href="route('centers.index')" :current="request()->routeIs('centers.index')" wire:navigate>
                         <i class="fas fa-school"></i>
                         {{ __('Centers') }}
@@ -34,7 +34,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Posts')" class="grid">
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <flux:navlist.item :href="route('posts.index')" :current="request()->routeIs('posts.index')" wire:navigate>
                         <i class="fas fa-podcast"></i>
                         {{ __('Posts') }}
@@ -49,7 +49,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Podcast')" class="grid">
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <flux:navlist.item :href="route('podcasts.index')" :current="request()->routeIs('podcasts.index')" wire:navigate>
                         <i class="fas fa-podcast"></i>
                         {{ __('Podcasts') }}
@@ -64,7 +64,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Videos')" class="grid">
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <flux:navlist.item :href="route('video.index')" :current="request()->routeIs('video.index')" wire:navigate>
                         <i class="fas fa-video"></i>
                         {{ __('See videos') }}
@@ -79,7 +79,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Tags')" class="grid">
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <flux:navlist.item :href="route('tags.index')" :current="request()->routeIs('tags.index')" wire:navigate>
                         <i class="fas fa-tags"></i>
                         {{ __('See tags') }}

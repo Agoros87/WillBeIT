@@ -13,7 +13,7 @@ class PodcastPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('super-admin') || $user->hasRole('admin') || $user->hasRole('teacher') || $user->hasRole('student');
+        return $user->hasRole('super-superadmin') || $user->hasRole('superadmin') || $user->hasRole('teacher') || $user->hasRole('student');
     }
 
     /**
@@ -21,7 +21,7 @@ class PodcastPolicy
      */
     public function update(User $user, Podcast $podcast): bool
     {
-        return $user->hasRole('super-admin') || $user->hasRole('admin') || $user->hasRole('teacher') || $user->id === $podcast->user_id;
+        return $user->hasRole('super-superadmin') || $user->hasRole('superadmin') || $user->hasRole('teacher') || $user->id === $podcast->user_id;
     }
 
     /**
@@ -29,7 +29,7 @@ class PodcastPolicy
      */
     public function delete(User $user, Podcast $podcast): bool
     {
-        return $user->hasRole('super-admin') || $user->hasRole('admin') || $user->hasRole('teacher') || $user->id === $podcast->user_id;
+        return $user->hasRole('super-superadmin') || $user->hasRole('superadmin') || $user->hasRole('teacher') || $user->id === $podcast->user_id;
     }
 
     /**
@@ -37,6 +37,6 @@ class PodcastPolicy
      */
     public function forceDelete(User $user, Podcast $podcast): bool
     {
-        return $user->hasRole('super-admin') || $user->hasRole('admin') || $user->hasRole('teacher');
+        return $user->hasRole('super-superadmin') || $user->hasRole('superadmin') || $user->hasRole('teacher');
     }
 }

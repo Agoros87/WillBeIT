@@ -44,8 +44,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $user = Auth::user();
         //Switch para redirigir a diferentes rutas dependiendo del rol del usuario
         switch (true) {
-            case $user->hasRole('super-admin'):
-                $this->redirectIntended(default: route('admin.dashboard'), navigate: true);
+            case $user->hasRole('super-superadmin'):
+                $this->redirectIntended(default: route('superadmin.dashboard'), navigate: true);
                 break;
 
             default:

@@ -14,7 +14,7 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-semibold text-gray-800">Gestión de Etiquetas</h1>
 
-        @role('super-admin')
+        @role('super-superadmin')
         <a href="{{ route('tags.create') }}"
            class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
             + Nueva Etiqueta
@@ -44,7 +44,7 @@
                     <td class="px-6 py-4 text-sm text-gray-900 font-semibold">{{ $tag->name }}</td>
                     <td class="px-6 py-4 flex space-x-2">
 
-                        @role('super-admin')
+                        @role('super-superadmin')
                         <a href="{{ route('tags.edit', $tag->id) }}"
                            class="text-yellow-600 hover:text-yellow-800 text-sm font-medium">
                             Editar

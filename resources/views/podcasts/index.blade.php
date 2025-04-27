@@ -10,7 +10,7 @@
 @include('partials.navigation')
 <div class="p-8">
     <h1 class="text-2xl font-bold mb-4">Podcasts</h1>
-    @role('super-admin')
+    @role('super-superadmin')
         <a href="{{ route('podcasts.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block mb-6">
             Crear nuevo </a>
     @endrole
@@ -34,7 +34,7 @@
                         </div>
                     @endif
 
-                    @role('super-admin')
+                    @role('super-superadmin')
                     <div class="flex space-x-2 mt-2">
                         @can('update', $podcast)
                             <a href="{{ route('podcasts.edit', $podcast) }}"

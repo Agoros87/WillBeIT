@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('Admin Dashboard')">
+<x-layouts.app :title="__('SuperAdmin Dashboard')">
     <div class="flex flex-col gap-6">
 
         <h2 class="text-center font-bold text-2xl text-blue-500" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">

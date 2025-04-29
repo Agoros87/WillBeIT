@@ -3,6 +3,7 @@
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -64,6 +65,7 @@ Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::resource('centers', CenterController::class);
 });
 
-
+Route::get('/users/export', [ExcelController::class, 'export'])->name('users.export');
+Route::post('/users/import', [ExcelController::class, 'import'])->name('users.import');
 
 require __DIR__ . '/auth.php';

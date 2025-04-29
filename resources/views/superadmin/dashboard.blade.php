@@ -5,7 +5,7 @@
             Panel de Control
         </h2>
         {{-- Header Estadísticas --}}
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
@@ -22,7 +22,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-white dark:text-white">Centros Activos</p>
-                        <p class="text-3xl font-bold mt-2 dark:text-white">{{ $centrosActivos }}</p>
+                        <p class="text-3xl font-bold mt-2 dark:text-white">{{ $Centros }}</p>
                     </div>
                     <svg class="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -30,23 +30,12 @@
                 </div>
             </div>
 
-            <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm text-white dark:text-white">Centros Inactivos</p>
-                        <p class="text-3xl font-bold mt-2 dark:text-white">{{ $centrosInactivos }}</p>
-                    </div>
-                    <svg class="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                </div>
-            </div>
 
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-white dark:text-white">Actividad Hoy</p>
-                        <p class="text-3xl font-bold mt-2 dark:text-white">{{ $usuariosHoy }}</p>
+                        <p class="text-3xl font-bold mt-2 dark:text-white">{{ $PostHoy }}</p>
                     </div>
                     <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Center;
+use App\Models\Post;
 use App\Models\User;
 
 class SuperAdminController extends Controller
@@ -12,9 +13,8 @@ class SuperAdminController extends Controller
     {
         return view('superadmin.dashboard', [
             'totalUsuarios' => User::count(),
-            'centrosActivos' => Center::where('status', 'activo')->count(),
-            'centrosInactivos' => Center::where('status', 'inactivo')->count(),
-            'usuariosHoy' => User::whereDate('created_at', today())->count(),
+            'Centros' => Center::count(),
+            'PostHoy' => Post::whereDate('created_at', today())->count(),
         ]);
     }
 }

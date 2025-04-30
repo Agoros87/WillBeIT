@@ -3,6 +3,7 @@
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -60,9 +61,12 @@ Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit
 Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
 Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
 
-Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
+
     Route::resource('centers', CenterController::class);
-});
+    Route::get('users/export', [ExcelController::class, 'exportUsers'])->name('users.export');
+    Route::post('users/import', [ExcelController::class, 'importUsers'])->name('users.import');
+    Route::get('centers/export', [CenterController::class, 'export'])->name('centers.export');
+    Route::post('centers/import', [ExcelController::class, 'importCenters'])->name('centers.import');
 
 
 

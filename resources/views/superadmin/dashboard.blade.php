@@ -103,14 +103,14 @@
                     <form action="{{ route('users.export') }}" method="GET">
                         <button class="p-4 cursor-pointer rounded-xl bg-white dark:bg-neutral-900 border shadow-lg hover:shadow-md transition-all flex flex-col items-center justify-center group w-full hover:bg-yellow-200 dark:hover:bg-yellow-800">
                             <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-3">
-                                <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v16h16V4H4zm4 4h8m-4 0v8"/>
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"/>
                                 </svg>
                             </div>
                             <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-400">Exportar Usuarios</span>
                         </button>
                     </form>
-
+                    <!-- Botón Importar Usuarios -->
                     <form action="{{ route('users.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <label class="block cursor-pointer p-4 rounded-xl bg-white dark:bg-neutral-900 border shadow-lg hover:shadow-md transition-all flex flex-col items-center justify-center group hover:bg-green-200 dark:hover:bg-green-800">
@@ -125,7 +125,32 @@
                     </form>
                 </div>
 
-
+                <!-- Botón Exportar Centros -->
+                <div class="grid grid-cols-2 gap-4">
+                    <form action="{{ route('centers.export') }}" method="GET">
+                        <button class="p-4 cursor-pointer rounded-xl bg-white dark:bg-neutral-900 border shadow-lg hover:shadow-md transition-all flex flex-col items-center justify-center group w-full hover:bg-yellow-200 dark:hover:bg-yellow-800">
+                            <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mb-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"/>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-400">Exportar Centros</span>
+                        </button>
+                    </form>
+                    <!-- Botón Importar Centros -->
+                    <form action="{{ route('centers.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <label class="block cursor-pointer p-4 rounded-xl bg-white dark:bg-neutral-900 border shadow-lg hover:shadow-md transition-all flex flex-col items-center justify-center group hover:bg-green-200 dark:hover:bg-green-800">
+                            <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-3">
+                                <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">Importar Centros</span>
+                            <input type="file" name="file" class="hidden" accept=".xlsx,.xls,.csv" onchange="this.form.submit()">
+                        </label>
+                    </form>
+                </div>
                 {{-- Alertas del Sistema --}}
                 <div class="rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-900/20 p-5 shadow-lg">
                     <div class="flex items-start gap-3">

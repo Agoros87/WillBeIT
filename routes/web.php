@@ -7,6 +7,7 @@ use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
     Route::resource('posts', PostController::class)->except(['index', 'show']);
+    Route::resource('video', VideoController::class);
 });
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
@@ -45,13 +47,6 @@ Route::post('/comments/reactions', [CommentReactionController::class, 'store'])-
 // Rutas públicas
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 
-Route::get('/video', [VideoController::class, 'index'])->name('video.index');
-Route::get('video/create', [VideoController::class, 'create'])->name('video.create');
-Route::post('video', [VideoController::class, 'store'])->name('video.store');
-Route::get('/video/{id}', [VideoController::class, 'show'])->name('video.show');
-Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
-Route::put('/video/{id}', [VideoController::class, 'update'])->name('video.update');
-Route::delete('/video/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 
 Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
 Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
@@ -64,6 +59,19 @@ Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::resource('centers', CenterController::class);
 });
 
+//RUTAS SOLO PARA SUPERADMIN
+Route::middleware(['auth', 'superadmin'])->group(function () {
+    Route::resource('users', UserController::class);
+});
 
+
+//DEJARLAS DE MOMENTO SIN QUITAR
+//Route::get('/video', [VideoController::class, 'index'])->name('video.index');
+//Route::get('video/create', [VideoController::class, 'create'])->name('video.create');
+//Route::post('video', [VideoController::class, 'store'])->name('video.store');
+//Route::get('/video/{id}', [VideoController::class, 'show'])->name('video.show');
+//Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
+//Route::put('/video/{id}', [VideoController::class, 'update'])->name('video.update');
+//Route::delete('/video/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 
 require __DIR__ . '/auth.php';

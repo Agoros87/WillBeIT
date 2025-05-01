@@ -10,9 +10,19 @@
 @include('partials.navigation')
 <div class="p-8">
     <h1 class="text-2xl font-bold mb-4">Podcasts</h1>
-    @role('super-superadmin')
-        <a href="{{ route('podcasts.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block mb-6">
-            Crear nuevo </a>
+    @role('superadmin')
+    @role('superadmin')
+    <div class="flex justify-end gap-4">
+        <a href="{{ route('superadmin.dashboard') }}"
+           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            Volver al Dashboard
+        </a>
+        <a href="{{ route('podcasts.create') }}"
+           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            Crear nuevo Podscast
+        </a>
+    </div>
+    @endrole
     @endrole
 
     @if($podcasts->isEmpty())
@@ -34,7 +44,7 @@
                         </div>
                     @endif
 
-                    @role('super-superadmin')
+                    @role('superadmin')
                     <div class="flex space-x-2 mt-2">
                         @can('update', $podcast)
                             <a href="{{ route('podcasts.edit', $podcast) }}"

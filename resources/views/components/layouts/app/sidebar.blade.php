@@ -4,95 +4,173 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-            <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
+    <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+        <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-            <span class="font-bold text-blue-500"><strong>WillBeIt</strong></span> <!--Cuando tengamos logo, metemos logo-->
+        <span class="font-bold text-blue-500"><strong>WillBeIt</strong></span> <!--Cuando tengamos logo, metemos logo-->
 
-            <flux:navlist variant="outline">
+        @role('superadmin')
+        <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Main')" class="grid">
-                <flux:navlist.group class="grid">
+                    <flux:navlist.group class="grid">
                     <flux:navlist.item icon="home" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>{{ __('Inicio') }}</flux:navlist.item>
                 </flux:navlist.group>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Centers')" class="grid">
-                    @role('super-superadmin')
-                    <flux:navlist.item :href="route('centers.index')" :current="request()->routeIs('centers.index')" wire:navigate>
+            </flux:navlist>
+            <flux:navlist.group class="grid" x-data="{ open: false }">
+                <flux:navlist.group :heading="__('Operations')" class="grid">
+                    <div
+                        @click="open = !open"
+                        class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800"
+                        :class="open ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''"
+                    >
                         <i class="fas fa-school"></i>
-                        {{ __('Centers') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('centers.create')" :current="request()->routeIs('centers.create')" wire:navigate>
-                        <i class="fas fa-school"></i>
-                        {{ __('Create centers') }}
-                    </flux:navlist.item>
-                    @endrole
+                        <span>{{ __('Centers') }}</span>
+                        <i :class="open ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="ml-auto text-sm opacity-70"></i>
+                    </div>
+                    <div x-show="open" x-collapse>
+                        <flux:navlist.item :href="route('centers.index')" :current="request()->routeIs('centers.index')" wire:navigate>
+                            <i class="fas fa-eye"></i>
+                            {{ __('View Centers') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item :href="route('centers.create')" :current="request()->routeIs('centers.create')" wire:navigate>
+                            <i class="fas fa-plus"></i>
+                            {{ __('Create Center') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
+            </flux:navlist.group>
+
+            <flux:navlist variant="outline">
+                <flux:navlist.group class="grid" x-data="{ openPosts: false }">
+                    <div
+                        @click="openPosts = !openPosts"
+                        class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800"
+                        :class="openPosts ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''"
+                    >
+                        <i class="fas fa-file-alt"></i>
+                        <span>{{ __('Posts') }}</span>
+                        <i :class="openPosts ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="ml-auto text-sm opacity-70"></i>
+                    </div>
+
+                    <div x-show="openPosts" x-collapse>
+                        <flux:navlist.item :href="route('posts.index')" :current="request()->routeIs('posts.index')" wire:navigate>
+                            <i class="fas fa-eye"></i>
+                            {{ __('View Posts') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item :href="route('posts.create')" :current="request()->routeIs('posts.create')" wire:navigate>
+                            <i class="fas fa-plus"></i>
+                            {{ __('Create post') }}
+                        </flux:navlist.item>
+                    </div>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Posts')" class="grid">
-                    @role('super-superadmin')
-                    <flux:navlist.item :href="route('posts.index')" :current="request()->routeIs('posts.index')" wire:navigate>
-                        <i class="fas fa-podcast"></i>
-                        {{ __('Posts') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('posts.create')" :current="request()->routeIs('posts.create')" wire:navigate>
-                        <i class="fas fa-podcast"></i>
-                        {{ __('Create post') }}
-                    </flux:navlist.item>
-                    @endrole
+                <flux:navlist.group class="grid" x-data="{ openPodcast: false }">
+                    <div
+                        @click="openPodcast = !openPodcast"
+                        class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800"
+                        :class="openPodcast ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''"
+                    >
+                        <i class="fas fa-eye"></i>
+                        <span>{{ __('Podcast') }}</span>
+                        <i :class="openPodcast ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="ml-auto text-sm opacity-70"></i>
+                    </div>
+
+                    <div x-show="openPodcast" x-collapse>
+                        <flux:navlist.item :href="route('podcasts.index')" :current="request()->routeIs('podcasts.index')" wire:navigate>
+                            <i class="fas fa-eye"></i>
+                            {{ __('View Podcasts') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item :href="route('podcasts.create')" :current="request()->routeIs('podcasts.create')" wire:navigate>
+                            <i class="fas fa-plus"></i>
+                            {{ __('Create podcasts') }}
+                        </flux:navlist.item>
+                    </div>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Podcast')" class="grid">
-                    @role('super-superadmin')
-                    <flux:navlist.item :href="route('podcasts.index')" :current="request()->routeIs('podcasts.index')" wire:navigate>
-                        <i class="fas fa-podcast"></i>
-                        {{ __('Podcasts') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('podcasts.create')" :current="request()->routeIs('podcasts.create')" wire:navigate>
-                        <i class="fas fa-podcast"></i>
-                        {{ __('Create podcasts') }}
-                    </flux:navlist.item>
-                    @endrole
-                </flux:navlist.group>
-            </flux:navlist>
-
-            <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Videos')" class="grid">
-                    @role('super-superadmin')
-                    <flux:navlist.item :href="route('video.index')" :current="request()->routeIs('video.index')" wire:navigate>
+                <flux:navlist.group class="grid" x-data="{ openVideos: false }">
+                    <div
+                        @click="openVideos = !openVideos"
+                        class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800"
+                        :class="openVideos ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''"
+                    >
                         <i class="fas fa-video"></i>
-                        {{ __('See videos') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('video.create')" :current="request()->routeIs('video.create')" wire:navigate>
-                        <i class="fas fa-video"></i>
-                        {{ __('Create videos') }}
-                    </flux:navlist.item>
-                    @endrole
+                        <span>{{ __('Videos') }}</span>
+                        <i :class="openVideos ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="ml-auto text-sm opacity-70"></i>
+                    </div>
+
+                    <div x-show="openVideos" x-collapse>
+                        <flux:navlist.item :href="route('video.index')" :current="request()->routeIs('video.index')" wire:navigate>
+                            <i class="fas fa-eye"></i>
+                            {{ __('View videos') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item :href="route('video.create')" :current="request()->routeIs('video.create')" wire:navigate>
+                            <i class="fas fa-plus"></i>
+                            {{ __('Create videos') }}
+                        </flux:navlist.item>
+                    </div>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Tags')" class="grid">
-                    @role('super-superadmin')
-                    <flux:navlist.item :href="route('tags.index')" :current="request()->routeIs('tags.index')" wire:navigate>
+                <flux:navlist.group class="grid" x-data="{ openTags: false }">
+                    <div
+                        @click="openTags = !openTags"
+                        class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800"
+                        :class="openTags ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''"
+                    >
                         <i class="fas fa-tags"></i>
-                        {{ __('See tags') }}
-                    </flux:navlist.item>
-                    <flux:navlist.item :href="route('tags.create')" :current="request()->routeIs('tags.create')" wire:navigate>
-                        <i class="fas fa-tags"></i>
-                        {{ __('Create tags') }}
-                    </flux:navlist.item>
-                    @endrole
+                        <span>{{ __('Tags') }}</span>
+                        <i :class="openTags ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="ml-auto text-sm opacity-70"></i>
+                    </div>
+
+                    <div x-show="openTags" x-collapse>
+                        <flux:navlist.item :href="route('tags.index')" :current="request()->routeIs('tags.index')" wire:navigate>
+                            <i class="fas fa-eye"></i>
+                            {{ __('View tags') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item :href="route('tags.create')" :current="request()->routeIs('tags.create')" wire:navigate>
+                            <i class="fas fa-plus"></i>
+                            {{ __('Create tags') }}
+                        </flux:navlist.item>
+                    </div>
                 </flux:navlist.group>
             </flux:navlist>
 
-            <flux:spacer />
+        <flux:navlist variant="outline">
+            <flux:navlist.group class="grid" x-data="{ openTags: false }">
+                <div
+                    @click="openTags = !openTags"
+                    class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800"
+                    :class="openTags ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''"
+                >
+                    <i class="fas fa-user"></i>
+                    <span>{{ __('Users') }}</span>
+                    <i :class="openTags ? 'fas fa-chevron-up' : 'fas fa-chevron-down'" class="ml-auto text-sm opacity-70"></i>
+                </div>
+
+                <div x-show="openTags" x-collapse>
+                    <flux:navlist.item :href="route('users.index')" :current="request()->routeIs('users.index')" wire:navigate>
+                        <i class="fas fa-eye"></i>
+                        {{ __('View users') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('users.create')" :current="request()->routeIs('users.create')" wire:navigate>
+                        <i class="fas fa-plus"></i>
+                        {{ __('Create users') }}
+                    </flux:navlist.item>
+                </div>
+            </flux:navlist.group>
+        </flux:navlist>
+        @endrole
+
+        <flux:spacer />
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="bottom" align="start">

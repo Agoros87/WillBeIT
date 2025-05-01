@@ -52,10 +52,18 @@
     "Create centers": "Crear centros",
     "Centers": "Centros",
     "Create videos": "Crear videos",
-    "See videos": "Ver videos",
+    "View videos": "Ver videos",
     "Create podcasts": "Crear podcasts",
     "Tags": "Etiquetas",
-    "See tags": "Ver etiquetas",
-    "Create tags": "Crear etiquetas"
+    "View tags": "Ver etiquetas",
+    "Create tags": "Crear etiquetas",
+    "Operations": "Operaciones",
+    "View Posts": "Ver Posts",
+    "View Centers": "Ver Centros",
+    "Create Center": "Crear Centro",
+    "View Podcasts": "Ver Podcast",
+    "Create post": "Crear post",
+    "View users": "Ver usuarios",
+    "Create users": "Crear usuarios"
 
 }

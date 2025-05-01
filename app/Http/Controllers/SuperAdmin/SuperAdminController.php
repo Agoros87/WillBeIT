@@ -27,6 +27,7 @@ class SuperAdminController extends Controller
             'usuariosHoy',
             'totalVideos',
             'totalPodcast',
-            'totalPost'));
+            'totalPost',
+        ));
     }
 }

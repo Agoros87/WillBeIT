@@ -13,7 +13,7 @@
 <div class="max-w-6xl mx-auto px-4 py-10">
     @role('superadmin')
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-4xl font-semibold tracking-tight">Gestión de Videos</h1>
+        <h1 class="text-4xl font-semibold tracking-tight">Vídeos</h1>
         <div class="flex gap-3">
             <a href="{{ route('superadmin.dashboard') }}"
                class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-200 transition text-sm font-medium">

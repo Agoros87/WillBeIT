@@ -60,7 +60,7 @@ Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.des
     Route::resource('centers', CenterController::class);
     Route::get('users/export', [ExcelController::class, 'exportUsers'])->name('users.export');
     Route::post('users/import', [ExcelController::class, 'importUsers'])->name('users.import');
-    Route::get('centers/export', [CenterController::class, 'export'])->name('centers.export');
+    Route::get('centers/export', [ExcelController::class, 'exportCenters'])->name('centers.export');
     Route::post('centers/import', [ExcelController::class, 'importCenters'])->name('centers.import');
 
 //RUTAS SOLO PARA SUPERADMIN

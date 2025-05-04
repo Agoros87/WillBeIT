@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CentersExport;
 use App\Http\Requests\CenterRequest;
+use App\Imports\CentersImport;
 use App\Models\Center;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CenterController extends Controller
 {
@@ -46,5 +49,20 @@ class CenterController extends Controller
     {
         Center::findOrFail($id)->delete();
         return redirect()->route('centers.index');
+    }
+    public function importCenters(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new CentersImport, $request->file('file'));
+
+        return back()->with('success', 'Importación exitosa.');
+    }
+
+    public function exportCenters()
+    {
+        return Excel::download(new CentersExport, 'centers.xlsx');
     }
 }

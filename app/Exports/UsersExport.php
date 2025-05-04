@@ -17,6 +17,7 @@ class UsersExport implements FromCollection
                 'centers.name as center_name',
                 'users.name as user_name',
                 'users.email as user_email',
+                'users.type as user_type',
                 'users.password as user_password',
             )
             ->get();

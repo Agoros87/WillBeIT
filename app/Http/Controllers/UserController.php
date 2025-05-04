@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Imports\UsersImport;
 use App\Models\Center;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -76,5 +80,21 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
+    }
+
+    public function importUsers(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,csv'
+        ]);
+
+        Excel::import(new UsersImport, $request->file('file'));
+
+        return back()->with('success', 'Importación exitosa.');
+    }
+
+    public function exportUsers()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

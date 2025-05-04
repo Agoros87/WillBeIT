@@ -9,7 +9,7 @@ class Center extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'address', 'city', 'province', 'postal_code', 'email', 'director_email', 'director_name', 'erasmus_coordinator', 'phone', 'badge'];
+    protected $fillable = ['name', 'address', 'city', 'province', 'postal_code', 'email', 'director_email', 'director_name', 'erasmus_coordinator', 'phone', 'badge', 'status'];
 
     public function users()
     {

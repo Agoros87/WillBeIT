@@ -28,7 +28,8 @@ class UsersImport implements ToModel
             'center_id' => $center->id,
             'name'      => $row[1],
             'email'     => $row[2],
-            'password'  => $row[3],
+            'type'      => $row[3] ?? 'null',
+            'password'  => $row[4],
         ]);
     }
 }

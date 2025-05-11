@@ -17,14 +17,14 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('province')->nullable();
-            $table->string('postal_code', 10);
-            $table->string('email');
+            $table->string('postal_code', 10)->nullable();
+            $table->string('email')->nullable();
             $table->string('director_email')->nullable();
             $table->string('director_name')->nullable();
-            $table->string('erasmus_coordinator');
-            $table->string('phone');
+            $table->string('erasmus_coordinator')->nullable();
+            $table->string('phone')->nullable();
             $table->string('badge')->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('inactive');
+            $table->enum('status', ['active', 'inactive'])->default('inactive')->nullable();
             $table->timestamps();
         });
     }

@@ -25,4 +25,10 @@ class Podcast extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    public function favorites()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites')->withTimestamps();
+    }
+
 }

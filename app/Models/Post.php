@@ -44,4 +44,10 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function favorites()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites')->withTimestamps();
+    }
+
+
 }

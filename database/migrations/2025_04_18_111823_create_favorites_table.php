@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('post_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->morphs('favoritable');
             $table->timestamps();
+            $table->unique(['user_id', 'favoritable_id', 'favoritable_type']);
         });
     }
 

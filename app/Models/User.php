@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'type',
         'password',
+        'email_verified_at',
     ];
 
     /**
@@ -59,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return Str::of($this->name)
             ->explode(' ')
-            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
     }
 
@@ -87,5 +88,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(CommentReaction::class);
     }
+
+    public function favoritePosts()
+    {
+        return $this->morphedByMany(Post::class, 'favoritable', 'favorites');
+    }
+
+    public function favoriteVideos()
+    {
+        return $this->morphedByMany(Video::class, 'favoritable', 'favorites');
+    }
+
+    public function favoritePodcasts()
+    {
+        return $this->morphedByMany(Podcast::class, 'favoritable', 'favorites');
+    }
 }
+
 

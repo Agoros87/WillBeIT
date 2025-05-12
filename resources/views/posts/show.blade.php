@@ -15,7 +15,7 @@
         <img src="{{ asset('storage/' . $post->image) }}" alt="Imagen del post" class="w-full max-w-lg rounded shadow">
     </div>
 @endif
-
+@livewire('favorite-button', ['model' => $post])
 <p class="text-gray-700 mb-4">{{ $post->body }}</p>
 
 <p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido' }}</p>

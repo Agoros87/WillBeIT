@@ -20,6 +20,7 @@
     </div>
 
     <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        @livewire('favorite-button', ['model' => $video])
         <div class="space-y-4">
             <div>
                 <h2 class="text-xl font-semibold">{{ $video->title }}</h2>

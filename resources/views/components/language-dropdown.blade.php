@@ -3,12 +3,11 @@
         <flux:profile :name="__('Language')" :initials="strtoupper(session('lang'))" icon-trailing="chevrons-up-down"/>
         <flux:menu class="w-[220px]">
             <flux:menu.radio.group>
-                <flux:menu.item :href="route('languages', ['lang' => 'es'])">
-                    <span class="ml-2">{{__('Spanish')}}</span>
-                </flux:menu.item>
-                <flux:menu.item :href="route('languages', ['lang' => 'en'])">
-                    <span class="ml-2">{{__('English')}}</span>
-                </flux:menu.item>
+                @foreach($langKeys as $key)
+                    <flux:menu.item :href="route('languages', ['lang' => $key])">
+                        <span class="ml-2">{{__(explode(',', $languages[$key]['isoName'])[0])}}</span>
+                    </flux:menu.item>
+                @endforeach
             </flux:menu.radio.group>
         </flux:menu>
     </flux:dropdown>

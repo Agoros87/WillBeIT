@@ -15,7 +15,6 @@ class Post extends Model
         'podcasts_id',
         'user_id',
         'title',
-        'slug',
         'body',
         'image',
     ];

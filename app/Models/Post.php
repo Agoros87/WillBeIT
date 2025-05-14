@@ -14,10 +14,15 @@ class Post extends Model
         'video_id',
         'podcasts_id',
         'user_id',
+        'slug',
         'title',
         'body',
         'image',
     ];
+    public function getRouteKeyName() // Me ahorro poner en las rutas {modelo:slug} para que sea por slug en lugar de id
+    {
+        return 'slug';
+    }
 
     public function tags()
     {

@@ -18,8 +18,7 @@
 @livewire('favorite-button', ['model' => $post])
 <p class="text-gray-700 mb-4">{{ $post->body }}</p>
 
-<p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido' }}</p>
-<p class="text-sm text-gray-500 mb-2">Slug: {{ $post->slug }}</p>
+<p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
 <p class="text-sm text-gray-500 mb-2">Video ID: {{ $post->video_id }}</p>
 <p class="text-sm text-gray-500 mb-6">Podcast ID: {{ $post->podcasts_id }}</p>
 @role('super-superadmin')

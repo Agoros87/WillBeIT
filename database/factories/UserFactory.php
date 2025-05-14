@@ -26,6 +26,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'surname' => fake()->lastName(),
             'center_id' => Center::inRandomOrder()->firstOrFail(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

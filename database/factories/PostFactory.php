@@ -20,6 +20,7 @@ class PostFactory extends Factory
             'podcasts_id' => Podcast::inRandomOrder()->first()->id,  // Obtener un podcast aleatorio existente
             'user_id' => User::inRandomOrder()->first()->id,  // Obtener un usuario aleatorio existente
             'title' => $this->faker->word(),
+            'slug' => fake()->slug(),
             'body' => $this->faker->text(),
             'image' => $this->faker->imageUrl(),
             'created_at' => Carbon::now(),

@@ -19,11 +19,6 @@
         @error('title') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
     </div>
 
-    <div>
-        <label for="slug" class="block font-semibold">Slug</label>
-        <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="w-full border p-2 rounded">
-        @error('slug') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
-    </div>
 
     <div>
         <label for="body" class="block font-semibold">Contenido</label>

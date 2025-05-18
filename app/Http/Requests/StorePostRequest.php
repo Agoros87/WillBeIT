@@ -26,8 +26,7 @@ class StorePostRequest extends FormRequest
             'podcasts_id' => 'required|exists:podcasts,id',
             'user_id' => 'required|exists:users,id',
             'title' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
-            'body' => 'required|string',
+            'body' => 'required|string|max:255',
             'image' => 'nullable|image|max:2048',
         ];
     }

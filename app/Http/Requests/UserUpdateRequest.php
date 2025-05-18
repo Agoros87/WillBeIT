@@ -10,6 +10,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'surname' => 'nullable|string|max:255',
             'email' => 'required|email|unique:users,email,' . $this->user->id,
             'type' => 'nullable|string|max:255',
             'center_id' => 'required|exists:centers,id',

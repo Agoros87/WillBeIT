@@ -14,11 +14,15 @@ class Post extends Model
         'video_id',
         'podcasts_id',
         'user_id',
-        'title',
         'slug',
+        'title',
         'body',
         'image',
     ];
+    public function getRouteKeyName() // Me ahorro poner en las rutas {modelo:slug} para que sea por slug en lugar de id
+    {
+        return 'slug';
+    }
 
     public function tags()
     {
@@ -49,5 +53,14 @@ class Post extends Model
         return $this->morphToMany(User::class, 'favoritable', 'favorites')->withTimestamps();
     }
 
+    public function likedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'post_user_likes')->withTimestamps();
+    }
+
+    public function isLikedBy(User $user)
+    {
+        return $this->likedByUsers->contains($user);
+    }
 
 }

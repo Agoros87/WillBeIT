@@ -8,6 +8,9 @@ use App\Models\Podcast;
 use App\Models\Post;
 use App\Models\Video;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -39,12 +42,17 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $validated = $request->validated();
-        $validated['image'] = $request->file('image')->store('posts');
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('posts');
+        }
 
+        $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
+        $validated['user_id'] = Auth::id();
         Post::create($validated);
 
         return redirect()->route('posts.index')->with('success', 'Post creado correctamente');
     }
+
     /**
      * Display the specified resource.
      */
@@ -72,7 +80,18 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
+        // Si el título ha cambiado, actualizamos el slug
+        if ($validated['title'] !== $post->title) {
+            $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
+        }
+
+        // Si se sube una nueva imagen
         if ($request->hasFile('image')) {
+            // Eliminar la imagen anterior si existe
+            if ($post->image && Storage::exists($post->image)) {
+                Storage::delete($post->image);
+            }
+
             $validated['image'] = $request->file('image')->store('posts');
         }
 

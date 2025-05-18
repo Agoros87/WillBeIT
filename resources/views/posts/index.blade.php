@@ -26,9 +26,13 @@
 
 @foreach ($posts as $post)
     <div class="bg-white rounded shadow p-4 mb-4">
-        <h3 class="text-xl font-semibold">{{ $post->title }}</h3>
+        <h3 class="text-xl font-semibold">
+            <a href="{{ route('posts.show', $post) }}" class="text-blue-600 hover:underline">
+                {{ $post->title }}
+            </a>
+        </h3>
         <p class="text-gray-700 mb-2">{{ $post->body }}</p>
-        <p class="text-sm text-gray-500">Autor: {{ $post->user->name ?? 'Desconocido' }}</p>
+        <p class="text-sm text-gray-500">Autor: {{ $post->user->name}} {{ $post->user->surname ?? 'Desconocido' }}</p>
 
         <div class="mt-2 flex gap-4">
             <a href="{{ route('posts.show', $post) }}" class="text-blue-600 hover:underline">Ver</a>

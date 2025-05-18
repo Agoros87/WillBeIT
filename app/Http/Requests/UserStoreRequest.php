@@ -11,6 +11,7 @@ class UserStoreRequest extends FormRequest
         return [
             'center_id' => ['required', 'integer'],
             'name' => ['required'],
+            'surname' => ['nullable'],
             'type' => ['nullable'],
             'email' => ['required', 'email', 'max:254'],
             'email_verified_at' => ['nullable', 'date'],

@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
             $user = User::create([
                 'center_id' => Center::inRandomOrder()->firstOrFail()->id,
                 'name' => ucfirst(str_replace('-', ' ', $role)),
+                'surname' => ucfirst(str_replace('-', ' ', $role)),
                 'email' => str_replace('-', '', $role) . '@mail.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('123'),

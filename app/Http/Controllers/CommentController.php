@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        $request->validate([
-            'post_id' => 'required|exists:posts,id',
-            'content' => 'required|string|min:5|max:1000',
-            'parent_id' => 'nullable|exists:comments,id'
-        ]);
+        $validated = $request->validated();
 
         Comment::create([
-            'post_id' => $request->post_id,
+            'post_id' => $validated['post_id'],
             'user_id' => auth()->id(),
-            'parent_id' => $request->parent_id,
-            'content' => $request->content,
+            'parent_id' => $validated['parent_id'] ?? null,
+            'content' => $validated['content'],
         ]);
 
         return back()->with('success', 'Comentario agregado.');

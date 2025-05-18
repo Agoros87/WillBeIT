@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'center_id',
         'name',
+        'surname',
         'email',
         'type',
         'password',
@@ -103,6 +104,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphedByMany(Podcast::class, 'favoritable', 'favorites');
     }
+
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_user_likes')->withTimestamps();
+    }
+
 }
 
 

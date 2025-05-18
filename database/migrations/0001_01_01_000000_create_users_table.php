@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('center_id')->constrained()->cascadeOnDelete();
             $table->string('name');
+            $table->string('surname')->nullable();
             $table->string('type')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

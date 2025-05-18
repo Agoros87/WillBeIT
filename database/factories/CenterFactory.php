@@ -23,7 +23,7 @@ class CenterFactory extends Factory
             'director_name' => $this->faker->name(),
             'erasmus_coordinator' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
-            'center_url' => $this->faker->url(),
+            'center_url' => '#',
             'logo' => null,
             'image' => null,
             'status' => $this->faker->randomElement(['active', 'inactive']),

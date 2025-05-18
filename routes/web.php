@@ -4,6 +4,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Spatie\Permission\Middleware\RoleMiddleware;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');

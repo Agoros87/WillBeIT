@@ -29,7 +29,7 @@ class PodcastController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('podcasts/images', 'public');
+            $validated['image_path'] = $request->file('image')->store('podcasts/img', 'public');
         }
 
         $podcast = auth()->user()->podcasts()->make($validated);
@@ -72,7 +72,7 @@ class PodcastController extends Controller
             if ($podcast->image_path && Storage::disk('public')->exists($podcast->image_path)) {
                 Storage::disk('public')->delete($podcast->image_path);
             }
-            $validated['image_path'] = $request->file('image')->store('podcasts/images', 'public');
+            $validated['image_path'] = $request->file('image')->store('podcasts/img', 'public');
         }
 
         $podcast->update($validated);

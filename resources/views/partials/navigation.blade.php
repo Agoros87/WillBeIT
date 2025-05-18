@@ -1,11 +1,17 @@
-<header class="w-full flex flex-row justify-around bg-white shadow">
-    <div class="flex flex-row justify-center">
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('home') ?: 'underline' }}" href="{{ route('home') }}">{{ __('Home') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('posts.index') ?: 'underline' }}" href="{{ route('posts.index') }}">{{ __('Posts') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('podcasts.index') ?: 'underline' }}" href="{{ route('podcasts.index') }}">{{ __('Podcasts') }}</a>
-        <a class="text-xl text-blue-800 p-4 {{ !request()->routeIs('video.index') ?: 'underline' }}" href="{{ route('video.index') }}">{{ __('Videos') }}</a>
-    </div>
-    <div class="flex flex-row justify-center">
+<header class="w-full flex flex-row justify-around bg-white dark:bg-zinc-900 shadow p-2">
+    <nav class="flex flex-row justify-center gap-2">
+        <x-nav-link route="home">
+            <x-svg.home-icon class="w-6"/>{{ __('Home') }}</x-nav-link>
+        <x-nav-link route="posts.index">
+            <x-svg.post-icon class="w-6"/>{{ __('Posts') }}</x-nav-link>
+        <x-nav-link route="podcasts.index">
+            <x-svg.podcast-icon class="w-6"/>{{ __('Podcasts') }}
+        </x-nav-link>
+        <x-nav-link route="video.index">
+            <x-svg.video-icon class="w-6"/>{{ __('Videos') }}</x-nav-link>
+    </nav>
+    <div class="flex flex-row justify-between">
+        <x-language-dropdown/>
         @if (Route::has('login'))
             <nav class="flex items-center justify-end gap-4">
                 @auth
@@ -58,17 +64,17 @@
                         </flux:menu>
                     </flux:dropdown>
                 @else
-                    <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
+                    <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-blue-600 font-semibold border border-transparent hover:border-blue-600 dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
                         Log in </a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                        <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-transparent hover:border-blue-600 border text-blue-600 font-semibold dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                             Register </a>
                     @endif
                 @endauth
             </nav>
         @endif
-        <x-language-dropdown/>
+        <x-dark-mode-button/>
     </div>
     @fluxScripts()
 </header>

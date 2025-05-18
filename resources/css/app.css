@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
+
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
@@ -51,7 +52,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -63,3 +64,54 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+@layer components {
+    .center-image {
+        @apply text-blue-500 p-4 flex flex-col gap-4 min-w-3xs w-md rounded-l-2xl font-semibold;
+        @apply bg-gradient-to-r from-white from-90% to-sky-200;
+        @apply dark:from-zinc-900 dark:from-90% dark:to-emerald-600;
+        @apply dark:bg-zinc-900;
+
+        clip-path: polygon(
+                0 0,
+                calc(100% - 30px) 0,
+                100% 50%,
+                calc(100% - 30px) 100%,
+                0 100%
+        );
+    }
+
+    .center-data {
+        @apply py-4 pl-10 pr-4 flex flex-col gap-4 *:flex *:gap-2 text-gray-800 min-w-md w-fit rounded-r-2xl;
+        @apply bg-gradient-to-r from-sky-200 to-white to-10%;
+        @apply dark:from-emerald-600 dark:to-zinc-900 dark:to-10%;
+        @apply dark:text-gray-200 dark:bg-zinc-900;
+        @apply opacity-0 translate-x-full transition-all ease-in-out duration-500;
+
+        clip-path: polygon(
+                100% 0,
+                0 0,
+                calc(0% + 30px) 50%,
+                0 100%,
+                100% 100%
+        );
+    }
+
+    .center-data.revealed {
+        @apply opacity-100 translate-x-0;
+    }
+
+    .active-nav-link {
+        @apply bg-blue-600 text-gray-100;
+        @apply dark:bg-emerald-500 dark:text-white;
+    }
+
+    .not-active-nav-link {
+        @apply text-blue-600 dark:text-emerald-400 hover:bg-blue-600 hover:text-gray-100 transition;
+        @apply dark:hover:bg-emerald-500 dark:hover:text-white;
+    }
+
+    .active-nav-link, .not-active-nav-link {
+        @apply text-lg px-4 py-2 flex items-center gap-2 font-semibold rounded-full;
+    }
+}

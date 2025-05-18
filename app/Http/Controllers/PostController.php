@@ -42,7 +42,9 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $validated = $request->validated();
-        $validated['image'] = $request->file('image')->store('posts');
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('posts');
+        }
 
         $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
         $validated['user_id'] = Auth::id();

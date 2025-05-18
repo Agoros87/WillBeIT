@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('partials.head')
 </head>
@@ -10,7 +10,8 @@
     @role('superadmin')
     <flux:navlist variant="outline">
         <flux:navlist.group :heading="__('Main')" class="grid">
-            <flux:navlist.item icon="home" :href="route('home')" :current="request()->routeIs('home')" wire:navigate>{{ __('Inicio') }}</flux:navlist.item>
+            <a href="{{ route('home') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800">
+                <x-svg.home-icon class="w-6"/>{{ __('Inicio') }}</a>
         </flux:navlist.group>
     </flux:navlist>
     <flux:navlist variant="outline"></flux:navlist>

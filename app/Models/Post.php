@@ -53,5 +53,14 @@ class Post extends Model
         return $this->morphToMany(User::class, 'favoritable', 'favorites')->withTimestamps();
     }
 
+    public function likedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'post_user_likes')->withTimestamps();
+    }
+
+    public function isLikedBy(User $user)
+    {
+        return $this->likedByUsers->contains($user);
+    }
 
 }

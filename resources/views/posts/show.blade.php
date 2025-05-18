@@ -21,6 +21,17 @@
 <p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
 <p class="text-sm text-gray-500 mb-2">Video ID: {{ $post->video_id }}</p>
 <p class="text-sm text-gray-500 mb-6">Podcast ID: {{ $post->podcasts_id }}</p>
+<p>{{ $post->likedByUsers()->count() }} {{ Str::plural('Like', $post->likedByUsers()->count()) }}</p>
+
+@auth
+    <form action="{{ route('posts.like', $post) }}" method="POST">
+        @csrf
+        <button type="submit" class="px-3 py-1 rounded bg-{{ $post->isLikedBy(auth()->user()) ? 'red' : 'gray' }}-600 text-white">
+            {{ $post->isLikedBy(auth()->user()) ? 'Quitar Like' : 'Dar Like' }}
+        </button>
+    </form>
+@endauth
+
 @role('super-superadmin')
 <div class="flex gap-4">
     <a href="{{ route('posts.edit', $post) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Editar</a>

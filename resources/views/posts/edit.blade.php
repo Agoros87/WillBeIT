@@ -29,9 +29,6 @@
     <div>
         <label for="image" class="block font-semibold">Imagen (opcional)</label>
         <input type="file" name="image" id="image" class="w-full border p-2 rounded">
-        @if ($post->image)
-            <p class="text-sm mt-1">Imagen actual: <strong>{{ $post->image }}</strong></p>
-        @endif
         @error('image') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
     </div>
 

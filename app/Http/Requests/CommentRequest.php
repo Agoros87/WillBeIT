@@ -12,7 +12,8 @@ class CommentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        // Solo usuarios autenticados pueden comentar
+        return auth()->check();
     }
 
     /**

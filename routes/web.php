@@ -4,6 +4,7 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
@@ -48,6 +49,7 @@ Route::post('/comments/reactions', [CommentReactionController::class, 'store'])-
 // Rutas públicas
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 
+Route::get('/languages/{lang}', LanguageController::class)->name('languages');
 
 Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
 Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
@@ -56,10 +58,10 @@ Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit
 Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
 Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
 
-    Route::get('users/export', [UserController::class, 'exportUsers'])->name('users.export');
-    Route::post('users/import', [UserController::class, 'importUsers'])->name('users.import');
-    Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
-    Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
+Route::get('users/export', [UserController::class, 'exportUsers'])->name('users.export');
+Route::post('users/import', [UserController::class, 'importUsers'])->name('users.import');
+Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
+Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
 
 //RUTAS SOLO PARA SUPERADMIN
 Route::middleware(['auth', 'superadmin'])->group(function () {

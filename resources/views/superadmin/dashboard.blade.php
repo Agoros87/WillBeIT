@@ -7,7 +7,7 @@
     <div class="flex flex-col gap-6">
 
         <h2 class="text-center font-bold text-2xl text-blue-500" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
-            Panel de Control
+            {{__('Dashboard')}}
         </h2>
         {{-- Header Estadísticas 1ºFILA--}}
         <div class="grid grid-cols-1 md:grid-cols-4 gap-5">

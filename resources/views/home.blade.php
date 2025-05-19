@@ -1,4 +1,13 @@
 <x-public-layout :title="__('Home')">
+    @section('sidebar')
+        <button class="cursor-pointer p-2 flex gap-2 font-semibold text-blue-600 dark:text-emerald-500 hover:bg-gray-200 dark:hover:bg-gray-700 transition rounded-xl">
+            <x-svg.tags-icon class="w-6"/>{{ __('Tags') }}</button>
+        <ul class="flex flex-col gap-2 text-blue-600 ml-4 pl-4 border-l-2 border-blue-500 dark:border-emerald-500">
+            @foreach($tags as $tag)
+                <li>{{ $tag->name }}</li>
+            @endforeach
+        </ul>
+    @endsection
     <section class="flex flex-col gap-8 py-8 px-2 md:px-8">
         <h1 class="text-5xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700">{{ __('Centers') }}</h1>
         @foreach($centers as $center)

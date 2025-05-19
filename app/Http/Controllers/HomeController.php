@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Center;
+use App\Models\Tag;
 
 class HomeController extends Controller
 {
@@ -10,8 +11,8 @@ class HomeController extends Controller
     {
         $centers = Center::withCount('posts')->with('users')->get();
 
+        $tags = Tag::all();
 
-
-        return view('home', compact('centers'));
+        return view('home', compact('centers'), compact('tags'));
     }
 }

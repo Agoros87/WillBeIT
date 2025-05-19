@@ -15,9 +15,16 @@
 </head>
 <body class="bg-gray-100 dark:bg-zinc-800">
 @include('partials.navigation')
-<main>
-    {{ $slot }}
-</main>
+<div class="flex min-h-screen relative">
+    @hasSection('sidebar')
+        <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden min-w-0 ease-in-out duration-300 shadow-2xl">
+            @yield('sidebar')
+        </aside>
+    @endif
+    <main>
+        {{ $slot }}
+    </main>
+</div>
 <!-- Scripts adicionales -->
 @stack('scripts')
 </body>

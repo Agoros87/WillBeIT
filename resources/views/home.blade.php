@@ -1,13 +1,13 @@
 <x-public-layout :title="__('Home')">
-    <section class="flex flex-col gap-8 p-8">
+    <section class="flex flex-col gap-8 py-8 px-2 md:px-8">
         <h1 class="text-5xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700">{{ __('Centers') }}</h1>
         @foreach($centers as $center)
             <article class="reveal-scroll flex *:relative rounded-2xl shadow-lg w-fit">
                 <div class="center-image">
-                    <h3 class="text-xl flex gap-2">
-                        <img src="{{ $center->logo ? asset($center->logo) : asset('svg/center.svg') }}" alt="{{ Str::slug($center->name) }}-logo" class="text-xs w-7 bg-gray-300 dark:bg-gray-600 rounded">
+                    <h3 class="text-base md:text-xl flex gap-2">
+                        <img src="{{ $center->logo ? asset($center->logo) : asset('svg/center.svg') }}" alt="{{ Str::slug($center->name) }}-logo" class="text-xs w-5 md:w-7 bg-gray-300 dark:bg-gray-600 rounded">
                         {{ $center->name }}</h3>
-                    <img src="{{ $center->image ? asset($center->image) : asset('svg/center.svg') }}" alt="{{ Str::slug($center->name) }}-image" class="text-xs w-sm h-36 bg-gray-300 dark:bg-gray-600 rounded">
+                    <img src="{{ $center->image ? asset($center->image) : asset('svg/center.svg') }}" alt="{{ Str::slug($center->name) }}-image" class="text-xs w-60 h-24 md:w-sm md:h-36  bg-gray-300 dark:bg-gray-600 rounded">
                 </div>
                 <div class="center-data">
                     <p>
@@ -23,6 +23,9 @@
                     <p>
                         <x-svg.mail-icon class="w-6 text-sky-600 dark:text-emerald-400"/>
                         {{ $center->email }}</p>
+                    <p>
+                        <x-svg.post-icon class="w-6 text-sky-600 dark:text-emerald-400"/>
+                        {{ __('Publications').': '.$center->posts_count }}</p>
                 </div>
             </article>
         @endforeach

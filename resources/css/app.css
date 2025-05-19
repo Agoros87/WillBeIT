@@ -67,10 +67,11 @@ select:focus[data-flux-control] {
 
 @layer components {
     .center-image {
-        @apply text-blue-500 p-4 flex flex-col gap-4 min-w-3xs w-md rounded-l-2xl font-semibold;
+        @apply text-blue-500 p-4 flex flex-col gap-4 rounded-l-2xl font-semibold;
         @apply bg-gradient-to-r from-white from-90% to-sky-200;
         @apply dark:from-zinc-900 dark:from-90% dark:to-emerald-600;
         @apply dark:bg-zinc-900;
+        @apply min-w-2xs md:min-w-md;
 
         clip-path: polygon(
                 0 0,
@@ -87,6 +88,7 @@ select:focus[data-flux-control] {
         @apply dark:from-emerald-600 dark:to-zinc-900 dark:to-10%;
         @apply dark:text-gray-200 dark:bg-zinc-900;
         @apply opacity-0 translate-x-full transition-all ease-in-out duration-500;
+        @apply text-sm md:text-base -ml-7 md:ml-0;
 
         clip-path: polygon(
                 100% 0,

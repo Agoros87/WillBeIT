@@ -1,7 +1,5 @@
 <header class="w-full flex flex-row justify-around bg-white dark:bg-zinc-900 shadow p-2">
-    @hasSection('sidebar')
-        <x-sidebar-button/>
-    @endif
+    <x-sidebar-button/>
     <nav class="flex flex-row justify-center gap-2">
         <x-nav-link route="home" class="group">
             <x-svg.home-icon class="w-7 group-hover:hidden md:group-hover:inline transition-all"/>
@@ -17,7 +15,7 @@
             <x-svg.video-icon class="w-7 group-hover:hidden md:group-hover:inline transition-all"/>
             <span class="hidden md:inline group-hover:inline">{{ __('Videos') }}</span></x-nav-link>
     </nav>
-    <div class="flex flex-row justify-center">
+    <div class="flex flex-row justify-center items-center">
         <x-language-dropdown/>
         <x-user-dropdown/>
         <x-dark-mode-button/>

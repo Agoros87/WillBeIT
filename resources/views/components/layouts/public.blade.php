@@ -7,7 +7,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet"/>
-    <!-- Estilos base -->
+    <!-- Estilos y Scripts base -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Estilos adicionales -->
@@ -16,11 +16,22 @@
 <body class="bg-gray-100 dark:bg-zinc-800">
 @include('partials.navigation')
 <div class="flex min-h-screen relative">
-    @hasSection('sidebar')
-        <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden min-w-0 ease-in-out duration-300 shadow-2xl">
-            @yield('sidebar')
+    <!-- Sidebar -->
+    @auth
+        <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden min-w-0 ease-in-out transition-[width,padding,min-width] duration-300 shadow-2xl">
+            <x-roles-sidebar/>
+            @section('sidebar')@show
         </aside>
-    @endif
+    @endauth
+    @guest
+        @hasSection('sidebar')
+            <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden min-w-0 ease-in-out transition-[width,padding,min-width] duration-300 shadow-2xl">
+                @yield('sidebar')
+            </aside>
+        @endif
+    @endguest
+
+    <!-- Contenido Principal -->
     <main>
         {{ $slot }}
     </main>

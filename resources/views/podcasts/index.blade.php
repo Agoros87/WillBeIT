@@ -1,81 +1,56 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcasts</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-100 text-gray-900">
-@include('partials.navigation')
-<div class="p-8">
-    <h1 class="text-2xl font-bold mb-4">Podcasts</h1>
-    @role('superadmin')
-    @role('superadmin')
-    <div class="flex justify-end gap-4">
-        <a href="{{ route('superadmin.dashboard') }}"
-           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            Volver al Dashboard
-        </a>
-        <a href="{{ route('podcasts.create') }}"
-           class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            Crear nuevo Podcast
-        </a>
-    </div>
-    @endrole
-    @endrole
+<x-public-layout title="Podcasts">
+    <div class="p-8">
+        <h1 class="header-1">Podcasts</h1>
+        @role('superadmin')
+        <div class="flex justify-end gap-4">
+            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                Volver al Dashboard </a>
+            <a href="{{ route('podcasts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                Crear nuevo Podcast </a>
+        </div>
+        @endrole
 
-    @if($podcasts->isEmpty())
-        <p class="text-gray-600">No hay podcasts disponibles.</p>
-    @else
-        <div class="space-y-4">
-            @foreach($podcasts as $podcast)
-                <div class="border p-4 rounded shadow bg-white">
-                    <h2 class="text-xl font-semibold text-blue-600 hover:underline">
-                        <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>
-                    </h2>
+        @if($podcasts->isEmpty())
+            <p class="text-gray-600">No hay podcasts disponibles.</p>
+        @else
+            <div class="space-y-4">
+                @foreach($podcasts as $podcast)
+                    <div class="border p-4 rounded shadow bg-white">
+                        <h2 class="text-xl font-semibold text-blue-600 hover:underline">
+                            <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>
+                        </h2>
+                        <p class="text-gray-700 mb-2">{{ Str::limit($podcast->description, 100) }}</p>
+                        @if($podcast->image_path)
+                            <div class="my-2">
+                                <img src="{{ asset('storage/' . $podcast->image_path) }}" alt="Imagen del podcast" class="w-16 h-16 object-cover rounded">
+                            </div>
+                        @endif
 
-                    <p class="text-gray-700 mb-2">{{ Str::limit($podcast->description, 100) }}</p>
+                        @role('superadmin')
+                        <div class="flex space-x-2 mt-2">
+                            @can('update', $podcast)
+                                <a href="{{ route('podcasts.edit', $podcast) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
+                                    Editar </a>
+                            @endcan
 
-                    @if($podcast->image_path)
-                        <div class="my-2">
-                            <img src="{{ asset('storage/' . $podcast->image_path) }}" alt="Imagen del podcast"
-                                 class="w-16 h-16 object-cover rounded">
+                            @can('delete', $podcast)
+                                <form action="{{ route('podcasts.destroy', $podcast) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este podcast?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            @endcan
                         </div>
-                    @endif
-
-                    @role('superadmin')
-                    <div class="flex space-x-2 mt-2">
-                        @can('update', $podcast)
-                            <a href="{{ route('podcasts.edit', $podcast) }}"
-                               class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
-                                Editar
-                            </a>
-                        @endcan
-
-                        @can('delete', $podcast)
-                            <form action="{{ route('podcasts.destroy', $podcast) }}" method="POST"
-                                  onsubmit="return confirm('¿Estás seguro de eliminar este podcast?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-                                    Eliminar
-                                </button>
-                            </form>
-                        @endcan
+                        @endrole
                     </div>
-                    @endrole
-                </div>
-            @endforeach
+                @endforeach
+            </div>
 
-
-        </div>
-
-        <div class="mt-6">
-            {{ $podcasts->links() }}
-        </div>
-    @endif
-</div>
-</body>
-</html>
+            <div class="mt-6">
+                {{ $podcasts->links() }}
+            </div>
+        @endif
+    </div>
+</x-public-layout>

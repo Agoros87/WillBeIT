@@ -1,3 +1,4 @@
+@props(['homeRoute' => false])
 <div class="*:min-w-max [&_span,svg]:text-sky-600 dark:[&_span,svg]:text-sky-400 [&_span]:font-semibold">
     @role('superadmin')
     <flux:navlist.group :heading="auth()->user()->name" class="grid">

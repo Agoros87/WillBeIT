@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Videos</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-100 text-gray-900">
-
-@include('partials.navigation')
+<x-layouts.public title="Videos">
 
 <div class="max-w-6xl mx-auto px-4 py-10">
     @role('superadmin')
@@ -86,5 +76,4 @@
     }, 3000);
 </script>
 
-</body>
-</html>
+</x-layouts.public>

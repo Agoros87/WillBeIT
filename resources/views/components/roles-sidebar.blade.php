@@ -1,9 +1,15 @@
 <div class="*:min-w-max [&_span,svg]:text-sky-600 dark:[&_span,svg]:text-sky-400 [&_span]:font-semibold">
     @role('superadmin')
     <flux:navlist.group :heading="auth()->user()->name" class="grid">
-        <a href="{{ route('superadmin.dashboard') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800">
-            <x-svg.computer-icon class="w-6"/>
-            <span>{{ __('Dashboard') }}</span></a>
+        @if($homeRoute)
+            <a href="{{ route('home') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800">
+                <x-svg.home-icon class="w-6"/>
+                <span>{{ __('Inicio') }}</span></a>
+        @else
+            <a href="{{ route('superadmin.dashboard') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800">
+                <x-svg.computer-icon class="w-6"/>
+                <span>{{ __('Dashboard') }}</span></a>
+        @endif
     </flux:navlist.group>
     <flux:spacer/>
     <flux:navlist.group class="grid [&_a]:text-sm [&_a]:text-gray-600 dark:[&_a]:text-gray-300" x-data="{ open: false }">

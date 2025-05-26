@@ -80,6 +80,11 @@ select:focus[data-flux-control] {
                 calc(100% - 30px) 100%,
                 0 100%
         );
+
+        & > img {
+            @apply text-xs w-60 h-24 md:w-sm md:h-36 bg-gray-300 rounded drop-shadow drop-shadow-blue-300;
+            @apply dark:bg-gray-600 dark:drop-shadow-emerald-700;
+        }
     }
 
     .center-data {
@@ -115,5 +120,13 @@ select:focus[data-flux-control] {
 
     .active-nav-link, .not-active-nav-link {
         @apply text-lg px-4 py-2 flex items-center gap-2 font-semibold rounded-full;
+    }
+
+    .header-1 {
+        @apply text-5xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700;
+    }
+
+    .header-2 {
+        @apply text-base md:text-xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700;
     }
 }

@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
             $user->assignRole($role);
         }
 
-        User::factory(10)->create();
+        User::factory(10)->create()
+            ->each(fn(User $user) => $user->assignRole(array_rand($roles)));
     }
 }

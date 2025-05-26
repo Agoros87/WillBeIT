@@ -3,7 +3,7 @@
         @auth
             <!-- Desktop User Menu -->
             <flux:dropdown position="bottom" align="start">
-                <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()" icon-trailing="chevrons-up-down"/>
+                <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()" icon-trailing="chevrons-up-down" class="[&_*]:group-hover:font-semibold [&_*]:!text-sky-600 [&_*]:dark:!text-emerald-400"/>
                 <flux:menu class="w-[220px]">
                     <flux:menu.radio.group>
                         <div class="p-0 text-sm font-normal">
@@ -13,8 +13,8 @@
                                         {{ auth()->user()->initials() }}
                                     </span>
                                 </span>
-                                <div class="grid flex-1 text-left text-sm leading-tight">
-                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                                <div class="grid flex-1 text-left text-sm leading-tight text-black dark:text-white">
+                                    <span class="truncate font-semibold ">{{ auth()->user()->name }}</span>
                                     <span class="truncate text-xs">{{ auth()->user()->email }}</span>
                                 </div>
                             </div>
@@ -50,11 +50,11 @@
                 </flux:menu>
             </flux:dropdown>
         @else
-            <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-blue-600 font-semibold border border-transparent hover:border-blue-600 dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
+            <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-sky-600 font-semibold border border-transparent hover:border-sky-600 dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
                 Log in </a>
 
             @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-transparent hover:border-blue-600 border text-blue-600 font-semibold dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-transparent hover:border-sky-600 border text-sky-600 font-semibold dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                     Register </a>
             @endif
         @endauth

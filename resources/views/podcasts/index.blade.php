@@ -19,7 +19,7 @@
         </a>
         <a href="{{ route('podcasts.create') }}"
            class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            Crear nuevo Podscast
+            Crear nuevo Podcast
         </a>
     </div>
     @endrole

@@ -39,15 +39,14 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
     Route::resource('posts', PostController::class)->except(['index', 'show']);
-    Route::resource('video', VideoController::class);
+    Route::resource('video', VideoController::class)->except(['index', 'show']);
 });
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
-
-// Rutas públicas
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
+Route::resource('video', VideoController::class)->only(['index', 'show']);
 
 Route::get('/languages/{lang}', LanguageController::class)->name('languages');
 

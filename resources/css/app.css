@@ -123,10 +123,14 @@ select:focus[data-flux-control] {
     }
 
     .header-1 {
-        @apply text-5xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700;
+        @apply text-3xl md:text-4xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700;
     }
 
     .header-2 {
-        @apply text-base md:text-xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700;
+        @apply text-2xl md:text-3xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow drop-shadow-blue-300 dark:drop-shadow-emerald-700;
+    }
+
+    .header-3 {
+        @apply text-base md:text-xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow-sm drop-shadow-blue-300 dark:drop-shadow-emerald-700;
     }
 }

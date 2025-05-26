@@ -32,7 +32,7 @@
     @endguest
 
     <!-- Contenido Principal -->
-    <main>
+    <main class="w-full h-full">
         {{ $slot }}
     </main>
 </div>

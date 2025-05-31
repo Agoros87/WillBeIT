@@ -10,8 +10,10 @@ class VideoRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255|min:5',
-            'description' => 'required|string|max:1000', //Para evitar textos muy largos sur pares!
-            'video_path' => $this->isMethod('post') ? 'required|mimes:mp4|max:100240' : 'nullable|mimes:mp4|max:100240', // Máx 100MB
+            'description' => 'required|string|max:1000', // Para evitar textos muy largos sur pares!
+            'video_path' => $this->isMethod('post')
+                ? 'required|file|mimetypes:video/mp4,video/quicktime|max:100240' // 100MB
+                : 'nullable|file|mimetypes:video/mp4,video/quicktime|max:100240',
         ];
     }
 

@@ -65,13 +65,14 @@ class UserController extends Controller
     {
         $user->update([
             'center_id' => $request->center_id,
+            'surname' => $request->surname,
             'name' => $request->name,
             'email' => $request->email,
             'type' => $request->type,
             'password' => $request->password ? bcrypt($request->password) : $user->password,
         ]);
 
-        $user->syncRoles($request->role);
+        $user->syncRoles($request->roles);
 
         return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
     }

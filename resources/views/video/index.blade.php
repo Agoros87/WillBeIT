@@ -1,79 +1,73 @@
-<x-layouts.public title="Videos">
+<x-public-layout title="Videos">
+    <div class="p-8">
+        <h1 class="header-1">Vídeos</h1>
 
-<div class="max-w-6xl mx-auto px-4 py-10">
-    @role('superadmin')
-    <div class="flex items-center justify-between mb-8">
-        <h1 class="text-4xl font-semibold tracking-tight">Vídeos</h1>
-        <div class="flex gap-3">
-            <a href="{{ route('superadmin.dashboard') }}"
-               class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
-                Dashboard
+        @role('superadmin')
+        <div class="flex justify-end gap-4 mb-6">
+            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                Volver al Dashboard
             </a>
-            <a href="{{ route('video.create') }}"
-               class="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition text-sm font-medium">
+            <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
                 Nuevo Video
             </a>
         </div>
-    </div>
-    @endrole
+        @endrole
 
-    @if (session('success'))
-        <div class="alert-success mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg shadow-sm">
-            {{ session('success') }}
-        </div>
-    @endif
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded shadow mb-6 alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        @foreach($videos as $video)
-            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="flex flex-col gap-4">
-                    <div>
-                        <h2 class="text-lg font-medium">{{ $video->title }}</h2>
-                        <p class="text-sm text-gray-500 mb-2">{{ $video->description }}</p>
-                        <video controls class="w-full rounded-md border border-gray-200">
-                            <source src="{{ asset($video->video_path) }}" type="video/mp4">
-                        </video>
-                        <p class="text-xs text-gray-400 mt-2">Subido: {{ $video->created_at->format('d/m/Y') }}</p>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="{{ route('video.show', $video->id) }}"
-                           class="w-24 text-center px-3 py-1.5 text-sm border border-gray-300 rounded-md hover:bg-gray-100 transition">
-                            Ver
-                        </a>
+        @if($videos->isEmpty())
+            <p class="text-gray-600">No hay vídeos disponibles.</p>
+        @else
+            <div class="space-y-4">
+                @foreach($videos as $video)
+                    <div class="border p-4 rounded shadow bg-white">
+                        <h2 class="text-xl font-semibold text-blue-600 hover:underline">
+                            <a href="{{ route('video.show', $video->id) }}">{{ $video->title }}</a>
+                        </h2>
+                        <p class="text-gray-700 mb-2">{{ Str::limit($video->description, 100) }}</p>
+                        <div class="aspect-video rounded overflow-hidden border border-gray-300 my-2">
+                            <video controls class="w-full h-full object-cover">
+                                <source src="{{ asset($video->video_path) }}" type="video/mp4">
+                            </video>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Subido: {{ $video->created_at->format('d/m/Y') }}</p>
+
                         @role('superadmin')
-                        <a href="{{ route('video.edit', $video->id) }}"
-                           class="w-24 text-center px-3 py-1.5 text-sm border border-blue-300 text-blue-500 rounded-md hover:bg-blue-50 transition">
-                            Editar
-                        </a>
-                        <form action="{{ route('video.destroy', $video->id) }}" method="POST"
-                              onsubmit="return confirm('¿Estás seguro de eliminar este video?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                    class="w-24 text-center px-3 py-1.5 text-sm border border-red-300 text-red-500 rounded-md hover:bg-red-50 transition">
-                                Eliminar
-                            </button>
-                        </form>
+                        <div class="flex space-x-2 mt-2">
+                            <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
+                                Editar
+                            </a>
+
+                            <form action="{{ route('video.destroy', $video->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este video?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
                         @endrole
                     </div>
-                </div>
+                @endforeach
             </div>
-        @endforeach
+
+            <div class="mt-6">
+                {{ $videos->links() }}
+            </div>
+        @endif
     </div>
 
-    <div class="mt-10">
-        {{ $videos->links() }}
-    </div>
-</div>
-
-<script>
-    setTimeout(() => {
-        const alert = document.querySelector('.alert-success');
-        if (alert) {
-            alert.classList.add('opacity-0');
-            setTimeout(() => alert.remove(), 500);
-        }
-    }, 3000);
-</script>
-
-</x-layouts.public>
+    <script>
+        setTimeout(() => {
+            const alert = document.querySelector('.alert-success');
+            if (alert) {
+                alert.classList.add('opacity-0');
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 3000);
+    </script>
+</x-public-layout>

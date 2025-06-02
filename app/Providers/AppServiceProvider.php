@@ -11,6 +11,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+
+    protected $listen = [
+        \App\Events\PostCreated::class => [
+            \App\Listeners\SendPostCreatedNotifications::class,
+        ],
+    ];
     public function register(): void
     {
         //

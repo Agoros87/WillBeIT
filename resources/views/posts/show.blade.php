@@ -1,4 +1,4 @@
-<x-public-layout title="Posts">
+<x-public-layout title="__('Posts')">
 
 <h1 class="header-1">{{ $post->title }}</h1>
 
@@ -10,7 +10,7 @@
 @livewire('favorite-button', ['model' => $post])
 <p class="text-gray-700 mb-4">{{ $post->body }}</p>
 
-<p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
+<p class="text-sm text-gray-500 mb-2">{{__("Author")}}: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
     @if ($post->video_id)
         <div class="mb-6">
             <video controls class="w-full rounded border border-gray-300">
@@ -74,7 +74,7 @@
             <textarea name="content" rows="4" required class="w-full p-3 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
             <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
-                Comentar
+                {{__("Comment")}}
             </button>
         </form>
     </div>
@@ -82,10 +82,10 @@
 
 {{-- Lista de comentarios --}}
 <div class="mt-6">
-    <h3 class="header-3">Comentarios</h3>
+    <h3 class="header-3">{{__("Commentary")}}</h3>
 
     @if($post->comments->where('parent_id', null)->isEmpty())
-        <p class="mt-3 text-sm text-gray-500">No hay comentarios aún. Sé el primero en comentar.</p>
+        <p class="mt-3 text-sm text-gray-500">{{__("No Comments Yet")}}</p>
     @else
         <div class="space-y-3">
             @foreach($post->comments->where('parent_id', null) as $comment)

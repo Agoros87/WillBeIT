@@ -1,15 +1,15 @@
-<x-public-layout title="Posts">
-    <h1 class="header-1">Listado de Posts</h1>
+<x-public-layout title="__('Posts')">
+    <h1 class="header-1">{{__('Post List')}}</h1>
     <div class="flex justify-end gap-4">
         @role('superadmin')
         <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            Volver al Dashboard
+            {{__('Return Dashboard')}}
         </a>
         @endrole
 
         @can('create' , App\Models\Post::class)
             <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Crear nuevo post
+               {{__('Create Post')}}
             </a>
         @endcan
     </div>
@@ -24,7 +24,7 @@
             </h3>
             <p class="text-gray-700 mb-2">{{ $post->body }}</p>
             <p class="text-sm text-gray-500">
-                Autor: {{ $post->user->name}} {{ $post->user->surname ?? 'Desconocido' }}</p>
+                {{__("Author")}}: {{ $post->user->name}} {{ $post->user->surname ?? 'Desconocido' }}</p>
             <div class="mt-2 flex gap-4">
                 <a href="{{ route('posts.show', $post) }}" class="text-blue-600 hover:underline">Ver</a>
                 @role('superadmin')
@@ -32,7 +32,7 @@
                 <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('¿Eliminar este post?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+                    <button type="submit" class="text-red-600 hover:underline">{{__('Delete')}}</button>
                 </form>
                 @endrole
             </div>

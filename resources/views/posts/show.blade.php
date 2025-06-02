@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Post</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-100 text-gray-900 p-8">
+<x-public-layout title="Posts">
 
-<h1 class="text-2xl font-bold mb-6">{{ $post->title }}</h1>
+<h1 class="header-1">{{ $post->title }}</h1>
 
 @if ($post->image)
     <div class="mb-6">
@@ -19,8 +11,23 @@
 <p class="text-gray-700 mb-4">{{ $post->body }}</p>
 
 <p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
-<p class="text-sm text-gray-500 mb-2">Video ID: {{ $post->video_id }}</p>
-<p class="text-sm text-gray-500 mb-6">Podcast ID: {{ $post->podcasts_id }}</p>
+    @if ($post->video_id)
+        <div class="mb-6">
+            <video controls class="w-full max-w-xl rounded shadow">
+                <source src="{{ asset('storage/' . $post->video_id) }}" type="video/mp4">
+                Tu navegador no soporta el tag de video.
+            </video>
+        </div>
+    @endif
+
+    @if ($post->podcasts_id)
+        <div class="mb-6">
+            <audio controls class="w-full max-w-xl">
+                <source src="{{ asset('storage/' . $post->podcasts_id) }}" type="audio/mpeg">
+                Tu navegador no soporta el tag de audio.
+            </audio>
+        </div>
+    @endif
 <p>{{ $post->likedByUsers()->count() }} {{ Str::plural('Like', $post->likedByUsers()->count()) }}</p>
 
 @auth
@@ -74,7 +81,7 @@
 
 {{-- Lista de comentarios --}}
 <div class="mt-6">
-    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Comentarios</h3>
+    <h3 class="header-3">Comentarios</h3>
 
     @if($post->comments->where('parent_id', null)->isEmpty())
         <p class="mt-3 text-sm text-gray-500">No hay comentarios aún. Sé el primero en comentar.</p>
@@ -88,6 +95,4 @@
         </div>
     @endif
 </div>
-
-</body>
-</html>
+</x-public-layout>

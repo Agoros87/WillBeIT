@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 text-gray-900 p-8">
 
-<h1 class="text-2xl font-bold mb-6">Crear nuevo post</h1>
+<h1 class="header-1">Crear nuevo post</h1>
 
 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
     @csrf

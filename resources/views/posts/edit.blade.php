@@ -54,17 +54,6 @@
         </select>
     </div>
 
-    <div>
-        <label for="user_id" class="block font-semibold">Usuario</label>
-        <select name="user_id" id="user_id" class="w-full border p-2 rounded" required>
-            @foreach (\App\Models\User::all() as $user)
-                <option value="{{ $user->id }}" {{ old('user_id', $post->user_id) == $user->id ? 'selected' : '' }}>
-                    {{ $user->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
-
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Actualizar
     </button>

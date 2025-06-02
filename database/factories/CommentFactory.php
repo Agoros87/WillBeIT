@@ -20,8 +20,8 @@ class CommentFactory extends Factory
     {
         return [
             'content' => $this->faker->sentence(10),
-            'user_id' => User::factory(),
-            'post_id' => Post::factory(),
+            'user_id' => User::inRandomOrder()->first()->id,
+            'post_id' => Post::inRandomOrder()->first()->id,
         ];
     }
 }

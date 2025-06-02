@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Podcast;
@@ -48,7 +49,10 @@ class PostController extends Controller
 
         $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
         $validated['user_id'] = Auth::id();
-        Post::create($validated);
+        $post = Post::create($validated);
+
+        event(new PostCreated($post));
+
 
         return redirect()->route('posts.index')->with('success', 'Post creado correctamente');
     }

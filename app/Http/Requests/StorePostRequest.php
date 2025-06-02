@@ -24,7 +24,6 @@ class StorePostRequest extends FormRequest
         return [
             'video_id' => 'required|exists:videos,id',
             'podcasts_id' => 'required|exists:podcasts,id',
-            'user_id' => 'required|exists:users,id',
             'title' => 'required|string|max:255',
             'body' => 'required|string|max:255',
             'image' => 'nullable|image|max:2048',

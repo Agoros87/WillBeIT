@@ -13,9 +13,9 @@
 <p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
     @if ($post->video_id)
         <div class="mb-6">
-            <video controls class="w-full max-w-xl rounded shadow">
-                <source src="{{ asset('storage/' . $post->video_id) }}" type="video/mp4">
-                Tu navegador no soporta el tag de video.
+            <video controls class="w-full rounded border border-gray-300">
+                <source src="{{ asset($post->video->video_path) }}" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
             </video>
         </div>
     @endif
@@ -23,7 +23,7 @@
     @if ($post->podcasts_id)
         <div class="mb-6">
             <audio controls class="w-full max-w-xl">
-                <source src="{{ asset('storage/' . $post->podcasts_id) }}" type="audio/mpeg">
+                <source src="{{ asset('storage/' . $post->podcast->podcast_path) }}" type="audio/mpeg">
                 Tu navegador no soporta el tag de audio.
             </audio>
         </div>
@@ -39,10 +39,11 @@
     </form>
 @endauth
 
-@role('super-superadmin')
+    @can('update', $post)
 <div class="flex gap-4">
     <a href="{{ route('posts.edit', $post) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Editar</a>
-
+    @endcan
+    @can('destroy', $post)
     <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('¿Eliminar este post?')">
         @csrf
         @method('DELETE')
@@ -50,8 +51,8 @@
             Eliminar
         </button>
     </form>
+    @endcan
 </div>
-@endrole
 
 {{-- Botón para volver al índice de posts --}}
 

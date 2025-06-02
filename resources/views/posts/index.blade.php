@@ -1,15 +1,21 @@
 <x-public-layout title="Posts">
     <h1 class="header-1">Listado de Posts</h1>
-    @role('superadmin')
     <div class="flex justify-end gap-4">
+        @role('superadmin')
         <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            Volver al Dashboard </a>
-        <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            Crear nuevo post </a>
-    </div>
-    @endrole
+            Volver al Dashboard
+        </a>
+        @endrole
 
-    @foreach ($posts as $post)
+        @can('create' , App\Models\Post::class)
+            <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                Crear nuevo post
+            </a>
+        @endcan
+    </div>
+
+
+@foreach ($posts as $post)
         <div class="bg-white rounded shadow p-4 mb-4">
             <h3 class="header-3">
                 <a href="{{ route('posts.show', $post) }}" class="text-blue-600 hover:underline">

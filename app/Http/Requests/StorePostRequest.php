@@ -25,8 +25,8 @@ class StorePostRequest extends FormRequest
             'video_id' => 'required|exists:videos,id',
             'podcasts_id' => 'required|exists:podcasts,id',
             'title' => 'required|string|max:255',
-            'body' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'body' => 'required|string|max:25555',
+            'image' => 'nullable|image|max:20480',
         ];
     }
 }

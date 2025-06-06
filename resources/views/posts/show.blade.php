@@ -8,7 +8,7 @@
     </div>
 @endif
 @livewire('favorite-button', ['model' => $post])
-<p class="text-gray-700 mb-4">{{ $post->body }}</p>
+<div class="text-gray-700 mb-4 prose max-w-none">{!! $post->body !!}</div>
 
 <p class="text-sm text-gray-500 mb-2">{{__("Author")}}: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
     @if ($post->video_id)

@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
     Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'toggle'])->name('posts.like');
+    Route::post('/upload-trix-image', [PostController::class, 'uploadTrixImage'])->name('upload.trix.image');
 });
 
 // Rutas protegidas por auth y verified

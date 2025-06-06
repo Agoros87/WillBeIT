@@ -9,6 +9,7 @@ use App\Models\Podcast;
 use App\Models\Post;
 use App\Models\Video;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -111,5 +112,27 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post eliminado correctamente');
+    }
+
+    /**
+     * Upload image for Trix editor
+     */
+    public function uploadTrixImage(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('trix-images', $filename, 'public');
+            
+            return response()->json([
+                'url' => Storage::url($path)
+            ]);
+        }
+
+        return response()->json(['error' => 'No se pudo subir la imagen'], 400);
     }
 }

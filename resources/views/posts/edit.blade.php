@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Editar Post</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -22,7 +23,8 @@
 
     <div>
         <label for="body" class="block font-semibold">{{__("Content")}}</label>
-        <textarea name="body" id="body" rows="4" class="w-full border p-2 rounded" required>{{ old('body', $post->body) }}</textarea>
+        <input id="body" type="hidden" name="body" value="{{ old('body', $post->body) }}">
+        <trix-editor input="body" class="trix-content border rounded min-h-[200px]"></trix-editor>
         @error('body') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
     </div>
 

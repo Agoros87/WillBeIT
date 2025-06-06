@@ -22,7 +22,9 @@
                     {{ $post->title }}
                 </a>
             </h3>
-            <p class="text-gray-700 mb-2">{{ $post->body }}</p>
+            <div class="text-gray-700 mb-2 prose max-w-none">
+                {!! Str::limit(strip_tags($post->body), 150) !!}
+            </div>
             <p class="text-sm text-gray-500">
                 {{__("Author")}}: {{ $post->user->name}} {{ $post->user->surname ?? 'Desconocido' }}</p>
             <div class="mt-2 flex gap-4">

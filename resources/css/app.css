@@ -133,4 +133,37 @@ select:focus[data-flux-control] {
     .header-3 {
         @apply text-base md:text-xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow-sm drop-shadow-blue-300 dark:drop-shadow-emerald-700;
     }
+
+    /* Estilos personalizados para Trix */
+    .trix-content {
+        @apply bg-white;
+    }
+
+    trix-editor {
+        @apply border border-gray-300 rounded-md;
+    }
+
+    trix-toolbar {
+        @apply border-b border-gray-300 bg-gray-50;
+    }
+
+    trix-toolbar .trix-button-group {
+        @apply border-r border-gray-300;
+    }
+
+    trix-toolbar .trix-button {
+        @apply text-gray-700 hover:bg-gray-200 transition-colors;
+    }
+
+    trix-toolbar .trix-button.trix-active {
+        @apply bg-blue-100 text-blue-700;
+    }
+
+    .trix-content {
+        @apply p-4 min-h-[200px] focus:outline-none;
+    }
+
+    .trix-content img {
+        @apply max-w-full h-auto rounded shadow-md my-2;
+    }
 }

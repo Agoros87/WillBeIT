@@ -30,8 +30,8 @@
                         {{--                                <flux:menu.item :href="route('admin.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>--}}
                         {{--                                @elserole('teacher')--}}
                         {{--                                <flux:menu.item :href="route('teacher.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>--}}
-                        {{--                                @elserole('student')--}}
-                        {{--                                <flux:menu.item :href="route('student.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>--}}
+                        @elserole('student')
+                        <flux:menu.item :href="route('student.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
                         {{--                                -->--}}
 
                         @else

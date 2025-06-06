@@ -13,6 +13,11 @@ class Video extends Model
 
     protected $fillable = ['user_id', 'title', 'description', 'slug', 'video_path'];
 
+    public function getRouteKeyName() // Me ahorro poner en las rutas {modelo:slug} para que sea por slug en lugar de id
+    {
+        return 'slug';
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Post</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-100 text-gray-900 p-8">
+<x-public-layout title="__('Posts')">
 
-<h1 class="text-2xl font-bold mb-6">{{ $post->title }}</h1>
+<h1 class="header-1">{{ $post->title }}</h1>
 
 @if ($post->image)
     <div class="mb-6">
@@ -18,9 +10,24 @@
 @livewire('favorite-button', ['model' => $post])
 <p class="text-gray-700 mb-4">{{ $post->body }}</p>
 
-<p class="text-sm text-gray-500 mb-2">Autor: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
-<p class="text-sm text-gray-500 mb-2">Video ID: {{ $post->video_id }}</p>
-<p class="text-sm text-gray-500 mb-6">Podcast ID: {{ $post->podcasts_id }}</p>
+<p class="text-sm text-gray-500 mb-2">{{__("Author")}}: {{ $post->user->name ?? 'Desconocido'}} {{ $post->user->surname ?? 'Desconocido' }}</p>
+    @if ($post->video_id)
+        <div class="mb-6">
+            <video controls class="w-full rounded border border-gray-300">
+                <source src="{{ asset($post->video->video_path) }}" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+        </div>
+    @endif
+
+    @if ($post->podcasts_id)
+        <div class="mb-6">
+            <audio controls class="w-full max-w-xl">
+                <source src="{{ asset('storage/' . $post->podcast->podcast_path) }}" type="audio/mpeg">
+                Tu navegador no soporta el tag de audio.
+            </audio>
+        </div>
+    @endif
 <p>{{ $post->likedByUsers()->count() }} {{ Str::plural('Like', $post->likedByUsers()->count()) }}</p>
 
 @auth
@@ -32,10 +39,11 @@
     </form>
 @endauth
 
-@role('super-superadmin')
+    @can('update', $post)
 <div class="flex gap-4">
     <a href="{{ route('posts.edit', $post) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Editar</a>
-
+    @endcan
+    @can('destroy', $post)
     <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('¿Eliminar este post?')">
         @csrf
         @method('DELETE')
@@ -43,8 +51,8 @@
             Eliminar
         </button>
     </form>
+    @endcan
 </div>
-@endrole
 
 {{-- Botón para volver al índice de posts --}}
 
@@ -66,7 +74,7 @@
             <textarea name="content" rows="4" required class="w-full p-3 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
 
             <button type="submit" class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">
-                Comentar
+                {{__("Comment")}}
             </button>
         </form>
     </div>
@@ -74,10 +82,10 @@
 
 {{-- Lista de comentarios --}}
 <div class="mt-6">
-    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Comentarios</h3>
+    <h3 class="header-3">{{__("Commentary")}}</h3>
 
     @if($post->comments->where('parent_id', null)->isEmpty())
-        <p class="mt-3 text-sm text-gray-500">No hay comentarios aún. Sé el primero en comentar.</p>
+        <p class="mt-3 text-sm text-gray-500">{{__("No Comments Yet")}}</p>
     @else
         <div class="space-y-3">
             @foreach($post->comments->where('parent_id', null) as $comment)
@@ -88,6 +96,4 @@
         </div>
     @endif
 </div>
-
-</body>
-</html>
+</x-public-layout>

@@ -23,11 +23,11 @@ class VideoController extends Controller
 
     public function store(VideoRequest $request)
     {
-        $data = $request->all();
-        $data['user_id'] = 1; // Usuario temporal, en un futuro sera el usuario registrado, tal que asi ($data['user_id'] = auth()->id();)
-
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
         if ($request->hasFile('video_path')) {
             $file = $request->file('video_path');
+
             $extension = $file->extension();
             $fileName = Str::uuid() . '.' . $extension;
 

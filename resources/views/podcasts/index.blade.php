@@ -1,14 +1,17 @@
 <x-public-layout title="Podcasts">
     <div class="p-8">
         <h1 class="header-1">Podcasts</h1>
-        @role('superadmin')
+
         <div class="flex justify-end gap-4">
+            @role('superadmin')
             <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
                 Volver al Dashboard </a>
+            @endrole
+            @can('create', App\Models\Podcast::class)
             <a href="{{ route('podcasts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
                 Crear nuevo Podcast </a>
+            @endcan
         </div>
-        @endrole
 
         @if($podcasts->isEmpty())
             <p class="text-gray-600">No hay podcasts disponibles.</p>
@@ -26,7 +29,7 @@
                             </div>
                         @endif
 
-                        @role('superadmin')
+
                         <div class="flex space-x-2 mt-2">
                             @can('update', $podcast)
                                 <a href="{{ route('podcasts.edit', $podcast) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
@@ -43,7 +46,7 @@
                                 </form>
                             @endcan
                         </div>
-                        @endrole
+
                     </div>
                 @endforeach
             </div>

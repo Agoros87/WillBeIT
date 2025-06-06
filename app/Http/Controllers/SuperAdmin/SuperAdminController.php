@@ -46,7 +46,7 @@ class SuperAdminController extends Controller
             $meses[] = Carbon::createFromFormat('m', $i + 1)->format('F'); // Nombre del mes
             $cantidadUsuarios[] = $usuariosPorMeses[$i];
         }
-        $totales = [
+        $totals = [
             'videos' => $totalVideos,
             'podcasts' => $totalPodcast,
             'posts' => $totalPost,

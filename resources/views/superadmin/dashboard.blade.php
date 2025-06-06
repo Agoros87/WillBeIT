@@ -265,7 +265,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Obtener los datos desde Blade
-            const totales = @json($totales);
+            const totales = @json($totals);
 
             // Crear el gráfico
             const ctx = document.getElementById('totales').getContext('2d');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etiquetas</title>
+    <title>{{ __('Tags') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 min-h-screen font-sans">
@@ -12,18 +12,18 @@
 
 <div class="max-w-6xl mx-auto py-10 px-4">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-semibold text-gray-800">Gestión de Etiquetas</h1>
+        <h1 class="text-3xl font-semibold text-gray-800">{{ __('Tags management') }}</h1>
 
         @role('superadmin')
 
         <div class="flex gap-4">
             <a href="{{ route('superadmin.dashboard') }}"
                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Volver al Dashboard
+                {{ __('Return to dashboard') }}
             </a>
             <a href="{{ route('tags.create') }}"
                class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
-                 Nueva Etiqueta
+                {{ __('New tag') }}
             </a>
         </div>
         @endrole
@@ -39,9 +39,9 @@
         <table class="min-w-full table-auto">
             <thead class="bg-gray-50">
             <tr>
-                <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">{{ __('ID') }}</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">{{ __('Name') }}</th>
+                <th class="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">{{ __('Actions') }}</th>
             </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -54,16 +54,16 @@
                         @role('superadmin')
                         <a href="{{ route('tags.edit', $tag->id) }}"
                            class="text-yellow-600 hover:text-yellow-800 text-sm font-medium">
-                            Editar
+                            {{ __('Edit') }}
                         </a>
                         <form action="{{ route('tags.destroy', $tag->id) }}" method="POST"
-                              onsubmit="return confirm('¿Estás seguro de eliminar esta etiqueta?')"
+                              onsubmit="return confirm('{{ __('Are you sure you want to delete this tag?') }}')"
                               class="inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit"
                                     class="text-red-600 hover:text-red-800 text-sm font-medium">
-                                Eliminar
+                                {{ __('Delete') }}
                             </button>
                         </form>
                         @endrole
@@ -71,7 +71,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3" class="px-6 py-4 text-center text-gray-500">No hay etiquetas registradas.</td>
+                    <td colspan="3" class="px-6 py-4 text-center text-gray-500">{{ __('No tags registered.') }}</td>
                 </tr>
             @endforelse
             </tbody>

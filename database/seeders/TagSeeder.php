@@ -12,7 +12,32 @@ class TagSeeder extends Seeder
 {
     public function run(): void
     {
-        $tags = Tag::factory(10)->create();
+        $tagNames = [
+            'Tecnología',
+            'Programación',
+            'Laravel',
+            'PHP',
+            'JavaScript',
+            'Desarrollo Web',
+            'Inteligencia Artificial',
+            'Machine Learning',
+            'Tutoriales',
+            'Noticias',
+            'Opinión',
+            'Recursos',
+            'Frameworks',
+            'Seguridad',
+            'Open Source',
+            'Backend',
+            'Frontend',
+            'DevOps',
+            'Cloud',
+            'API',
+        ];
+
+        $tags = collect($tagNames)->map(function ($name) {
+            return Tag::create(['name' => $name]);
+        });
 
         Post::all()->each(function ($post) use ($tags) {
             $post->tags()->attach($tags->random(1)->pluck('id')->toArray());

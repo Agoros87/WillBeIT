@@ -17,4 +17,13 @@ class TagsRequest extends FormRequest
     {
         return true;
     }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'El nombre de la etiqueta es obligatorio.',
+            'name.string' => 'El nombre de la etiqueta debe ser una cadena de texto.',
+            'name.max' => 'El nombre de la etiqueta no puede exceder los 255 caracteres.',
+            'name.min' => 'El nombre de la etiqueta debe tener al menos 3 caracteres.',
+        ];
+    }
 }

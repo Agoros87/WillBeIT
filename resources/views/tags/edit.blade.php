@@ -11,6 +11,9 @@
 <div class="container mt-5">
     <h1 class="mb-4">Editar Tag</h1>
     <form action="{{ route('tags.update', $tag->id) }}" method="POST">
+        @error('name')
+        <span class="alert alert-danger py-1 px-2 d-inline-block mb-2" role="alert">{{ $message }}</span>
+        @enderror
         @csrf
         @method('PUT')
         <div class="mb-3">

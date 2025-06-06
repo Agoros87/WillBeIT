@@ -8,6 +8,15 @@
 </head>
 <body>
 <div class="container mt-5">
+    @if ($errors->any())
+        <div class="mb-6 bg-red-50 border border-b-red-700 text-red-600 px-4 py-3 rounded-lg">
+            <ul class="list-disc pl-5 text-sm">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h1 class="mb-4">Crear Nuevo Tag</h1>
     <form action="{{ route('tags.store') }}" method="POST">
         @csrf

@@ -79,5 +79,10 @@
     "View videos": "View videos",
     "Whoops!": "Whoops!",
     "Write the tag name": "Write the tag name",
-    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account."
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
+    "Are you sure you want to delete this video?": "Are you sure you want to delete this video?",
+    "New video": "New video",
+    "No videos available.": "No videos available.",
+    "Uploaded": "Uploaded",
+    "Videos": "Videos"
 }

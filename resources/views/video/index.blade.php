@@ -1,14 +1,14 @@
 <x-public-layout title="Videos">
     <div class="p-8">
-        <h1 class="header-1">Vídeos</h1>
+        <h1 class="header-1">{{ __('Videos') }}</h1>
 
         @role('superadmin')
         <div class="flex justify-end gap-4 mb-6">
             <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Volver al Dashboard
+                {{ __('Return to dashboard') }}
             </a>
             <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Nuevo Video
+                {{ __('New video') }}
             </a>
         </div>
         @endrole
@@ -20,7 +20,7 @@
         @endif
 
         @if($videos->isEmpty())
-            <p class="text-gray-600">No hay vídeos disponibles.</p>
+            <p class="text-gray-600">{{ __('No videos available.') }}</p>
         @else
             <div class="space-y-4">
                 @foreach($videos as $video)
@@ -34,19 +34,19 @@
                                 <source src="{{ asset($video->video_path) }}" type="video/mp4">
                             </video>
                         </div>
-                        <p class="text-sm text-gray-500 mt-1">Subido: {{ $video->created_at->format('d/m/Y') }}</p>
+                        <p class="text-sm text-gray-500 mt-1">{{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}</p>
 
                         @role('superadmin')
                         <div class="flex space-x-2 mt-2">
                             <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
-                                Editar
+                                {{ __('Edit') }}
                             </a>
 
                             <form action="{{ route('video.destroy', $video->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este video?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-                                    Eliminar
+                                    {{ __('Delete') }}
                                 </button>
                             </form>
                         </div>

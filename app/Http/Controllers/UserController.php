@@ -42,7 +42,7 @@ class UserController extends Controller
             'type' => $request->type,
         ]);
         // Asignar el rol al usuario
-        $user->assignRole($request->role);
+        $user->assignRole($request->roles);
 
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
     }

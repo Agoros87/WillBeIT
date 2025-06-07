@@ -5,9 +5,11 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterInvitedController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\TagsController;
@@ -18,6 +20,13 @@ use Livewire\Volt\Volt;
 use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', HomeController::class)->name('home');
+
+    Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
+    Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
+
+
+Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
+Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
@@ -42,12 +51,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/upload-trix-image', [PostController::class, 'uploadTrixImage'])->name('upload.trix.image');
 });
 
+
+
+
 // Rutas protegidas por auth y verified
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
     Route::resource('posts', PostController::class)->except(['index', 'show']);
     Route::resource('video', VideoController::class)->except(['index', 'show']);
 });
+
+
+
+
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');

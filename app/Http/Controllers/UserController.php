@@ -39,6 +39,9 @@ class UserController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'status' => 'send',
+            'invited_by' => auth()->id(),
+            'invitation_token' => $request->invitation_token ,
             'type' => $request->type,
         ]);
         // Asignar el rol al usuario

@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
                 'surname' => ucfirst(str_replace('-', ' ', $role)),
                 'email' => str_replace('-', '', $role) . '@mail.com',
                 'email_verified_at' => now(),
+                'status' => 'approved',
                 'password' => bcrypt('123'),
             ]);
 

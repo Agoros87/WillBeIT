@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('center_id')->constrained()->cascadeOnDelete();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->string('type')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('status', ['pending', 'approved', 'rejected', 'send'])->default('send');
+            $table->foreignId('invited_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->uuid('invitation_token')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });

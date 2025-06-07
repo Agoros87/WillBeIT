@@ -1,4 +1,4 @@
-<x-public-layout title="__('Posts')">
+<x-public-layout title="{{__('Posts')}}">
     <h1 class="header-1">{{__('Post List')}}</h1>
     <div class="flex justify-end gap-4">
         @role('superadmin')

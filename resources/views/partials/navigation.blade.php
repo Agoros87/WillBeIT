@@ -13,7 +13,15 @@
         </x-nav-link>
         <x-nav-link route="video.index" class="group">
             <x-svg.video-icon class="w-7 group-hover:hidden md:group-hover:inline transition-all"/>
-            <span class="hidden md:inline group-hover:inline">{{ __('Videos') }}</span></x-nav-link>
+            <span class="hidden md:inline group-hover:inline">{{ __('Videos') }}</span>
+        </x-nav-link>
+
+        @if(auth()->check() && auth()->user()->hasRole('teacher'))
+            <x-nav-link route="invitation.create" class="group">
+                <span class="hidden md:inline group-hover:inline">{{ __('Send Invitation') }}</span>
+            </x-nav-link>
+        @endif
+
     </nav>
     <div class="flex flex-row justify-center items-center">
         <x-language-dropdown/>

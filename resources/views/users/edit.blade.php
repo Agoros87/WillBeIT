@@ -63,7 +63,7 @@
 
                 <div>
                     <label for="roles" class="block text-sm font-medium text-gray-700 mb-1">Rol</label>
-                    <select name="roles[]" id="roles" multiple
+                    <select name="roles[]" id="roles"
                             class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                         @foreach($roles as $role)
                             <option value="{{ $role->name }}" {{ $user->roles->pluck('name')->contains($role->name) ? 'selected' : '' }}>

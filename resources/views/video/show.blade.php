@@ -19,6 +19,9 @@
                         Tu navegador no soporta la reproducción de videos.
                     </video>
                 </div>
+                <p class="text-sm text-gray-500 mb-2">Subido el: {{ $video->created_at->format('d/m/Y') }}</p>
+                <p class="text-sm text-gray-500 mb-4">Por: {{ $video->user->name }}</p>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Descripción</h3>
                 <p class="text-gray-700">{{ $video->description }}</p>
             </div>
         </div>

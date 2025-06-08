@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
@@ -36,7 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('student/my-posts', [StudentController::class, 'myPosts'])->name('student.my-posts');
     Route::get('student/my-podcasts', [StudentController::class, 'myPodcasts'])->name('student.my-podcasts');
     Route::get('student/my-videos', [StudentController::class, 'myVideos'])->name('student.my-videos');
-    //Route::get('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     //Route::get('teacher/dashboard', 'teacher.dashboard')->name('teacher.dashboard');
     Route::view('dashboard', 'dashboard')->name('dashboard');//QUITAR CUANDO ESTEN HECHAS CADA UNA Y DESCOMENTA ARRIBA
 });
@@ -62,8 +63,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-
-
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
@@ -86,19 +85,10 @@ Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('
 Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
 
 //RUTAS SOLO PARA SUPERADMIN
-Route::middleware(['auth', 'superadmin'])->group(function () {
+Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('centers', CenterController::class);
 });
 
-
-//DEJARLAS DE MOMENTO SIN QUITAR
-//Route::get('/video', [VideoController::class, 'index'])->name('video.index');
-//Route::get('video/create', [VideoController::class, 'create'])->name('video.create');
-//Route::post('video', [VideoController::class, 'store'])->name('video.store');
-//Route::get('/video/{id}', [VideoController::class, 'show'])->name('video.show');
-//Route::get('/video/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
-//Route::put('/video/{id}', [VideoController::class, 'update'])->name('video.update');
-//Route::delete('/video/{id}', [VideoController::class, 'destroy'])->name('video.destroy');
 
 require __DIR__ . '/auth.php';

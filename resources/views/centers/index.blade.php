@@ -10,10 +10,29 @@
 @include('partials.navigation')
 <div class="p-8">
     <h1 class="text-2xl font-bold mb-4">{{ __('Centers') }}</h1>
-    @can('create', \App\Models\Center::class)
-        <a href="{{ route('centers.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 inline-block mb-6">
-            Crear nuevo </a>
-    @endcan
+    @hasrole('superadmin')
+    <div class="flex items-center justify-between mb-8">
+        <div class="flex gap-3">
+            <a href="{{ route('superadmin.dashboard') }}"
+               class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
+                Dashboard
+            </a>
+            <a href="{{ route('centers.create') }}"
+               class="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition text-sm font-medium">
+                Nuevo Centro
+            </a>
+        </div>
+    </div>
+    @elsehasrole('admin')
+    <div class="flex items-center justify-between mb-8">
+        <div class="flex gap-3">
+            <a href="{{ route('admin.dashboard') }}"
+               class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
+                Dashboard
+            </a>
+        </div>
+    </div>
+    @endhasrole
 
     @if($centers->isEmpty())
         <p class="text-gray-600">No hay centros disponibles.</p>

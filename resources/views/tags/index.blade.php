@@ -13,20 +13,25 @@
 <div class="max-w-6xl mx-auto py-10 px-4">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-3xl font-semibold text-gray-800">{{ __('Tags management') }}</h1>
-
-        @role('superadmin')
-
-        <div class="flex gap-4">
-            <a href="{{ route('superadmin.dashboard') }}"
-               class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+        @hasrole('superadmin')
+        <div class="flex justify-end gap-4 mb-6">
+            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
                 {{ __('Return to dashboard') }}
             </a>
-            <a href="{{ route('tags.create') }}"
-               class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
-                {{ __('New tag') }}
+            <a href="{{ route('tags.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New Tag') }}
             </a>
         </div>
-        @endrole
+        @elsehasrole('admin')
+        <div class="flex justify-end gap-4 mb-6">
+            <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+            <a href="{{ route('tags.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New Tag') }}
+            </a>
+        </div>
+        @endhasrole
     </div>
 
     @if (session('success'))

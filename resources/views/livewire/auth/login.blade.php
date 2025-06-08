@@ -52,6 +52,10 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 $this->redirectIntended(default: route('student.dashboard'), navigate: true);
                 break;
 
+            case $user->hasRole('admin'):
+                $this->redirectIntended(default: route('admin.dashboard'), navigate: true);
+                break;
+
             default:
                 $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
                 break;

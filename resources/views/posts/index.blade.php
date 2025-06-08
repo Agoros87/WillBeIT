@@ -1,17 +1,25 @@
 <x-public-layout title="{{__('Posts')}}">
     <h1 class="header-1">{{__('Post List')}}</h1>
     <div class="flex justify-end gap-4">
-        @role('superadmin')
-        <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-            {{__('Return Dashboard')}}
-        </a>
-        @endrole
-
-        @can('create' , App\Models\Post::class)
-            <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-               {{__('Create Post')}}
+        @hasrole('superadmin')
+        <div class="flex justify-end gap-4 mb-6">
+            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
             </a>
-        @endcan
+            <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New post') }}
+            </a>
+        </div>
+        @elsehasrole('admin')
+        <div class="flex justify-end gap-4 mb-6">
+            <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+            <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New post') }}
+            </a>
+        </div>
+        @endhasrole
     </div>
 
 

@@ -2,16 +2,25 @@
     <div class="p-8">
         <h1 class="header-1">Podcasts</h1>
 
-        <div class="flex justify-end gap-4">
-            @role('superadmin')
+        @hasrole('superadmin')
+        <div class="flex justify-end gap-4 mb-6">
             <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Volver al Dashboard </a>
-            @endrole
-            @can('create', App\Models\Podcast::class)
+                {{ __('Return to dashboard') }}
+            </a>
             <a href="{{ route('podcasts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Crear nuevo Podcast </a>
-            @endcan
+                {{ __('New podcasts') }}
+            </a>
         </div>
+        @elsehasrole('admin')
+        <div class="flex justify-end gap-4 mb-6">
+            <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+            <a href="{{ route('podcasts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New podcasts') }}
+            </a>
+        </div>
+        @endhasrole
 
         @if($podcasts->isEmpty())
             <p class="text-gray-600">No hay podcasts disponibles.</p>

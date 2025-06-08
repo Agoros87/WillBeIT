@@ -33,7 +33,8 @@
                         @elserole('student')
                         <flux:menu.item :href="route('student.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
                         {{--                                -->--}}
-
+                        @elserole('admin')
+                        <flux:menu.item :href="route('admin.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
                         @else
                             <flux:menu.item :href="route('dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
 

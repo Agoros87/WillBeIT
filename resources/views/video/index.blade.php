@@ -2,16 +2,25 @@
     <div class="p-8">
         <h1 class="header-1">{{ __('Videos') }}</h1>
 
-        @role('superadmin')
-        <div class="flex justify-end gap-4 mb-6">
-            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                {{ __('Return to dashboard') }}
-            </a>
-            <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                {{ __('New video') }}
-            </a>
-        </div>
-        @endrole
+        @hasrole('superadmin')
+            <div class="flex justify-end gap-4 mb-6">
+                <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                    {{ __('Return to dashboard') }}
+                </a>
+                <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                    {{ __('New video') }}
+                </a>
+            </div>
+        @elsehasrole('admin')
+            <div class="flex justify-end gap-4 mb-6">
+                <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                    {{ __('Return to dashboard') }}
+                </a>
+                <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                    {{ __('New video') }}
+                </a>
+            </div>
+        @endhasrole
 
         @if (session('success'))
             <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded shadow mb-6 alert-success">

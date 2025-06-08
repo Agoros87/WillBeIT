@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRegisterInvitationRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,11 @@ class RegisterInvitedController extends Controller
         return view('invitation.register-invited', compact('user'));
     }
 
+
+    public function register(UserRegisterInvitationRequest $request, $token)
+
     public function register(UserStoreRequest $request, $token)
+
     {
         $user = User::where('invitation_token', $token)->firstOrFail();
 
@@ -31,6 +36,7 @@ class RegisterInvitedController extends Controller
         ]);
 
         // Aquí el usuario sigue con estado 'pending'
+
         return redirect()->route('login')->with('status', 'Tu cuenta está pendiente de verificación.');
     }
 

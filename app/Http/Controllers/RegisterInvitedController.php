@@ -16,7 +16,11 @@ class RegisterInvitedController extends Controller
         return view('invitation.register-invited', compact('user'));
     }
 
+
     public function register(UserRegisterInvitationRequest $request, $token)
+
+    public function register(UserStoreRequest $request, $token)
+
     {
         $user = User::where('invitation_token', $token)->firstOrFail();
 
@@ -30,6 +34,8 @@ class RegisterInvitedController extends Controller
             'password' => bcrypt($request->password),
             'email_verified_at' => now(),
         ]);
+
+        // Aquí el usuario sigue con estado 'pending'
 
         return redirect()->route('login')->with('status', 'Tu cuenta está pendiente de verificación.');
     }

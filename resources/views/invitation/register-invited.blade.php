@@ -3,6 +3,7 @@
 
         <div class="flex justify-between items-center mb-6">
             <h1 class="header-1">{{__('Complete your register')}}</h1>
+            <h1 class="header-1">Completa tu registro</h1>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-xl p-6 shadow space-y-6">

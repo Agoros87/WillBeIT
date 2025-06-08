@@ -16,6 +16,10 @@ class InvitationMail extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
+    public $user;
+    public function __construct()
+    {
+        $this->user = auth()->user();
 
     }
 

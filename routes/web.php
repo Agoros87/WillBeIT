@@ -24,7 +24,8 @@ Route::get('/', HomeController::class)->name('home');
 
     Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
     Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
-
+Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
+Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
 
 Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
 Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);

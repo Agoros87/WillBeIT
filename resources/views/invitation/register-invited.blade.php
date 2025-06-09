@@ -3,7 +3,6 @@
 
         <div class="flex justify-between items-center mb-6">
             <h1 class="header-1">{{__('Complete your register')}}</h1>
-            <h1 class="header-1">Completa tu registro</h1>
         </div>
 
         <div class="bg-white border border-gray-200 rounded-xl p-6 shadow space-y-6">
@@ -22,7 +21,7 @@
                 @csrf
 
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{__('Email')}}</label>
                     <input type="email" id="email" value="{{ $user->email }}"
                            class="w-full border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"
                            readonly>

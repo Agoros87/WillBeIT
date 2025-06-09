@@ -27,7 +27,7 @@ class InvitationController extends Controller
             'email' => $request->email,
             'password' => bcrypt('contraseña_segura'),
             'type' => $request->type,
-            'status' => 'pending',
+            'status' => 'send',
             'invited_by' => auth()->id(),
             'invitation_token' => $token,
         ]);

@@ -13,7 +13,9 @@ class CenterController extends Controller
 {
     public function index()
     {
-        return view('centers.index', ['centers' => Center::all()]);
+        $centers = Center::withCount('posts')->with('users')->get();
+
+        return view('centers.index', compact('centers'));
     }
 
     public function create()
@@ -50,6 +52,7 @@ class CenterController extends Controller
         Center::findOrFail($id)->delete();
         return redirect()->route('centers.index');
     }
+
     public function importCenters(Request $request)
     {
         $request->validate([

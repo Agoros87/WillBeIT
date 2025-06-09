@@ -1,17 +1,24 @@
-import './features/reveal-scroll.js';
-import './features/center-data-reveal-scroll.js';
-
+import {initRevealScroll} from './features/reveal-scroll.js';
+import {centerDataRevealScroll} from './features/center-data-reveal-scroll.js';
 import {darkModeToggleButtonAction, initializeDarkMode} from './features/dark-mode.js';
 
 // Importar Trix
 import "trix";
 import "trix/dist/trix.css";
 
-initializeDarkMode();
-darkModeToggleButtonAction();
+function initializeFeatures() {
+    initRevealScroll();
+    centerDataRevealScroll();
+    initializeDarkMode();
+    darkModeToggleButtonAction();
+}
+
+
+document.addEventListener('DOMContentLoaded', initializeFeatures);
+document.addEventListener('livewire:navigated', initializeFeatures);
 
 // Configuración de Trix para subida de imágenes
-document.addEventListener("trix-attachment-add", function(event) {
+document.addEventListener("trix-attachment-add", function (event) {
     if (event.attachment.file) {
         uploadFileAttachment(event.attachment);
     }
@@ -21,7 +28,7 @@ function uploadFileAttachment(attachment) {
     const file = attachment.file;
     const form = new FormData();
     form.append("file", file);
-    
+
     // Agregar token CSRF
     const token = document.querySelector('meta[name="csrf-token"]');
     if (token) {
@@ -32,19 +39,19 @@ function uploadFileAttachment(attachment) {
         method: "POST",
         body: form
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.url) {
-            attachment.setAttributes({
-                url: data.url,
-                href: data.url
-            });
-        } else {
+        .then(response => response.json())
+        .then(data => {
+            if (data.url) {
+                attachment.setAttributes({
+                    url: data.url,
+                    href: data.url
+                });
+            } else {
+                attachment.remove();
+            }
+        })
+        .catch(error => {
+            console.error('Error uploading file:', error);
             attachment.remove();
-        }
-    })
-    .catch(error => {
-        console.error('Error uploading file:', error);
-        attachment.remove();
-    });
+        });
 }

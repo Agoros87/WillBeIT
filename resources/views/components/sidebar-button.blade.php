@@ -9,36 +9,55 @@
     </svg>
 </button>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-            const sidebarButton = document.getElementById('sidebarButton');
+    function toggleSidebar() {
+        const sidebarButton = document.getElementById('sidebarButton');
 
-            if (document.getElementById('sidebar')) {
-                const sidebar = document.getElementById('sidebar');
-                const sidebarClosedIcon = document.getElementById('sidebarClosedIcon');
-                const sidebarOpenedIcon = document.getElementById('sidebarOpenedIcon');
+        if (!sidebarButton) return;
 
-                sidebarButton.addEventListener('dblclick', (e) => {
-                    e.stopPropagation();
-                });
+        const sidebar = document.getElementById('sidebar');
 
-                sidebar.style.width = '0px';
-
-                sidebarButton.addEventListener('click', () => {
-                    if (sidebar.style.width === '0px') {
-                        sidebar.style.width = '256px';
-                        sidebar.style.minWidth = '256px';
-                    } else {
-                        sidebar.style.width = '0px';
-                        sidebar.style.minWidth = '0px';
-                    }
-
-                    sidebar.classList.toggle('px-4');
-                    sidebarClosedIcon.classList.toggle('hidden');
-                    sidebarOpenedIcon.classList.toggle('hidden');
-                })
-            } else {
-                sidebarButton.remove();
-            }
+        if (!sidebar) {
+            sidebarButton.remove();
+            return;
         }
-    )
+
+        const sidebarClosedIcon = document.getElementById('sidebarClosedIcon');
+        const sidebarOpenedIcon = document.getElementById('sidebarOpenedIcon');
+
+        // Nuevo botón para evitar errores de livewire flux
+        const newButton = sidebarButton.cloneNode(true);
+        sidebarButton.parentNode.replaceChild(newButton, sidebarButton);
+
+        newButton.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        sidebar.style.width = '0px';
+        sidebar.style.minWidth = '0px';
+
+        newButton.addEventListener('click', () => {
+            const isCollapsed = sidebar.style.width === '0px';
+
+            sidebar.style.width = isCollapsed ? '256px' : '0px';
+            sidebar.style.minWidth = isCollapsed ? '256px' : '0px';
+
+            sidebar.classList.toggle('px-4');
+
+            if (sidebarClosedIcon && sidebarOpenedIcon) {
+                sidebarClosedIcon.classList.toggle('hidden');
+                sidebarOpenedIcon.classList.toggle('hidden');
+            }
+        });
+    }
+
+    function initSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar) return;
+        toggleSidebar();
+        sidebar.style.width = '0px';
+    }
+
+    document.addEventListener('DOMContentLoaded', initSidebar);
+    document.addEventListener('livewire:navigated', initSidebar);
 </script>

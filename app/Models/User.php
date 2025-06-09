@@ -44,6 +44,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
+
+
+
     /**
      * Get the attributes that should be cast.
      *

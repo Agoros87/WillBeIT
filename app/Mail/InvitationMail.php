@@ -12,6 +12,10 @@ class InvitationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    public function __construct($user)
+    {
+        $this->user = $user;
     public $user;
     public function __construct()
     {

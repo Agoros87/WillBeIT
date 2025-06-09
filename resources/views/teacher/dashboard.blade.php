@@ -46,6 +46,7 @@
         {{-- Listados --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
+
                 <h3 class="text-lg font-semibold mb-4 text-green-600">{{ __('Center students') }}</h3>
                 <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                     @forelse($studentsApproved as $student)
@@ -55,6 +56,7 @@
                         </li>
                     @empty
                         <li class="py-2 text-gray-500">{{ __('There are no students of your center.') }}</li>
+
                     @endforelse
                 </ul>
             </div>

@@ -17,6 +17,7 @@
         </x-nav-link>
         @if(auth()->check() && auth()->user()->hasRole('teacher'))
             <x-nav-link route="invitation.create" class="group">
+                <x-svg.plus-icon class="w-7 group-hover:hidden md:group-hover:inline transition-all"/>
                 <span class="hidden md:inline group-hover:inline">{{ __('Send Invitation') }}</span>
             </x-nav-link>
         @endif

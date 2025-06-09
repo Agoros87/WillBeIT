@@ -43,23 +43,37 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         $user = Auth::user();
         //Switch para redirigir a diferentes rutas dependiendo del rol del usuario
-        switch (true) {
-            case $user->hasRole('superadmin'):
-                $this->redirectIntended(default: route('superadmin.dashboard'), navigate: true);
-                break;
 
-            case $user->hasRole('student'):
-                $this->redirectIntended(default: route('student.dashboard'), navigate: true);
-                break;
+        if ($user->status === 'pending') {
+            Auth::logout();
+            $this->redirect(route('invitation.pending'), navigate: true);
+            return;
+        }
 
-            case $user->hasRole('admin'):
-                $this->redirectIntended(default: route('admin.dashboard'), navigate: true);
-                break;
+        if ($user->status === 'rejected') {
+            Auth::logout();
+            $this->redirect(route('invitation.rejected'), navigate: true);
+            return;
+        }
+        if ($user->status === 'approved') {
+            switch (true) {
+                case $user->hasRole('superadmin'):
+                    $this->redirectIntended(default: route('superadmin.dashboard'), navigate: true);
+                    break;
 
-            default:
-                $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-                break;
+                case $user->hasRole('student'):
+                    $this->redirectIntended(default: route('student.dashboard'), navigate: true);
+                    break;
+
+                case $user->hasRole('admin'):
+                    $this->redirectIntended(default: route('admin.dashboard'), navigate: true);
+                    break;
+
+                default:
+                    $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+                    break;
             }
+        }
     }
 
     /**

@@ -37,13 +37,8 @@
                 </flux:menu>
             </flux:dropdown>
         @else
-            <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-sky-600 font-semibold border border-transparent hover:border-sky-600 dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
+            <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'hidden' : 'inline-block' }} px-5 py-1.5 dark:text-[#EDEDEC] text-sky-600 font-semibold border border-transparent hover:border-sky-600 dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
                 Log in </a>
-
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-transparent hover:border-sky-600 border text-sky-600 font-semibold dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                    Register </a>
-            @endif
         @endauth
     </nav>
 @endif

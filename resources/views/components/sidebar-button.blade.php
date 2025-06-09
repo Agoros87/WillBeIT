@@ -11,15 +11,9 @@
 <script>
     function toggleSidebar() {
         const sidebarButton = document.getElementById('sidebarButton');
-
-        if (!sidebarButton) return;
-
         const sidebar = document.getElementById('sidebar');
 
-        if (!sidebar) {
-            sidebarButton.remove();
-            return;
-        }
+        if (!sidebarButton) return;
 
         const sidebarClosedIcon = document.getElementById('sidebarClosedIcon');
         const sidebarOpenedIcon = document.getElementById('sidebarOpenedIcon');
@@ -53,9 +47,12 @@
 
     function initSidebar() {
         const sidebar = document.getElementById('sidebar');
-        if (!sidebar) return;
+        const sidebarButton = document.getElementById('sidebarButton');
+        if (!sidebar && sidebarButton) {
+            sidebarButton.remove();
+            return;
+        }
         toggleSidebar();
-        sidebar.style.width = '0px';
     }
 
     document.addEventListener('DOMContentLoaded', initSidebar);

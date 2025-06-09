@@ -17,9 +17,9 @@ class RegisterInvitedController extends Controller
     }
 
 
-    public function register(UserRegisterInvitationRequest $request, $token)
 
-    public function register(UserStoreRequest $request, $token)
+
+    public function register(UserRegisterInvitationRequest $request, $token)
 
     {
         $user = User::where('invitation_token', $token)->firstOrFail();
@@ -32,6 +32,7 @@ class RegisterInvitedController extends Controller
             'name' => $request->name,
             'surname' => $request->surname,
             'password' => bcrypt($request->password),
+            'status' => 'pending',
             'email_verified_at' => now(),
         ]);
 

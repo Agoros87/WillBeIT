@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Mail\InvitationMail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\User;
@@ -31,6 +29,7 @@ class InvitationController extends Controller
             'invited_by' => auth()->id(),
             'invitation_token' => $token,
         ]);
+        $user->assignRole('student');
 
 
         Mail::to($user->email)->send(new InvitationMail($user));

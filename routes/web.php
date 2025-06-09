@@ -27,10 +27,12 @@ Route::get('/', HomeController::class)->name('home');
     Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
 Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
 Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
-
-
 Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
 Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);
+
+Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
+Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
+Route::get('/students/{student}', [TeacherController::class, 'show'])->name('students.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
@@ -42,7 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('student/my-videos', [StudentController::class, 'myVideos'])->name('student.my-videos');
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
-    Route::view('dashboard', 'dashboard')->name('dashboard');//QUITAR CUANDO ESTEN HECHAS CADA UNA Y DESCOMENTA ARRIBA
+    Route::view('dashboard', 'dashboard')->name('dashboard');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -85,7 +87,7 @@ Route::post('users/import', [UserController::class, 'importUsers'])->name('users
 Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
 Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
 
-//RUTAS SOLO PARA SUPERADMIN
+
 Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('centers', CenterController::class);

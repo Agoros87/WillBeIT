@@ -23,23 +23,9 @@
                     <flux:menu.separator/>
                     <!--Damos diferente dashboard según el rol que tenga-->
                     <flux:menu.radio.group>
-                        @role('superadmin')
-                        <flux:menu.item :href="route('superadmin.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
-                        {{--                                <!--DESCOMENTAR ESTO CUANDO SE HAGA EL DASHBOARD DE CADA UNO--}}
-                        {{--                                @elserole('admin')--}}
-                        {{--                                <flux:menu.item :href="route('admin.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>--}}
-                        {{--                                @elserole('teacher')--}}
-                        {{--                                <flux:menu.item :href="route('teacher.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>--}}
-                        @elserole('student')
-                        <flux:menu.item :href="route('student.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
-                        {{--                                -->--}}
-                        @elserole('admin')
-                        <flux:menu.item :href="route('admin.dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
-                        @else
-                            <flux:menu.item :href="route('dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
-
-                            @endrole
-                            <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        @php $role = auth()->user()->roles?->first()?->name.'.' ?? '' @endphp
+                        <flux:menu.item :href="route($role.'dashboard')" icon="home" wire:navigate>{{ __('Dashboard') }}</flux:menu.item>
+                        <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                     </flux:menu.radio.group>
                     <flux:menu.separator/>
                     <form method="POST" action="{{ route('logout') }}" class="w-full">

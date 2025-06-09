@@ -14,6 +14,7 @@ use App\Http\Controllers\RegisterInvitedController;
 use App\Http\Controllers\SuperAdmin\SuperAdminController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,8 @@ use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', HomeController::class)->name('home');
 
-    Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
-    Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
+Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
+Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
 
 
 Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
@@ -38,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('student/my-podcasts', [StudentController::class, 'myPodcasts'])->name('student.my-podcasts');
     Route::get('student/my-videos', [StudentController::class, 'myVideos'])->name('student.my-videos');
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    //Route::get('teacher/dashboard', 'teacher.dashboard')->name('teacher.dashboard');
+    Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
     Route::view('dashboard', 'dashboard')->name('dashboard');//QUITAR CUANDO ESTEN HECHAS CADA UNA Y DESCOMENTA ARRIBA
 });
 
@@ -51,8 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'toggle'])->name('posts.like');
     Route::post('/upload-trix-image', [PostController::class, 'uploadTrixImage'])->name('upload.trix.image');
 });
-
-
 
 
 // Rutas protegidas por auth y verified

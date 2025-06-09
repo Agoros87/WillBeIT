@@ -10,7 +10,7 @@
             @if ($errors->any())
                 <div class="mb-6 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg">
                     <ul class="list-disc pl-5 text-sm">
-                        @foreach ($errors->all() as $error)
+                        @foreach ( $errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
@@ -30,7 +30,7 @@
 
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Name') }}</label>
-                    <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}"
+                    <input type="text" name="name" id="name" value=""
                            class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                            required>
                 </div>

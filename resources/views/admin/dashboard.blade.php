@@ -1,5 +1,5 @@
 <x-layouts.app :title="__('Admin Dashboard')">
-
+    @include('partials.navigation')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <div class="flex flex-col gap-6">
         <h2 class="text-center font-bold text-2xl text-blue-500" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">

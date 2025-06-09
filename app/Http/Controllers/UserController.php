@@ -50,6 +50,27 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
     }
 
+    public function storeInvited(UserStoreRequest $request)
+    {
+        //dd($request);
+        // Crear un nuevo usuario
+        $user = User::create([
+            'center_id' => $request->center_id,
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'status' => 'send',
+            'invited_by' => auth()->id(),
+            'invitation_token' => $request->invitation_token ,
+            'type' => $request->type,
+        ]);
+        // Asignar el rol al usuario
+        $user->assignRole($request->roles);
+
+        return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
+    }
+
     public function show(User $user)
     {
         return view('users.show', compact('user'));

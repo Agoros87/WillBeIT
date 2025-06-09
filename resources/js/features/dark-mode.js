@@ -21,10 +21,8 @@ export const initializeDarkMode = () => {
 };
 
 export const darkModeToggleButtonAction = () => {
-    document.addEventListener('DOMContentLoaded', () => {
-        const darkModeToggleButton = document.getElementById('dark-mode-toggle');
-        if (darkModeToggleButton) {
-            darkModeToggleButton.addEventListener('click', toggleDarkMode);
-        }
-    });
+    const darkModeToggleButton = document.getElementById('dark-mode-toggle');
+    if (darkModeToggleButton) {
+        darkModeToggleButton.addEventListener('click', toggleDarkMode);
+    }
 };

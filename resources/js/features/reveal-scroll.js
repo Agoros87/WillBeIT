@@ -1,4 +1,5 @@
-if (document.querySelectorAll('.reveal-scroll').length > 0) {
+export function initRevealScroll() {
+    if (document.querySelectorAll('.reveal-scroll').length === 0) return;
 
     const revealElements = document.querySelectorAll('.reveal-scroll');
 
@@ -14,10 +15,16 @@ if (document.querySelectorAll('.reveal-scroll').length > 0) {
 
             elem.style.opacity = opacity;
             elem.style.transform = `scale(${scale})`;
-        })
+        });
     }
+
+    window.removeEventListener('load', percentReveal);
+    window.removeEventListener('scroll', percentReveal);
+    window.removeEventListener('resize', percentReveal);
 
     window.addEventListener('load', percentReveal);
     window.addEventListener('scroll', percentReveal);
     window.addEventListener('resize', percentReveal);
+
+    percentReveal();
 }

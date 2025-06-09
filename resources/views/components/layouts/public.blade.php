@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,14 +18,14 @@
 <div class="flex min-h-screen relative">
     <!-- Sidebar -->
     @auth
-        <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden min-w-0 ease-in-out transition-[width,padding,min-width] duration-300 shadow-2xl">
+        <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden ease-in-out transition-[width,padding,min-width] duration-300 shadow-2xl">
             <x-roles-sidebar/>
             @section('sidebar')@show
         </aside>
     @endauth
     @guest
         @hasSection('sidebar')
-            <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden min-w-0 ease-in-out transition-[width,padding,min-width] duration-300 shadow-2xl">
+            <aside id="sidebar" class="absolute md:static z-10 py-4 min-h-full left-0 bg-white dark:bg-zinc-900 overflow-x-hidden ease-in-out transition-[width,padding,min-width] duration-300 shadow-2xl">
                 @yield('sidebar')
             </aside>
         @endif

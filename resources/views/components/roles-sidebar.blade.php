@@ -115,12 +115,13 @@
             <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 ml-6">
                 <a href="{{ route('student.my-posts') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
-                    {{ __('Ver mis Posts') }}</a>
+                    {{ __('View my Posts') }}</a>
                 <a href="{{ route('posts.create') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.plus-icon class="w-5"/>
-                    {{ __('Crear Post') }}</a>
+                    {{ __('Create Post') }}</a>
             </div>
         </flux:navlist.group>
+
         {{-- Podcasts --}}
         <flux:navlist.group class="grid">
             <div @click="openPodcasts = !openPodcasts" class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" :class="openPodcasts ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''">
@@ -130,12 +131,13 @@
             <div x-show="openPodcasts" x-collapse class="border-l border-l-sky-500 ml-6">
                 <a href="{{ route('student.my-podcasts') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
-                    {{ __('Ver mis Podcasts') }}</a>
+                    {{ __('View my Podcasts') }}</a>
                 <a href="{{ route('podcasts.create') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.plus-icon class="w-5"/>
-                    {{ __('Crear Podcast') }}</a>
+                    {{ __('Create Podcast') }}</a>
             </div>
         </flux:navlist.group>
+
         {{-- Videos --}}
         <flux:navlist.group class="grid">
             <div @click="openVideos = !openVideos" class="cursor-pointer flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" :class="openVideos ? 'bg-gray-100 dark:bg-gray-800 font-semibold' : ''">
@@ -145,24 +147,27 @@
             <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 ml-6">
                 <a href="{{ route('student.my-videos') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
-                    {{ __('Ver mis Videos') }}</a>
+                    {{ __('View my Videos') }}</a>
                 <a href="{{ route('video.create') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.plus-icon class="w-5"/>
-                    {{ __('Crear Video') }}</a>
+                    {{ __('Create Video') }}</a>
             </div>
         </flux:navlist.group>
-        {{-- Favoritos (solo ver) --}}
+
+        {{-- Favorites (view only) --}}
         <a href="{{ route('student.favorites') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
             <x-svg.heart-icon class="w-6"/>
-            {{ __('Mis Favoritos') }}
+            {{ __('My Favorites') }}
         </a>
-        {{-- Comentarios (solo ver) --}}
+
+        {{-- Comments (view only) --}}
         <a href="{{ route('student.comments') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
             <x-svg.comments-icon class="w-6"/>
-            {{ __('Mis Comentarios') }}
+            {{ __('My Comments') }}
         </a>
     </flux:navlist.group>
     @endrole
+
 
     @role('admin')
     <flux:navlist.group class="grid [&_a]:text-sm [&_a]:text-gray-600 dark:[&_a]:text-gray-300" x-data="{ open: false }">

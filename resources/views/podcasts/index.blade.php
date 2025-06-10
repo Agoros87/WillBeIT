@@ -2,15 +2,27 @@
     <div class="p-8">
         <h1 class="header-1">Podcasts</h1>
 
-        <div class="flex justify-end gap-4">
-            @role('superadmin')
+        <div class="flex justify-end gap-4 mb-6">
+            @hasrole('superadmin')
             <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                Back to Dashboard
+                {{ __('Return to dashboard') }}
             </a>
-            @endrole
-            @can('create', App\Models\Podcast::class)
-                <a href="{{ route('podcasts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                    Create New Podcast
+            @elsehasrole('admin')
+            <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+            @elsehasrole('teacher')
+            <a href="{{ route('teacher.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+            @elsehasrole('student')
+            <a href="{{ route('student.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+            @endhasrole
+            @can('create',App\Models\Podcast::class)
+                <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                    {{ __('New video') }}
                 </a>
             @endcan
         </div>
@@ -57,4 +69,4 @@
             </div>
         @endif
     </div>
-    </x-publ
+</x-public-layout>

@@ -9,8 +9,8 @@ class PostPolicy
 {
     public function create(User $user): bool
     {
-        return $user->hasRole('super-superadmin') ||
-            $user->hasRole('superadmin') ||
+        return $user->hasRole('superadmin') ||
+            $user->hasRole('admin') ||
             $user->hasRole('teacher') ||
             $user->hasRole('student');
     }
@@ -20,10 +20,10 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return $user->hasRole('super-superadmin') ||
-            $user->hasRole('superadmin') ||
+        return ( $user->hasRole('superadmin') ||
+            $user->hasRole('admin') ||
             $user->hasRole('teacher') ||
-            $user->id === $post->user_id;
+            $user->id === $post->user_id ) && $user->center_id === $post->user->center_id;
     }
 
     /**
@@ -31,10 +31,10 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return $user->hasRole('super-superadmin') ||
+        return ( $user->hasRole('super-superadmin') ||
             $user->hasRole('superadmin') ||
             $user->hasRole('teacher') ||
-            $user->id === $post->user_id;
+            $user->id === $post->user_id) && $user->center_id === $post->user->center_id;
     }
 
     /**
@@ -42,8 +42,8 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        return $user->hasRole('super-superadmin') ||
+        return ( $user->hasRole('super-superadmin') ||
             $user->hasRole('superadmin') ||
-            $user->hasRole('teacher');
+            $user->hasRole('teacher') ) && $user->center_id === $post->user->center_id;
     }
 }

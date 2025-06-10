@@ -1,25 +1,28 @@
 <x-public-layout title="{{__('Posts')}}">
     <h1 class="header-1">{{__('Post List')}}</h1>
-    <div class="flex justify-end gap-4">
+    <div class="flex justify-end gap-4 mb-6">
         @hasrole('superadmin')
-        <div class="flex justify-end gap-4 mb-6">
-            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                {{ __('Return to dashboard') }}
-            </a>
-            <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                {{ __('New post') }}
-            </a>
-        </div>
+        <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            {{ __('Return to dashboard') }}
+        </a>
         @elsehasrole('admin')
-        <div class="flex justify-end gap-4 mb-6">
-            <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                {{ __('Return to dashboard') }}
-            </a>
-            <a href="{{ route('posts.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                {{ __('New post') }}
-            </a>
-        </div>
+        <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            {{ __('Return to dashboard') }}
+        </a>
+        @elsehasrole('teacher')
+        <a href="{{ route('teacher.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            {{ __('Return to dashboard') }}
+        </a>
+        @elsehasrole('student')
+        <a href="{{ route('student.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            {{ __('Return to dashboard') }}
+        </a>
         @endhasrole
+        @can('create',App\Models\Post::class)
+            <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New video') }}
+            </a>
+        @endcan
     </div>
 
 

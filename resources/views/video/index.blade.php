@@ -2,25 +2,30 @@
     <div class="p-8">
         <h1 class="header-1">{{ __('Videos') }}</h1>
 
+        <div class="flex justify-end gap-4 mb-6">
         @hasrole('superadmin')
-            <div class="flex justify-end gap-4 mb-6">
-                <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                    {{ __('Return to dashboard') }}
-                </a>
-                <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                    {{ __('New video') }}
-                </a>
-            </div>
+            <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
         @elsehasrole('admin')
-            <div class="flex justify-end gap-4 mb-6">
-                <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                    {{ __('Return to dashboard') }}
-                </a>
-                <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                    {{ __('New video') }}
-                </a>
-            </div>
+            <a href="{{ route('admin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+        @elsehasrole('teacher')
+            <a href="{{ route('teacher.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
+        @elsehasrole('student')
+            <a href="{{ route('student.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('Return to dashboard') }}
+            </a>
         @endhasrole
+            @can('create',App\Models\Video::class)
+            <a href="{{ route('video.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+                {{ __('New video') }}
+            </a>
+            @endcan
+        </div>
 
         @if (session('success'))
             <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded shadow mb-6 alert-success">
@@ -45,12 +50,13 @@
                         </div>
                         <p class="text-sm text-gray-500 mt-1">{{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}</p>
 
-                        @role('superadmin')
+                        @can('update', $video)
                         <div class="flex space-x-2 mt-2">
                             <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
                                 {{ __('Edit') }}
                             </a>
-
+                            @endcan
+                            @can('delete', $video)
                             <form action="{{ route('video.destroy', $video->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este video?')">
                                 @csrf
                                 @method('DELETE')
@@ -58,8 +64,9 @@
                                     {{ __('Delete') }}
                                 </button>
                             </form>
+                            @endcan
                         </div>
-                        @endrole
+
                     </div>
                 @endforeach
             </div>

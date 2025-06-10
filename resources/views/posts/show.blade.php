@@ -43,7 +43,7 @@
 <div class="flex gap-4">
     <a href="{{ route('posts.edit', $post) }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Editar</a>
     @endcan
-    @can('destroy', $post)
+    @can('delete', $post)
     <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('¿Eliminar este post?')">
         @csrf
         @method('DELETE')

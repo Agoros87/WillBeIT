@@ -15,7 +15,6 @@
     "Center Students": "Estudiantes del Centro",
     "Pending Students": "Estudiantes Pendientes",
     "City": "Ciudad",
-
     "Comment": "Comentar",
     "There are no students of your center." : "No hay estudiantes de tu centro.",
     "There are no pending students.": "No hay estudiantes pendientes.",
@@ -144,7 +143,6 @@
     "New post": "Nuevo post",
     "Type (optional)": "Tipo (opcional)",
     "Send Invitation to a user": "Enviar invitación a un usuario"
-    "New post": "Nuevo post",
     "My Comments": "Mis Comentarios",
     "total comments": "comentarios en total",
     "Comment on Post": "Comentario en Post",
@@ -212,6 +210,5 @@
     "View my Posts": "Ver mis Posts",
     "View my Podcasts": "Ver mis Podcasts",
     "View my Videos": "Ver mis Videos"
-
 
 }

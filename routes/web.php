@@ -22,30 +22,40 @@ use Livewire\Volt\Volt;
 use Spatie\Permission\Middleware\RoleMiddleware;
 
 Route::get('/', HomeController::class)->name('home');
-
-    Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
-    Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
-Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
-Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
 Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
 Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);
-
 Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
 Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
 Route::get('/students/{student}', [TeacherController::class, 'show'])->name('students.show');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+//Ruta dashboard Superadmin
+Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+});
+//Ruta dashboard  admin
+Route::middleware(RoleMiddleware::using('admin'))->group(function () {
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+//Rutas teacher (dashboard )
+Route::middleware(RoleMiddleware::using('teacher'))->group(function () {
+    Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
+    Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
+    Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
+    Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
+    Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
+});
+
+//Rutas Student (dashboard)
+Route::middleware(['auth', 'verified', RoleMiddleware::using('student')])->group(function () {
     Route::get('student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
     Route::get('student/favorites', [StudentController::class, 'favorites'])->name('student.favorites');
     Route::get('student/comments', [StudentController::class, 'comments'])->name('student.comments');
     Route::get('student/my-posts', [StudentController::class, 'myPosts'])->name('student.my-posts');
     Route::get('student/my-podcasts', [StudentController::class, 'myPodcasts'])->name('student.my-podcasts');
     Route::get('student/my-videos', [StudentController::class, 'myVideos'])->name('student.my-videos');
-    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
-    Route::view('dashboard', 'dashboard')->name('dashboard');
 });
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

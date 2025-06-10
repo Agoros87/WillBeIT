@@ -43,8 +43,18 @@
     "Operations": "Operations",
     "Page Expired": "Page Expired",
     "Posts": "Posts",
+    "Teacher Dashboard": "Teacher Dashboard",
     "Email": "Email",
     "Password": "Password",
+    "Students": "Students",
+    "Pending Students": "Pending Students",
+    "Surname": "Surname",
+    "Invite Users": "Invite Users",
+    "Select a center": "Select a center",
+    "Center Students": "Center Students",
+    "Type (optional)": "Type (optional)",
+    "There are no pending students.": "There are no pending students.",
+    "There are no students of your center." : "There are no students of your center.",
     "Send Invitation": "Send Invitation",
     "Your account not has been accepted yet by the administrator.": "Your account not has been accepted yet by the administrator.",
     "Complete your register": "Complete your register",
@@ -93,5 +103,6 @@
     "No videos available.": "No videos available.",
     "Uploaded": "Uploaded",
     "Videos": "Videos",
-    "New Tag": "New Tag"
+    "New Tag": "New Tag",
+    "Send Invitation to a user": "Send Invitation to a user"
 }

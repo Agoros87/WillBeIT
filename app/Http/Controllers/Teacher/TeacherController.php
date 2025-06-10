@@ -16,7 +16,7 @@ class TeacherController extends Controller
         })
             ->where('status', 'approved')
             ->where('center_id', $teacher->center_id)
-            ->get();
+            ->paginate(5, ['*'], 'approved_page');
 
         $studentsPending = User::whereHas('roles', function($q) {
             $q->where('name', 'student');
@@ -24,9 +24,23 @@ class TeacherController extends Controller
             ->where('status', 'pending')
             ->where('center_id', $teacher->center_id)
             ->where('invited_by', $teacher->id)
-            ->get();
+            ->paginate(5, ['*'], 'pending_page');
 
-        return view('teacher.dashboard', compact('studentsApproved', 'studentsPending'));
+        $studentsApprovedAll = count(User::whereHas('roles', function($q) {
+            $q->where('name', 'student');
+        })
+            ->where('status', 'approved')
+            ->where('center_id', $teacher->center_id)
+            ->get());
+        $studentsPendingAll = count(User::whereHas('roles', function($q) {
+            $q->where('name', 'student');
+        })
+            ->where('status', 'pending')
+            ->where('center_id', $teacher->center_id)
+            ->where('invited_by', $teacher->id)
+            ->get());
+
+        return view('teacher.dashboard', compact('studentsApproved', 'studentsPending', 'studentsApprovedAll', 'studentsPendingAll'));
     }
     public function accept(User $student)
     {

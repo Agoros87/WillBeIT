@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100 text-gray-900 p-8">
 
-<h1 class="header-1">{{ __("Enviar Invitación a Profesor") }}</h1>
+<h1 class="header-1">{{ __("Send Invitation to a user") }}</h1>
 
 @if(session('success'))
     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">

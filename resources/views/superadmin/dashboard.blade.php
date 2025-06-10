@@ -117,17 +117,6 @@
             {{-- Columna Derecha --}}
             <div class="space-y-6">
                 {{-- Acciones Rápidas --}}
-                <div class="grid grid-cols-2 gap-4">
-                    <button class="p-4 rounded-xl cursor-pointer bg-white dark:bg-neutral-900 border shadow-lg hover:shadow-md transition-all flex flex-col items-center justify-center group hover:bg-green-200 dark:hover:bg-green-800">
-                        <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-3">
-                            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">Invitar Usuario</span>
-                    </button>
-                </div>
-
                 <!-- Botón Exportar Usuarios -->
                 <div class="grid grid-cols-2 gap-4">
                     <form action="{{ route('users.export') }}" method="GET">

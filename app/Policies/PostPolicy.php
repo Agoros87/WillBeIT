@@ -9,10 +9,7 @@ class PostPolicy
 {
     public function create(User $user): bool
     {
-        return $user->hasRole('superadmin') ||
-            $user->hasRole('admin') ||
-            $user->hasRole('teacher') ||
-            $user->hasRole('student');
+        return $user->hasRole(['superadmin',  'admin', 'teacher', 'student']);
     }
 
     /**
@@ -23,7 +20,7 @@ class PostPolicy
         return ( $user->hasRole('superadmin') ||
             $user->hasRole('admin') ||
             $user->hasRole('teacher') ||
-            $user->id === $post->user_id ) && $user->center_id === $post->user->center_id;
+            $user->id === $post->user_id ) && ($user->center_id === $post->user->center_id || $user->hasRole('superadmin'));
     }
 
     /**
@@ -31,19 +28,11 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return ( $user->hasRole('super-superadmin') ||
-            $user->hasRole('superadmin') ||
+        return ( $user->hasRole('superadmin') ||
+            $user->hasRole('admin') ||
             $user->hasRole('teacher') ||
-            $user->id === $post->user_id) && $user->center_id === $post->user->center_id;
+                $user->id === $post->user_id )
+            && ($user->center_id === $post->user->center_id || $user->hasRole('superadmin'));
     }
 
-    /**
-     * Determine whether the user can permanently delete the post.
-     */
-    public function forceDelete(User $user, Post $post): bool
-    {
-        return ( $user->hasRole('super-superadmin') ||
-            $user->hasRole('superadmin') ||
-            $user->hasRole('teacher') ) && $user->center_id === $post->user->center_id;
-    }
 }

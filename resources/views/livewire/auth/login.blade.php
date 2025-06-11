@@ -70,6 +70,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
                     $this->redirectIntended(default: route('admin.dashboard'), navigate: true);
                     break;
 
+                    case $user->hasRole('teacher'):
+                        $this->redirectIntended(default: route('teacher.dashboard'), navigate: true);
+                        break;
                 default:
                     $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
                     break;
@@ -107,12 +110,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
     }
 }; ?>
 <div class="flex flex-col gap-6">
+
     <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')"/>
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')"/>
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input wire:model="email" :label="__('Email address')" type="email" required autofocus autocomplete="email" placeholder="email@example.com"/>
+        <flux:input wire:model="email" :label="__('Email')" type="email" required autofocus autocomplete="email" placeholder="email@example.com"/>
         <!-- Password -->
         <div class="relative">
             <flux:input wire:model="password" :label="__('Password')" type="password" required autocomplete="current-password" :placeholder="__('Password')"/>

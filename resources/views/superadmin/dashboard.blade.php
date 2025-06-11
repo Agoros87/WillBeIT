@@ -14,7 +14,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium">Total Usuarios</p>
+                        <p class="text-sm font-medium">{{__("Total Users")}}</p>
                         <p class="text-3xl font-bold mt-2">{{ $totalUsuarios }}</p>
                     </div>
                     <svg class="w-8 h-8 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,7 +26,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white dark:text-white">Centros Activos</p>
+                        <p class="text-sm text-white dark:text-white">{{__("Active Centers")}}</p>
                         <p class="text-3xl font-bold mt-2 dark:text-white">{{ $centrosActivos }}</p>
                     </div>
                     <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white dark:text-white">Centros Inactivos</p>
+                        <p class="text-sm text-white dark:text-white">{{__("Inactive Centers")}}</p>
                         <p class="text-3xl font-bold mt-2 dark:text-white">{{ $centrosInactivos }}</p>
                     </div>
                     <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white dark:text-white">Actividad Hoy</p>
+                        <p class="text-sm text-white dark:text-white">{{__("Today Activity")}}</p>
                         <p class="text-3xl font-bold mt-2 dark:text-white">{{ $usuariosHoy }}</p>
                     </div>
                     <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium">Total Videos</p>
+                        <p class="text-sm font-medium">{{__("Total Videos")}}</p>
                         <p class="text-3xl font-bold mt-2">{{ $totalVideos }}</p>
                     </div>
                     <svg class="w-8 h-8 text-red-500 opacity-75" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white dark:text-white">Total Post</p>
+                        <p class="text-sm text-white dark:text-white">{{__("Total Posts")}}</p>
                         <p class="text-3xl font-bold mt-2 dark:text-white">{{ $totalPost }}</p>
                     </div>
                     <svg class="w-8 h-8 text-orange-500 opacity-75" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +89,7 @@
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white dark:text-white">Total Podcast</p>
+                        <p class="text-sm text-white dark:text-white">{{__("Total Podcasts")}}</p>
                         <p class="text-3xl font-bold mt-2 dark:text-white">{{ $totalPodcast }}</p>
                     </div>
                     <svg class="w-8 h-8 text-yellow-500 opacity-75" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +104,7 @@
             <div class="lg:col-span-2 space-y-6">
                 {{-- Mapa Interactivo --}}
                 <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
-                    <h2 class="text-lg font-semibold mb-4 dark:text-white">Distribución Global de Centros</h2>
+                    <h2 class="text-lg font-semibold mb-4 dark:text-white">{{__("Global distribution of centers")}}</h2>
                     <div class="relative w-full h-96 bg-gray-50 dark:bg-neutral-800 rounded-xl overflow-hidden">
                         <div id="map" style="height: 100%; width: 100%; min-height: 400px;"></div>
                     </div>
@@ -117,17 +117,6 @@
             {{-- Columna Derecha --}}
             <div class="space-y-6">
                 {{-- Acciones Rápidas --}}
-                <div class="grid grid-cols-2 gap-4">
-                    <button class="p-4 rounded-xl cursor-pointer bg-white dark:bg-neutral-900 border shadow-lg hover:shadow-md transition-all flex flex-col items-center justify-center group hover:bg-green-200 dark:hover:bg-green-800">
-                        <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-3">
-                            <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">Invitar Usuario</span>
-                    </button>
-                </div>
-
                 <!-- Botón Exportar Usuarios -->
                 <div class="grid grid-cols-2 gap-4">
                     <form action="{{ route('users.export') }}" method="GET">
@@ -137,7 +126,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"/>
                                 </svg>
                             </div>
-                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-400">Exportar Usuarios</span>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-400">{{__("Export Users")}}</span>
                         </button>
                     </form>
                     <!-- Botón Importar Usuarios -->
@@ -149,7 +138,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                                 </svg>
                             </div>
-                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">Importar Usuarios</span>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">{{__("Import Users")}}</span>
                             <input type="file" name="file" class="hidden" accept=".xlsx,.xls,.csv" onchange="this.form.submit()">
                         </label>
                     </form>
@@ -164,7 +153,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-5-4l-3 3m0 0l-3-3m3 3V4"/>
                                 </svg>
                             </div>
-                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-400">Exportar Centros</span>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-yellow-400">{{__("Export Centers")}}</span>
                         </button>
                     </form>
                     <!-- Botón Importar Centros -->
@@ -176,7 +165,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                                 </svg>
                             </div>
-                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">Importar Centros</span>
+                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-green-400">{{__("Import Centers")}}</span>
                             <input type="file" name="file" class="hidden" accept=".xlsx,.xls,.csv" onchange="this.form.submit()">
                         </label>
                     </form>
@@ -186,7 +175,7 @@
         {{-- Gráfico de usuarios nuevos por mes --}}
         <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold dark:text-white">Usuarios por mes</h2>
+                <h2 class="text-lg font-semibold dark:text-white">{{__("Month Users")}}</h2>
             </div>
             <div class="aspect-video bg-gray-50 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
                 <canvas id="usuariosMensuales"></canvas>
@@ -195,7 +184,7 @@
 
         <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold dark:text-white">Totales</h2>
+                <h2 class="text-lg font-semibold dark:text-white">{{__("Total")}}</h2>
             </div>
             <div class="aspect-video bg-gray-50 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
                 <canvas id="totales"></canvas>
@@ -216,7 +205,7 @@
             data: {
                 labels: meses, // Meses en el eje X
                 datasets: [{
-                    label: 'Usuarios Nuevos',
+                    label: '{{__("New Users")}}',
                     data: cantidadUsuarios,
                     borderColor: '#2196f3',
                     backgroundColor: 'rgba(33, 150, 243, 0.2)',
@@ -260,9 +249,9 @@
             new Chart(ctx, {
                 type: 'bar', // Usamos un gráfico de barras
                 data: {
-                    labels: ['Videos', 'Podcasts', 'Posts'], // Etiquetas en el eje X
+                    labels: ['{{__("Videos")}}', '{{__("Podcasts")}}', '{{__("Posts")}}'], // Etiquetas en el eje X
                     datasets: [{
-                        label: 'Totales',
+                        label: '{{__("Total")}}',
                         data: [totales.videos, totales.podcasts, totales.posts], // Datos
                         backgroundColor: ['#f44336', '#ff9800', '#ffeb3b'],
                         borderColor: ['#f44336', '#ff9800', '#ffeb3b'],

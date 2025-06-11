@@ -45,7 +45,7 @@ class PostController extends Controller
     {
         $validated = $request->validated();
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('posts');
+            $validated['image'] = $request->file('image')->store('posts/img', 'public');
         }
 
         $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));

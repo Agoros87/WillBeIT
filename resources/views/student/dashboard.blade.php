@@ -151,7 +151,7 @@
 
     <!-- My Content Chart Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        function createRosco() {
             const totales = @json($totals);
 
             const ctx = document.getElementById('miContenido').getContext('2d');
@@ -187,7 +187,9 @@
                     }
                 }
             });
-        });
+        }
+        document.addEventListener('DOMContentLoaded', createRosco);
+        document.addEventListener('livewire:navigated', createRosco);
     </script>
 
 </x-layouts.app>

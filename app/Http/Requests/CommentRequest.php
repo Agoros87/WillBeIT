@@ -24,6 +24,8 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'commentable_id' => ['integer'],
+            'commentable_type' => ['string'],
             'content' => ['required', 'string', 'min:3', 'max:250', new ForbiddenWords()],
         ];
     }

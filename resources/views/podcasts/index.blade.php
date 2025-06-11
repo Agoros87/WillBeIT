@@ -33,12 +33,12 @@
         @else
             <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($podcasts as $podcast)
-                    <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+                    <div class="bg-white dark:bg-zinc-900 dark:text-gray-200 rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
                         <div class="space-y-2">
-                            <h2 class="text-lg font-semibold text-blue-600 hover:underline">
+                            <h2 class=" header-3 hover:underline">
                                 <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>
                             </h2>
-                            <p class="text-sm text-gray-700">{{ Str::limit($podcast->description, 100) }}</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-200">{{ Str::limit($podcast->description, 100) }}</p>
 
                             @if($podcast->image_path)
                                 <img src="{{ asset('storage/' . $podcast->image_path) }}" alt="Podcast image" class="w-full h-40 object-cover rounded-md mt-2">

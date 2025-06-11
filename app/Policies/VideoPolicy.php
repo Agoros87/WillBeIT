@@ -14,7 +14,7 @@ class VideoPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasAnyRole(['superadmin', 'admin', 'teacher', 'student']);
+        return $user->hasRole(['superadmin', 'admin', 'teacher', 'student']);
     }
 
     /**
@@ -26,8 +26,8 @@ class VideoPolicy
                 $user->hasRole('superadmin') ||
                 $user->hasRole('admin') ||
                 $user->hasRole('teacher') ||
-                $user->id === $video->user_id
-            ) && $user->center_id === $video->user->center_id;
+                $user->id === $video->user_id) &&
+            ($user->center_id === $video->user->center_id ||$user->hasRole('superadmin'));
     }
 
     /**
@@ -39,16 +39,8 @@ class VideoPolicy
                 $user->hasRole('superadmin') ||
                 $user->hasRole('admin') ||
                 $user->hasRole('teacher') ||
-                $user->id === $video->user_id
-            ) && $user->center_id === $video->user->center_id;
+                $user->id === $video->user_id) &&
+            ($user->center_id === $video->user->center_id || $user->hasRole('superadmin'));
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Video $video): bool
-    {
-        return ( $user->hasRole('superadmin') || $user->hasRole('admin') || $user->hasRole('teacher') )
-            && $user->center_id === $video->user->center_id;
-    }
 }

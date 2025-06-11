@@ -7,7 +7,7 @@
                 <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow p-5 hover:shadow-lg transition duration-300 flex flex-col justify-between">
                     <div class="space-y-3">
                         <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">
-                            <a href="{{ route('videos.show', $video) }}" class="hover:underline">
+                            <a href="{{ route('video.show', ['video' => $video->id]) }}" class="hover:underline">
                                 {{ $video->title }}
                             </a>
                         </h3>

@@ -33,6 +33,11 @@ Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
 //Ruta dashboard  admin
 Route::middleware(RoleMiddleware::using('admin'))->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('admin/my-center', [AdminController::class, 'myCenter'])->name('admin.my-center');
+    Route::get('admin/posts-users-centers', [AdminController::class, 'postsUsersCenters'])->name('admin.posts-users-centers');
+    Route::get('admin/podcasts-users-centers', [AdminController::class, 'podcastsUsersCenters'])->name('admin.podcasts-users-centers');
+    Route::get('admin/videos-users-centers', [AdminController::class, 'videosUsersCenters'])->name('admin.videos-users-centers');
+    Route::get('admin/users-centers', [AdminController::class, 'usersCenters'])->name('admin.users-centers');
 });
 
 //Rutas teacher (dashboard )

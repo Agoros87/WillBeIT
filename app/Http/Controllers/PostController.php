@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['video', 'podcast', 'user'])->get();
+        $posts = Post::with(['video', 'podcast', 'user'])->paginate(9);
         return view('posts.index', compact('posts'));
     }
 
@@ -127,7 +127,7 @@ class PostController extends Controller
             $file = $request->file('file');
             $filename = time() . '_' . $file->getClientOriginalName();
             $path = $file->storeAs('trix-images', $filename, 'public');
-            
+
             return response()->json([
                 'url' => Storage::url($path)
             ]);

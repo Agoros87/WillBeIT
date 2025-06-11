@@ -61,6 +61,16 @@
             </div>
         </div>
 
+        {{-- Content Chart - MOVIDO AQUÍ --}}
+        <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg max-w-md mx-auto">
+            <div class="flex justify-between items-center mb-4 dark:text-white">
+                <h2 class="text-lg font-semibold dark:text-white">{{ __('My Content') }}</h2>
+            </div>
+            <div class="aspect-video bg-gray-50 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
+                <canvas id="miContenido" class="max-w-xs w-full h-auto"></canvas>
+            </div>
+        </div>
+
         {{-- Main --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {{-- Left --}}
@@ -137,19 +147,9 @@
             </div>
         </div>
 
-        {{-- Content Chart --}}
-        <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold dark:text-white">{{ __('My Content') }}</h2>
-            </div>
-            <div class="aspect-video bg-gray-50 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
-                <canvas id="miContenido"></canvas>
-            </div>
-        </div>
-
     </div>
 
-    <!-- My Content Chart -->
+    <!-- My Content Chart Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const totales = @json($totals);
@@ -162,14 +162,12 @@
                         '{{ __("Posts") }}',
                         '{{ __("Podcasts") }}',
                         '{{ __("Videos") }}',
-                        '{{ __("Comments") }}',
-                        '{{ __("Favorites") }}'
                     ],
                     datasets: [{
                         label: '{{ __("My Content") }}',
-                        data: [totales.posts, totales.podcasts, totales.videos, totales.comentarios, totales.favoritos],
-                        backgroundColor: ['#3b82f6', '#eab308', '#ef4444', '#10b981', '#ec4899'],
-                        borderColor: ['#3b82f6', '#eab308', '#ef4444', '#10b981', '#ec4899'],
+                        data: [totales.posts, totales.podcasts, totales.videos],
+                        backgroundColor: ['#3b82f6', '#eab308', '#ef4444'],
+                        borderColor: ['#3b82f6', '#eab308', '#ef4444'],
                         borderWidth: 2
                     }]
                 },

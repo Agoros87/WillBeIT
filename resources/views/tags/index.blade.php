@@ -1,7 +1,7 @@
 <x-public-layout :title="__('Tags')">
     <div class="max-w-6xl mx-auto py-10 px-4">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-semibold text-gray-800">{{ __('Tags management') }}</h1>
+            <h1 class="text-3xl font-semibold text-gray-800 dark:text-zinc-300">{{ __('Tags management') }}</h1>
             @hasrole('superadmin')
             <div class="flex justify-end gap-4 mb-6">
                 <a href="{{ route('superadmin.dashboard') }}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">

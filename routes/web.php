@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CenterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentReactionController;
-use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LanguageController;
@@ -26,7 +25,6 @@ Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'show
 Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);
 Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
 Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
-Route::get('/students/{student}', [TeacherController::class, 'show'])->name('students.show');
 
 //Ruta dashboard Superadmin
 Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {

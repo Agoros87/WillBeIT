@@ -38,7 +38,7 @@
             </flux:dropdown>
         @else
             <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'hidden' : 'inline-block' }} px-5 py-1.5 dark:text-[#EDEDEC] text-sky-600 font-semibold border border-transparent hover:border-sky-600 dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
-                Log in </a>
+                {{__("Log in")}} </a>
         @endauth
     </nav>
 @endif

@@ -123,7 +123,7 @@ select:focus[data-flux-control] {
     }
 
     .active-nav-link, .not-active-nav-link {
-        @apply text-sm py-0 px-2 flex items-center gap-2 font-semibold rounded-full;
+        @apply text-sm px-4 flex items-center gap-1 font-semibold rounded-full;
     }
 
     .header-1 {
@@ -136,6 +136,32 @@ select:focus[data-flux-control] {
 
     .header-3 {
         @apply text-base md:text-xl font-semibold text-blue-600 dark:text-emerald-500 drop-shadow-sm drop-shadow-blue-300 dark:drop-shadow-emerald-700;
+    }
+
+    .tags-dropdown-list {
+        @apply py-1 overflow-y-auto max-h-60;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #f4f4f5;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            @apply bg-blue-600 rounded-full;
+        }
+
+        .dark & {
+            &::-webkit-scrollbar-track {
+                background-color: #18181b;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                @apply bg-emerald-600 rounded-full;
+            }
+        }
     }
 
     /* Estilos personalizados para Trix */

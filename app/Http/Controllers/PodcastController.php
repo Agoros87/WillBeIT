@@ -11,7 +11,7 @@ class PodcastController extends Controller
 {
     public function index()
     {
-        $podcasts = Podcast::latest()->paginate(10);
+        $podcasts = Podcast::latest()->paginate(9);
         return view('podcasts.index', compact('podcasts'));
     }
 

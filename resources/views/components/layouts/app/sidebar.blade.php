@@ -6,7 +6,8 @@
 <body class="min-h-screen bg-white dark:bg-zinc-800">
 <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
     <flux:sidebar.toggle class="lg:hidden" icon="x-mark"/>
-    <span class="font-bold text-blue-500"><strong>WillBeIt</strong></span> <!--Cuando tengamos logo, metemos logo-->
+    <span class="font-bold text-blue-500"><img src="{{ asset('img/logo.png') }}" alt="Menú" class="h-16 w-16 object-contain" />
+</span>
     <x-roles-sidebar :homeRoute="true"/>
     <flux:spacer/>
     <!-- Desktop User Menu -->
@@ -45,7 +46,7 @@
 </flux:sidebar>
 <!-- Mobile User Menu -->
 <flux:header class="lg:hidden">
-    <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left"/>
+    <flux:sidebar.toggle class="lg:hidden" icon="bars-3" inset="left"/>
     <flux:spacer/>
     <flux:dropdown position="top" align="end">
         <flux:profile :initials="auth()->user()->initials()" icon-trailing="chevron-down"/>

@@ -47,7 +47,6 @@
                                     @endif
 
                                     <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-                                        <span>{{ __('Added to favorites:') }} {{ $favorite->created_at ? $favorite->created_at->diffForHumans() : 'Date not available' }}</span>
                                         @if(isset($favorite->favoritable->created_at) && $favorite->favoritable->created_at)
                                             <span>{{ __('Created:') }} {{ $favorite->favoritable->created_at->format('d/m/Y') }}</span>
                                         @endif
@@ -74,7 +73,7 @@
                                             {{ __('View') }}
                                         </a>
                                     @elseif($favorite->favoritable_type === 'App\Models\Video')
-                                        <a href="{{ route('video.show', $favorite->favoritable->slug) }}"
+                                        <a href="{{ route('video.show', $favorite->favoritable->id) }}"
                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-red-600 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 rounded-lg transition-colors">
                                             <x-svg.eye-icon class="w-4 h-4 mr-1"/>
                                             {{ __('View') }}

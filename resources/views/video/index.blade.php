@@ -1,4 +1,4 @@
-<x-public-layout title="Videos">
+<x-public-layout title="{{__('Videos')}}">
     <div class="p-8">
         <h1 class="header-1">{{ __('Videos') }}</h1>
 
@@ -36,40 +36,45 @@
         @if($videos->isEmpty())
             <p class="text-gray-600">{{ __('No videos available.') }}</p>
         @else
-            <div class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($videos as $video)
-                    <div class="border p-4 rounded shadow bg-white">
-                        <h2 class="text-xl font-semibold text-blue-600 hover:underline">
+                    <div class="bg-white rounded shadow p-4 flex flex-col">
+                        <h2 class="text-xl font-semibold text-blue-600 hover:underline mb-2">
                             <a href="{{ route('video.show', $video->id) }}">{{ $video->title }}</a>
                         </h2>
+
                         <p class="text-gray-700 mb-2">{{ Str::limit($video->description, 100) }}</p>
-                        <div class="aspect-video rounded overflow-hidden border border-gray-300 my-2">
+
+                        <div class="rounded overflow-hidden border border-gray-300 mb-2 h-48">
                             <video controls class="w-full h-full object-cover">
                                 <source src="{{ asset($video->video_path) }}" type="video/mp4">
                             </video>
                         </div>
-                        <p class="text-sm text-gray-500 mt-1">{{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}</p>
 
-                        @can('update', $video)
-                        <div class="flex space-x-2 mt-2">
-                            <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
-                                {{ __('Edit') }}
-                            </a>
+                        <p class="text-sm text-gray-500 mt-auto">{{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}</p>
+
+                        <div class="flex gap-2 mt-2">
+                            @can('update', $video)
+                                <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
+                                    {{ __('Edit') }}
+                                </a>
                             @endcan
+
                             @can('delete', $video)
-                            <form action="{{ route('video.destroy', $video->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este video?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-                                    {{ __('Delete') }}
-                                </button>
-                            </form>
+                                <form action="{{ route('video.destroy', $video->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este video?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                                        {{ __('Delete') }}
+                                    </button>
+                                </form>
                             @endcan
                         </div>
-
                     </div>
                 @endforeach
             </div>
+
+
 
             <div class="mt-6">
                 {{ $videos->links() }}

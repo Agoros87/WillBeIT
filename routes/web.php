@@ -23,8 +23,8 @@ use Spatie\Permission\Middleware\RoleMiddleware;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
 Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);
-Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
-Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
+Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
+Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
 
 //Ruta dashboard Superadmin
 Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
@@ -45,8 +45,8 @@ Route::middleware(RoleMiddleware::using('teacher'))->group(function () {
     Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
     Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
     Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
-    Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
-    Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
+    Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
+    Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
 });
 
 //Rutas Student (dashboard)

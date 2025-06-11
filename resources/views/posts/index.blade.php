@@ -46,6 +46,25 @@
                     {{ __('Author') }}: {{ $post->user->name }} {{ $post->user->surname ?? 'Desconocido' }}
                 </div>
 
+
+                <div class="flex items-center justify-between mt-4 text-sm">
+                    @can('update', $post)
+                        <a href="{{ route('posts.edit', $post) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
+                            {{ __('Edit') }}
+                        </a>
+                    @endcan
+
+                    @can('delete', $post)
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this podcast?') }}');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                {{ __('Delete') }}
+                            </button>
+                        </form>
+                    @endcan
+                </div>
+
                 <div class="mt-3 flex items-center justify-between text-sm text-blue-600">
                     <a href="{{ route('posts.show', $post) }}" class="hover:underline">{{ __('View') }}</a>
 

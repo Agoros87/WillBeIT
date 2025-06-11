@@ -24,7 +24,6 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post_id' => ['required', 'exists:posts,id'],
             'content' => ['required', 'string', 'min:3', 'max:250', new ForbiddenWords()],
         ];
     }
@@ -32,8 +31,8 @@ class CommentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'post_id.required' => 'El ID del post es obligatorio.',
-            'post_id.exists' => 'El post no existe.',
+            'commentable_id' => ['required', 'integer'],
+            'commentable_type' => ['required', 'string'],
             'content.required' => 'El contenido del comentario es obligatorio.',
             'content.min' => 'El comentario debe tener al menos :min caracteres.',
             'content.max' => 'El comentario debe tener maximo :max caracteres.',

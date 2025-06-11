@@ -31,4 +31,9 @@ class Podcast extends Model
         return $this->morphToMany(User::class, 'favoritable', 'favorites')->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
 }

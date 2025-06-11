@@ -76,7 +76,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 Route::resource('video', VideoController::class)->only(['index', 'show']);

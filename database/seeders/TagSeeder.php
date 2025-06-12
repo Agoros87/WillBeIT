@@ -40,15 +40,21 @@ class TagSeeder extends Seeder
         });
 
         Post::all()->each(function ($post) use ($tags) {
-            $post->tags()->attach($tags->random(1)->pluck('id')->toArray());
+            $post->tags()->attach(
+                $tags->random(rand(2, 5))->pluck('id')->toArray()
+            );
         });
 
         Video::all()->each(function ($video) use ($tags) {
-            $video->tags()->attach($tags->random(1)->pluck('id')->toArray());
+            $video->tags()->attach(
+                $tags->random(rand(2, 5))->pluck('id')->toArray()
+            );
         });
 
         Podcast::all()->each(function ($podcast) use ($tags) {
-            $podcast->tags()->attach($tags->random(1)->pluck('id')->toArray());
+            $podcast->tags()->attach(
+                $tags->random(rand(2, 5))->pluck('id')->toArray()
+            );
         });
     }
 }

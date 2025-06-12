@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             VideoSeeder::class,
             PodcastSeeder::class,
-            TagSeeder::class,
             PostSeeder::class,
+            TagSeeder::class,
         ]);
     }
 }

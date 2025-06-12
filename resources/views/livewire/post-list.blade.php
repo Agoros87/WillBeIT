@@ -38,7 +38,7 @@
                                 {{ __('Delete') }}
                             </button>
                         </form>
-                        @endcana
+                    @endcan
                 </div>
             </div>
         @endforeach

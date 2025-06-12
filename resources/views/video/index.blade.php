@@ -42,15 +42,12 @@
                         <h2 class="text-xl font-semibold text-blue-600 hover:underline mb-2">
                             <a href="{{ route('video.show', $video->id) }}">{{ $video->title }}</a>
                         </h2>
-
-                        <p class="text-gray-700 mb-2">{{ Str::limit($video->description, 100) }}</p>
-
                         <div class="rounded overflow-hidden border border-gray-300 mb-2 h-48">
                             <video controls class="w-full h-full object-cover">
                                 <source src="{{ asset($video->video_path) }}" type="video/mp4">
                             </video>
                         </div>
-
+                        <p class="text-gray-700 mb-2">{{ Str::limit($video->description, 100) }}</p>
                         <p class="text-sm text-gray-500 mt-auto">{{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}</p>
 
                         <div class="flex gap-2 mt-2">

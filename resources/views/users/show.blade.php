@@ -11,15 +11,14 @@
 @include('partials.navigation')
 
 <div class="max-w-3xl mx-auto px-4 py-10">
-    <div class="mb-8 flex items-center justify-between">
-        <h1 class="text-3xl font-semibold">Detalle del Usuario</h1>
-        <a href="{{ route('users.index') }}"
-           class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-200 transition text-sm font-medium">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Usuarios</h1>
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm relative">
+
+        <a href="@hasrole('superadmin') {{ route('superadmin.dashboard') }} @elsehasrole('admin') {{ route('admin.dashboard') }} @endhasrole"
+           class="absolute top-0 right-0 mt-2 mr-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-200 transition text-sm font-medium z-10">
             Volver
         </a>
-    </div>
 
-    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
         <div class="space-y-4">
             <div>
                 <h2 class="text-xl font-semibold">{{ $user->name }}</h2>

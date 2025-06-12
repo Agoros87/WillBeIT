@@ -22,8 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['video', 'podcast', 'user'])->paginate(9);
-        return view('posts.index', compact('posts'));
+        return view('posts.index');
     }
 
 

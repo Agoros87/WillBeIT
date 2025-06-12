@@ -8,7 +8,7 @@
             <x-svg.funnel class="w-4"/>{{ __('Tags') }}</button>
         <div id="tags-dropdown-list" class="absolute left-0 top-9 w-max bg-white dark:bg-zinc-900 shadow-lg hidden rounded z-10">
             <ul class="tags-dropdown-list select-none">
-                @foreach ($tags as $tag)
+                @foreach ($tagsSelected as $tag)
                     <li class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-sm cursor-pointer">
                         {{ $tag->name }}
                     </li>
@@ -81,6 +81,8 @@
 
             item.prepend(CHECK_MARK);
             SELECTED_CLASSES.forEach(c => item.classList.add(c));
+
+            Livewire.dispatch('tagsUpdated', {data: Array.from(state.selected)});
         }
 
         function removeTag(tag) {
@@ -98,6 +100,8 @@
                 item.textContent = item.textContent.slice(1);
                 SELECTED_CLASSES.forEach(c => item.classList.remove(c));
             }
+
+            Livewire.dispatch('tagsUpdated', {data: Array.from(state.selected)})
         }
 
         // Event Listeners

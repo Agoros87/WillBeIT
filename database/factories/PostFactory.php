@@ -16,14 +16,14 @@ class PostFactory extends Factory
 
     public function definition(): array
     {
-        $title = $this->faker->sentence();
+        $title = $this->faker->city();
         return [
             'video_id' => Video::inRandomOrder()->first()->id,  // Obtener un video aleatorio existente
             'podcasts_id' => Podcast::inRandomOrder()->first()->id,  // Obtener un podcast aleatorio existente
             'user_id' => User::inRandomOrder()->first()->id,  // Obtener un usuario aleatorio existente
-            'title' => $title,
+            'title' => ucfirst($title),
             'slug' => Str::slug($title . '-' . Str::random(6)),
-            'body' => $this->faker->text(),
+            'body' => $this->faker->realText(),
             'image' => $this->faker->imageUrl(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

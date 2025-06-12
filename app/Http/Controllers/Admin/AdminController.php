@@ -113,16 +113,25 @@ class AdminController extends Controller
     {
         $videos = Video::with('user.center')
             ->whereHas('user', function ($query) {
-                $query->where('center_id', Auth::user()->center_id);
+                $query->where('center_id', Auth::user()->center_id)
+                    ->whereDoesntHave('roles', function ($q) {
+                        $q->where('name', 'superadmin');
+                    });
             })
             ->orderBy('created_at', 'desc')
             ->paginate(9);
+
         return view('admin.videos-users-centers', compact('videos'));
     }
 
+
     public function usersCenters()
     {
-        $users = User::where('center_id', Auth::user()->center_id)->paginate(9);
+        $users = User::where('center_id', auth()->user()->center_id)
+            ->whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'superadmin');
+            })
+            ->paginate(9);
 
         return view('admin.users-centers', compact('users'));
     }

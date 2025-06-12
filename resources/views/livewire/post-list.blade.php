@@ -1,9 +1,13 @@
 <div>
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {{--        @dd($posts)--}}
         @foreach ($posts as $post)
             <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
                 <div class="space-y-2">
+                    @if ($post->image)
+                        <div class="mb-6 flex justify-center">
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="Imagen del post" class="w-full max-w-lg rounded shadow">
+                        </div>
+                    @endif
                     <h3 class="header-3 text-lg font-semibold text-blue-600">
                         <a href="{{ route('posts.show', $post) }}" class="hover:underline">
                             {{ $post->title }}
@@ -34,7 +38,7 @@
                                 {{ __('Delete') }}
                             </button>
                         </form>
-                    @endcan
+                        @endcana
                 </div>
             </div>
         @endforeach

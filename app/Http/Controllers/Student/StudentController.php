@@ -79,14 +79,15 @@ class StudentController extends Controller
     {
         $user = Auth::user();
 
-        // Obtener comentarios del usuario con las relaciones
+        // Obtener comentarios del usuario con las relaciones polimórficas
         $comments = Comment::where('user_id', $user->id)
-            ->with(['post'])
+            ->with(['commentable'])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('student.comments', compact('comments'));
     }
+
 
     public function myPosts()
     {

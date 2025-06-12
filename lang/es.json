@@ -171,7 +171,7 @@
     "Edited:": "Editado:",
     "View Post": "Ver Post",
     "You haven't commented yet": "No has hecho comentarios aún",
-    "When you comment on posts, they will appear here.": "Cuando comentes en posts, aparecerán aquí.",
+    "When you comment on posts, podcasts or videos they will appear here.": "Cuando comentes en posts, podcast o videos aparecerán aquí.",
     "Date not available": "Fecha no disponible",
     "Student Dashboard": "Panel del Estudiante",
     "My Posts": "Mis Posts",
@@ -235,7 +235,22 @@
     "Back to list": "Volver al listado",
     "View my Posts": "Ver mis Posts",
     "View my Podcasts": "Ver mis Podcasts",
-    "View my Videos": "Ver mis Videos"
+    "View my Videos": "Ver mis Videos",
+    "View Center": "Ver Centro",
+    "My Center": "Mi Centro",
+    "You don't have a center assigned yet": "Aún no tienes un centro asignado",
+    "Please contact the administrator to assign a center to your account.": "Por favor, contacta al administrador para asignar un centro a tu cuenta.",
+    "Center": "Centro",
+    "No center assigned": "No hay centro asignado",
+    "Unknown": "Desconocido",
+    "Posts from My Center": "Posts de Mi Centro",
+    "Center Posts": "Posts del Centro",
+    "Center Podcasts": "Podcasts del Centro",
+    "Podcasts from My Center": "Podcasts de Mi Centro",
+    "Center Videos": "Videos del Centro",
+    "Videos from My Center": "Videos de Mi Centro",
+    "Center Users": "Usuarios del Centro",
+    "Users from My Center": "Usuarios de Mi Centro"
 
 
 }

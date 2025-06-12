@@ -1,6 +1,6 @@
 <div>
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-{{--        @dd($posts)--}}
+        {{--        @dd($posts)--}}
         @foreach ($posts as $post)
             <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
                 <div class="space-y-2">
@@ -19,18 +19,22 @@
                 <div class="mt-4 text-sm text-gray-500">
                     {{ __('Author') }}: {{ $post->user->name }} {{ $post->user->surname ?? 'Desconocido' }}
                 </div>
-                <div class="mt-3 flex items-center justify-between text-sm text-blue-600">
-                    <a href="{{ route('posts.show', $post) }}" class="hover:underline">{{ __('View') }}</a>
-                    @role('superadmin')
-                    <div class="flex items-center gap-3">
-                        <a href="{{ route('posts.edit', $post) }}" class="text-green-600 hover:underline">{{ __('Edit') }}</a>
-                        <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('{{ __('Delete this post?') }}')">
+                <div class="flex items-center justify-between mt-4 text-sm">
+                    @can('update', $post)
+                        <a href="{{ route('posts.edit', $post) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
+                            {{ __('Edit') }}
+                        </a>
+                    @endcan
+
+                    @can('delete', $post)
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this podcast?') }}');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:underline">{{ __('Delete') }}</button>
+                            <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                {{ __('Delete') }}
+                            </button>
                         </form>
-                    </div>
-                    @endrole
+                    @endcan
                 </div>
             </div>
         @endforeach

@@ -23,8 +23,8 @@ use Spatie\Permission\Middleware\RoleMiddleware;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/register-invited/{token}', [RegisterInvitedController::class, 'showForm'])->name('invitation.register-invited.');
 Route::post('/register-invited/{token}', [RegisterInvitedController::class, 'register']);
-Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
-Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
+Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
+Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
 
 //Ruta dashboard Superadmin
 Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
@@ -33,6 +33,11 @@ Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
 //Ruta dashboard  admin
 Route::middleware(RoleMiddleware::using('admin'))->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('admin/my-center', [AdminController::class, 'myCenter'])->name('admin.my-center');
+    Route::get('admin/posts-users-centers', [AdminController::class, 'postsUsersCenters'])->name('admin.posts-users-centers');
+    Route::get('admin/podcasts-users-centers', [AdminController::class, 'podcastsUsersCenters'])->name('admin.podcasts-users-centers');
+    Route::get('admin/videos-users-centers', [AdminController::class, 'videosUsersCenters'])->name('admin.videos-users-centers');
+    Route::get('admin/users-centers', [AdminController::class, 'usersCenters'])->name('admin.users-centers');
 });
 
 //Rutas teacher (dashboard )
@@ -40,8 +45,8 @@ Route::middleware(RoleMiddleware::using('teacher'))->group(function () {
     Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
     Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
     Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
-    Route::view('invitation/pending', 'invitation.pending')->name('invitation.pending');
-    Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
+    Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
+    Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
 });
 
 //Rutas Student (dashboard)
@@ -76,7 +81,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 Route::resource('video', VideoController::class)->only(['index', 'show']);

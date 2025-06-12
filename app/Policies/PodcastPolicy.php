@@ -14,7 +14,8 @@ class PodcastPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('superadmin') || $user->hasRole('admin') || $user->hasRole('teacher') || $user->hasRole('student');
+        return $user->hasRole(['superadmin',  'admin', 'teacher', 'student']);
+
     }
 
     /**
@@ -26,8 +27,8 @@ class PodcastPolicy
                 $user->hasRole('superadmin') ||
                 $user->hasRole('admin') ||
                 $user->hasRole('teacher') ||
-                $user->id === $podcast->user_id
-            ) && $user->center_id === $podcast->user->center_id;
+                $user->id === $podcast->user_id)
+            && ($user->center_id === $podcast->user->center_id || $user->hasRole('superadmin'));
     }
 
     /**
@@ -39,16 +40,8 @@ class PodcastPolicy
             $user->hasRole('superadmin') ||
             $user->hasRole('admin') ||
             $user->hasRole('teacher') ||
-            $user->id === $podcast->user_id
-        ) && $user->center_id === $podcast->user->center_id;
+            $user->id === $podcast->user_id)
+            && ($user->center_id === $podcast->user->center_id || $user->hasRole('superadmin')) ;
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Podcast $podcast): bool
-    {
-        return ( $user->hasRole('superadmin') || $user->hasRole('admin') || $user->hasRole('teacher') )
-            && $user->center_id === $podcast->user->center_id;
-    }
 }

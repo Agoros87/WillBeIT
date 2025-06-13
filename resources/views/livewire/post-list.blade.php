@@ -9,7 +9,7 @@
                         </a>
 
                         @if($post->image)
-                            <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post image" class="w-full h-40 object-cover rounded-md mt-2">
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="Post image" class="w-full h-40 object-cover rounded-md mt-2">
                         @endif
                     </h3>
                     <div class="text-gray-700 text-sm max-h-24 overflow-hidden prose max-w-none">

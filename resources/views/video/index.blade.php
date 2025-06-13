@@ -48,6 +48,9 @@
                             </video>
                         </div>
                         <p class="text-gray-700 mb-2">{{ Str::limit($video->description, 100) }}</p>
+                        <div class="mt-4 text-sm text-gray-500">
+                            <p>{{ __('Author') }}: {{ $video->user->name }} {{ $video->user->surname ?? 'Desconocido' }}</p>
+                        </div>
                         <p class="text-sm text-gray-500 mt-auto">{{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}</p>
 
                         <div class="flex gap-2 mt-2">

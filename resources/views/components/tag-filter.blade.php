@@ -123,7 +123,7 @@
         });
 
         elements.input.addEventListener('keydown', e => {
-            if (e.key === 'Backspace' && state.selected.size > 0) {
+            if (elements.input.value === '' && e.key === 'Backspace' && state.selected.size > 0) {
                 const lastTag = Array.from(state.selected).pop();
                 removeTag(lastTag);
             }

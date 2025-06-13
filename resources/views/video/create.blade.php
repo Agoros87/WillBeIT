@@ -35,6 +35,14 @@
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            <div class="mb-5">
+                <select name="tags[]" id="tags" multiple class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
+                            {{ $tag->name }}
+                        </option>
+                @endforeach
+            </div>
 
             <div class="mb-5">
                 <label for="video_path" class="block text-sm font-medium text-gray-700 mb-1">Archivo de video</label>

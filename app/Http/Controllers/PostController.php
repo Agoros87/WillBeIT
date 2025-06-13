@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Podcast;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\Video;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ class PostController extends Controller
         return view('posts.create', [
             'videos' => Video::all(),
             'podcasts' => Podcast::all(),
+            'tags' => Tag::all()
         ]);
     }
 
@@ -50,6 +52,7 @@ class PostController extends Controller
         $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
         $validated['user_id'] = Auth::id();
         $post = Post::create($validated);
+        $post->tags()->attach($request->tags);
 
         event(new PostCreated($post));
 
@@ -74,6 +77,7 @@ class PostController extends Controller
             'post' => $post,
             'videos' => Video::all(),
             'podcasts' => Podcast::all(),
+            'tags' => Tag::all()
         ]);
     }
 
@@ -100,6 +104,7 @@ class PostController extends Controller
         }
 
         $post->update($validated);
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('success', 'Post actualizado correctamente');
     }

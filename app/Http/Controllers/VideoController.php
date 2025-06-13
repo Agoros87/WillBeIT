@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\VideoRequest;
+use App\Models\Tag;
 use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ class VideoController extends Controller
 
     public function create()
     {
-        return view('video.create');
+        return view('video.create', ['tags' => Tag::all()]);
     }
 
     public function store(VideoRequest $request)
@@ -36,7 +37,9 @@ class VideoController extends Controller
             $data['video_path'] = "storage/videos/$fileName";
         }
 
-        Video::create($data);
+        $video = Video::create($data);
+        $video->tags()->sync($request->tags);
+
 
         return redirect()->route('video.index')->with('success', 'Video creado correctamente');
     }
@@ -50,7 +53,7 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = Video::findOrFail($id);
-        return view('video.edit', compact('video'));
+        return view('video.edit', ['video' => $video, 'tags' => Tag::all()]);
     }
 
     public function update(VideoRequest $request, $id)
@@ -74,6 +77,7 @@ class VideoController extends Controller
         }
 
         $video->update($data);
+        $video->tags()->sync($request->tags);
 
         return redirect()->route('video.index')->with('success', 'Video actualizado correctamente');
     }

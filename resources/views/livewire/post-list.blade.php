@@ -3,15 +3,14 @@
         @foreach ($posts as $post)
             <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
                 <div class="space-y-2">
-                    @if ($post->image)
-                        <div class="mb-6 flex justify-center">
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="Imagen del post" class="w-full max-w-lg rounded shadow">
-                        </div>
-                    @endif
                     <h3 class="header-3 text-lg font-semibold text-blue-600">
                         <a href="{{ route('posts.show', $post) }}" class="hover:underline">
                             {{ $post->title }}
                         </a>
+
+                        @if($post->image)
+                            <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post image" class="w-full h-40 object-cover rounded-md mt-2">
+                        @endif
                     </h3>
                     <div class="text-gray-700 text-sm max-h-24 overflow-hidden prose max-w-none">
                         {!! Str::limit(strip_tags($post->body), 150) !!}
@@ -21,7 +20,10 @@
                     {{ __('Tags') }}: {{ $post->tags->pluck('name')->join(', ') }}
                 </div>
                 <div class="mt-4 text-sm text-gray-500">
-                    {{ __('Author') }}: {{ $post->user->name }} {{ $post->user->surname ?? 'Desconocido' }}
+                    <p>{{ __('Author') }}: {{ $post->user->name }} {{ $post->user->surname ?? 'Desconocido' }}</p>
+                </div>
+                <div class="mt-4 text-sm text-gray-500">
+                    <p>{{ __('Uploaded') }}:{{ $post->user->created_at ?? 'Desconocido' }}</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 text-sm">
                     @can('update', $post)

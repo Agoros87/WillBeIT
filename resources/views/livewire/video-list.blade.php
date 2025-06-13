@@ -13,7 +13,7 @@
                             <source src="{{ asset($video->video_path) }}" type="video/mp4">
                         </video>
                     </div>
-                    <p class="text-gray-700 dark:text-gray-200 mb-2">{{ Str::limit($video->description, 100) }}</p>
+
                     <div class="mt-4 text-sm text-gray-500">
                         {{ __('Tags') }}: {{ $video->tags->pluck('name')->join(', ') }}
                     </div>

@@ -2,19 +2,19 @@
     <div class="p-8 w-full min-h-screen bg-gray-50 dark:bg-gray-900">
 
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ __('Video details') }}</h1>
+            <h1 class="header-1">{{ __('Video details') }}</h1>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 p-6 space-y-6 w-full">
+            <div class="flex justify-between items-center mb-4">
+                @livewire('favorite-button', ['model' => $video])
             <a href="{{ route('video.index') }}"
                class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition text-sm font-medium">
                 {{ __('Back') }}
             </a>
         </div>
-
-        <div class="bg-white dark:bg-gray-800 p-6 space-y-6 w-full">
-
-            @livewire('favorite-button', ['model' => $video])
-
             <div>
-                <h2 class="text-2xl font-semibold text-blue-700">{{ $video->title }}</h2>
+                <h2 class="header-2 text-center mb-10">{{ $video->title }}</h2>
 
                 <div class="my-4">
                     <video controls class="w-full rounded border border-gray-300">

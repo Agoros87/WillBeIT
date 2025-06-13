@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PodcastRequest;
 use App\Models\Podcast;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -16,7 +17,7 @@ class PodcastController extends Controller
 
     public function create()
     {
-        return view('podcasts.create');
+        return view('podcasts.create',['tags' => Tag::all()]);
     }
 
     public function store(PodcastRequest $request)
@@ -33,6 +34,7 @@ class PodcastController extends Controller
 
         $podcast = auth()->user()->podcasts()->make($validated);
         $podcast['slug'] = Str::slug($podcast ['title'].'-'.Str::random(6));
+        $podcast->tags()->sync($request->tags);
         $podcast->save();
 
         return to_route('podcasts.index')->with('success', 'Podcast creado correctamente.');
@@ -45,7 +47,7 @@ class PodcastController extends Controller
 
     public function edit(Podcast $podcast)
     {
-        return view('podcasts.edit', compact('podcast'));
+        return view('podcasts.edit', ['podcast' => $podcast, 'tags' => Tag::all()]);
     }
 
     public function update(PodcastRequest $request, Podcast $podcast)
@@ -75,6 +77,7 @@ class PodcastController extends Controller
         }
 
         $podcast->update($validated);
+        $podcast->tags()->sync($request->tags);
 
         return to_route('podcasts.index')->with('success', 'Podcast actualizado correctamente.');
     }

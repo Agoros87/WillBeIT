@@ -34,6 +34,19 @@
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            <div class="mb-5">
+                <p>{{ __('Tags').': '. $podcast->tags->pluck('name')->join(', ') }}</p>
+                <label for="tags" class="block mb-1 font-semibold text-gray-700"></label>
+                <select name="tags[]" id="tags" multiple
+                        class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}"
+                            {{ in_array($tag->id, old('tags', $podcast->tags->pluck('id')->toArray())) ? 'selected' : '' }}>
+                            {{ $tag->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
             <!-- Audio actual -->
             @if($podcast->podcast_path)

@@ -12,7 +12,7 @@
                         @if($podcast->image_path)
                             <img src="{{ asset('storage/' . $podcast->image_path) }}" alt="Podcast image" class="w-full h-40 object-cover rounded-md mt-2">
                         @endif
-                        <p class="text-sm text-gray-700 dark:text-gray-200">{{ Str::limit($podcast->description, 100) }}</p>
+
                         <div class="mt-4 text-sm text-gray-500">
                             {{ __('Tags') }}: {{ $podcast->tags->pluck('name')->join(', ') }}
                         </div>
@@ -21,7 +21,7 @@
                                 : {{ $podcast->user->name }} {{ $podcast->user->surname ?? 'Desconocido' }}</p>
                         </div>
                         <div class="mt-4 text-sm text-gray-500">
-                            <p>{{ __('Uploaded') }}:{{ $podcast->user->created_at ?? 'Desconocido' }}</p>
+                            <p>{{ __('Uploaded') }}: {{ $podcast->user->created_at ?? 'Desconocido' }}</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mt-4 text-sm">

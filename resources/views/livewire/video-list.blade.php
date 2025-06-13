@@ -13,7 +13,7 @@
                             <source src="{{ asset($video->video_path) }}" type="video/mp4">
                         </video>
                     </div>
-                    <p class="text-gray-700 dark:text-gray-200 mb-2">{{ Str::limit($video->description, 100) }}</p>
+
                     <div class="mt-4 text-sm text-gray-500">
                         {{ __('Tags') }}: {{ $video->tags->pluck('name')->join(', ') }}
                     </div>
@@ -23,7 +23,7 @@
                     </div>
                     <p class="text-sm text-gray-500 mt-auto">{{ __('Uploaded') }}
                         : {{ $video->created_at->format('d/m/Y') }}</p>
-                    <div class="flex gap-2 mt-2">
+                    <div class="flex gap-2 mt-2 justify-between">
                         @can('update', $video)
                             <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">
                                 {{ __('Edit') }}

@@ -1,6 +1,6 @@
 <x-public-layout title="{{ __('Posts') }}">
     <div class="flex justify-between items-center bg-white dark:bg-zinc-900 shadow-md border-t dark:border-gray-400">
-        <h1 class="header-1 px-4 min-w-max">{{__('Post List')}}</h1>
+        <h1 class="header-1 px-4 min-w-max">{{__('Post')}}</h1>
         <x-tag-filter/>
     </div>
     <div class="p-8">

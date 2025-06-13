@@ -1,20 +1,17 @@
 <x-public-layout title="{{ __('Podcasts details') }}">
-    <div class="min-h-screen w-full bg-white dark:bg-neutral-900 p-8 flex justify-center">
-
+    <div class="min-h-screen w-full bg-white dark:bg-neutral-900 p-8 flex flex-col justify-center">
+        <h1 class="header-1 py-4">{{ __('Podcasts details') }}</h1>
         <div class="w-full max-w-7xl bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-xl p-8 shadow space-y-6">
 
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-4xl font-bold text-blue-700">{{ __('Podcasts details') }}</h1>
+                @livewire('favorite-button', ['model' => $podcast])
                 <a href="{{ route('podcasts.index') }}"
                    class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition text-sm font-medium">
                     {{ __('Back') }}
                 </a>
             </div>
-
-            @livewire('favorite-button', ['model' => $podcast])
-
             <div>
-                <h2 class="text-3xl font-semibold text-blue-700">{{ $podcast->title }}</h2>
+                <h2 class="header-2 text-center mb-10">{{ $podcast->title }}</h2>
 
                 @if ($podcast->image_path)
                     <div class="my-6 flex justify-center">

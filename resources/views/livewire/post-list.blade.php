@@ -11,9 +11,6 @@
                             <img src="{{ asset('storage/' . $post->image) }}" alt="Post image" class="w-full h-40 object-cover rounded-md mt-2">
                         @endif
                     </h3>
-                    <div class="text-gray-700 text-sm max-h-24 overflow-hidden prose max-w-none dark:text-gray-300">
-                        {!! Str::limit(strip_tags($post->body), 150) !!}
-                    </div>
                 </div>
                 <div class="mt-4 text-sm text-gray-500">
                     {{ __('Tags') }}: {{ $post->tags->pluck('name')->join(', ') }}
@@ -22,7 +19,7 @@
                     <p>{{ __('Author') }}: {{ $post->user->name }} {{ $post->user->surname ?? 'Desconocido' }}</p>
                 </div>
                 <div class="mt-4 text-sm text-gray-500">
-                    <p>{{ __('Uploaded') }}:{{ $post->user->created_at ?? 'Desconocido' }}</p>
+                    <p>{{ __('Uploaded') }}: {{ $post->user->created_at ?? 'Desconocido' }}</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 text-sm">
                     @can('update', $post)

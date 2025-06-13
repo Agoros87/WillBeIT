@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PostList extends Component
+class VideoList extends Component
 {
     use WithPagination;
 
@@ -22,8 +22,8 @@ class PostList extends Component
 
     public function getPosts(): LengthAwarePaginator
     {
-        $query = Post::query()
-            ->with(['video', 'user', 'podcast', 'tags' => function ($query) {
+        $query = Video::query()
+            ->with(['tags' => function ($query) {
                 $query->select('tags.id', 'tags.name');
             }]);
 
@@ -32,13 +32,13 @@ class PostList extends Component
                 $query->whereIn('tags.name', $this->selectedTags);
             }, '=', count($this->selectedTags));
         }
-        return $query->latest()->paginate(9);
+        return $query->latest()->paginate(6);
     }
 
     public function render()
     {
-        return view('livewire.post-list', [
-            'posts' => $this->getPosts()
+        return view('livewire.video-list', [
+            'videos' => $this->getPosts()
         ]);
     }
 }

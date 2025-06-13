@@ -147,7 +147,7 @@ select:focus[data-flux-control] {
         }
 
         & button {
-            @apply px-1 text-blue-700 font-bold text-sm hover:text-white hover:bg-blue-700 transition-colors cursor-pointer;
+            @apply px-1 text-blue-700 dark:text-emerald-700 font-bold text-sm hover:text-white hover:bg-blue-700 dark:hover:bg-emerald-700 transition-colors cursor-pointer;
         }
     }
 

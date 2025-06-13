@@ -29,6 +29,7 @@ Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.reje
 //Ruta dashboard Superadmin
 Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+    Route::resource('centers', CenterController::class);
 });
 //Ruta dashboard  admin
 Route::middleware(RoleMiddleware::using('admin'))->group(function () {
@@ -106,7 +107,6 @@ Route::post('centers/import', [CenterController::class, 'importCenters'])->name(
 
 Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
     Route::resource('users', UserController::class);
-    Route::resource('centers', CenterController::class);
 });
 
 

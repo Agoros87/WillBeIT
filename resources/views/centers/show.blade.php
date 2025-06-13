@@ -1,18 +1,24 @@
-<x-layouts.public>
+<x-public-layout :title="__('Center')">
     <div class="p-8">
-        <h1 class="text-3xl font-bold mb-4">{{ $center->name }}</h1>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('Address')}}:</b> {{$center->address }}</p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('City')}}:</b> {{$center->city }}</p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('Province')}}:</b> {{$center->province }}</p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('Postal Code')}}:</b> {{$center->postal_code }}</p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('Center Email')}}:</b> {{$center->email }}</p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__("Director's Email")}}:</b> {{$center->director_email }}
-        </p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__("Director's Name")}}:</b> {{$center->director_name }}
-        </p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('Erasmus Coordinator')}}
-                :</b> {{$center->erasmus_coordinator }}</p>
-        <p class="text-gray-700 mb-2"><b class="font-bold">{{__('Center Phone')}}:</b> {{$center->phone }}</p>
-        <a href="{{ route('centers.index') }}" class="text-blue-600 hover:underline">← Volver al listado</a>
+        <h1 class="header-1">{{ $center->name }}</h1>
+        <section class="flex flex-col md:flex-row gap-4 w-full *:flex-1">
+            <fieldset class="p-6 rounded-lg shadow-md bg-white dark:bg-zinc-900 lg:*:flex *:gap-2 *:justify-between">
+                <legend class="header-2 p-4">{{ __('Center Data') }}</legend>
+                <x-input :disabled="true" :value="$center->name" label="Nombre del Centro:" name="name"/>
+                <x-input :disabled="true" :value="$center->address" label="Dirección del Centro:" name="address"/>
+                <x-input :disabled="true" :value="$center->city" label="Ciudad:" name="city"/>
+                <x-input :disabled="true" :value="$center->province" label="Provincia:" name="province"/>
+                <x-input :disabled="true" :value="$center->postal_code" label="Código Postal:" name="postal_code"/>
+                <x-input :disabled="true" :value="$center->email" label="Email del centro:" name="email" type="email"/>
+                <x-input :disabled="true" :value="$center->phone" label="Teléfono del Centro:" name="phone"/>
+            </fieldset>
+            <fieldset class="p-6 rounded-lg shadow-md bg-white dark:bg-zinc-900 lg:*:flex *:gap-2 *:justify-between">
+                <legend class="header-2 p-4">{{__('Director and Coordinator data')}}</legend>
+                <x-input :disabled="true" :value="$center->director_name" label="Nombre del Director:" name="director_name"/>
+                <x-input :disabled="true" :value="$center->director_email" label="Email del Director:" name="director_email" type="email"/>
+                <x-input :disabled="true" :value="$center->erasmus_coordinator" label="Coordinador de Erasmus:" name="erasmus_coordinator"/>
+            </fieldset>
+        </section>
     </div>
-</x-layouts.public>
+</x-public-layout>
+

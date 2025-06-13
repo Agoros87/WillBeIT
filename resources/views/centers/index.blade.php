@@ -1,4 +1,4 @@
-<x-public-layout :title="__('Home')">
+<x-public-layout :title="__('Centers')">
     <section class="flex flex-col gap-8 py-8 px-2 md:px-8">
         <h1 class="header-1">{{ __('Centers') }}</h1>
         <div class="flex gap-3">

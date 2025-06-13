@@ -1,5 +1,5 @@
 @props(['homeRoute' => false])
-<div class="*:min-w-max [&_span,svg]:text-sky-600 dark:[&_span,svg]:text-sky-400 [&_span]:font-semibold">
+<div class="*:min-w-max [&_span,svg]:text-sky-600 dark:[&_span,svg]:text-emerald-400 [&_span]:font-semibold">
     <flux:navlist.group :heading="auth()->user()->name" class="grid">
         @if($homeRoute)
             <a href="{{ route('home') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800">
@@ -21,7 +21,7 @@
             <x-svg.academic-cap-icon class="w-6"/>
             <span class="flex justify-between w-full">{{ __('Centers') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': open }"/></span>
         </div>
-        <div x-show="open" x-collapse class="border-l border-l-sky-500 ml-6">
+        <div x-show="open" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
             <a href="{{ route('centers.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                 <x-svg.eye-icon class="w-5"/>
                 {{ __('View Centers') }}</a>
@@ -34,7 +34,7 @@
                 <x-svg.post-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Posts') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openPosts }"/></span>
             </div>
-            <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('posts.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View Posts') }}</a>
@@ -48,7 +48,7 @@
                 <x-svg.podcast-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Podcast') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openPodcast }"/></span>
             </div>
-            <div x-show="openPodcast" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openPodcast" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('podcasts.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View Podcasts') }}</a>
@@ -62,7 +62,7 @@
                 <x-svg.video-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Videos') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openVideos }"/></span>
             </div>
-            <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('video.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View videos') }}</a>
@@ -76,7 +76,7 @@
                 <x-svg.tags-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Tags') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openTags }"/></span>
             </div>
-            <div x-show="openTags" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openTags" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('tags.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View tags') }}</a>
@@ -90,7 +90,7 @@
                 <x-svg.users-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Users') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openUsers }"/></span>
             </div>
-            <div x-show="openUsers" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openUsers" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('users.index') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View users') }}</a>
@@ -112,7 +112,7 @@
                 <x-svg.post-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Posts') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openPosts }"/></span>
             </div>
-            <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('student.my-posts') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View my Posts') }}</a>
@@ -128,7 +128,7 @@
                 <x-svg.podcast-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Podcasts') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openPodcasts }"/></span>
             </div>
-            <div x-show="openPodcasts" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openPodcasts" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('student.my-podcasts') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View my Podcasts') }}</a>
@@ -144,7 +144,7 @@
                 <x-svg.video-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Videos') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openVideos }"/></span>
             </div>
-            <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('student.my-videos') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View my Videos') }}</a>
@@ -176,7 +176,7 @@
                 <x-svg.academic-cap-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Center') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': open }"/></span>
             </div>
-            <div x-show="open" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="open" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('admin.my-center') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View Center') }}</a>
@@ -188,7 +188,7 @@
                 <x-svg.post-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Posts') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openPosts }"/></span>
             </div>
-            <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openPosts" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('admin.posts-users-centers') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View Posts') }}</a>
@@ -202,7 +202,7 @@
                 <x-svg.podcast-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Podcast') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openPodcast }"/></span>
             </div>
-            <div x-show="openPodcast" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openPodcast" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('admin.podcasts-users-centers') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View Podcasts') }}</a>
@@ -216,7 +216,7 @@
                 <x-svg.video-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Videos') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openVideos }"/></span>
             </div>
-            <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openVideos" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('admin.videos-users-centers') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View videos') }}</a>
@@ -230,7 +230,7 @@
                 <x-svg.users-icon class="w-6"/>
                 <span class="flex justify-between w-full">{{ __('Users') }}<x-svg.chevron-down-icon class="w-4 transition" x-bind:class="{ 'rotate-180': openUsers }"/></span>
             </div>
-            <div x-show="openUsers" x-collapse class="border-l border-l-sky-500 ml-6">
+            <div x-show="openUsers" x-collapse class="border-l border-l-sky-500 dark:border-l-emerald-600 ml-6">
                 <a href="{{ route('admin.users-centers') }}" class="flex items-center gap-2 px-3 py-2 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800" wire:navigate>
                     <x-svg.eye-icon class="w-5"/>
                     {{ __('View users') }}</a>

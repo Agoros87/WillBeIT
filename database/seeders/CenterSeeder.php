@@ -9,8 +9,6 @@ class CenterSeeder extends Seeder
 {
     public function run(): void
     {
-        Center::factory(4)->create();
-
         Center::factory(1)->create([
             'name' => 'IES Ingeniero de la Cierva',
             'province' => 'Murcia',
@@ -21,5 +19,7 @@ class CenterSeeder extends Seeder
             'image' => 'img/ies-cierva-image.jpg',
             'email' => '30010978@murciaeduca.es'
         ]);
+
+        Center::factory(4)->create();
     }
 }

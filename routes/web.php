@@ -29,6 +29,12 @@ Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.reje
 //Ruta dashboard Superadmin
 Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+    Route::resource('users', UserController::class);
+    Route::resource('centers', CenterController::class);
+    Route::get('users/export', [UserController::class, 'exportUsers'])->name('users.export');
+    Route::post('users/import', [UserController::class, 'importUsers'])->name('users.import');
+    Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
+    Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
 });
 //Ruta dashboard  admin
 Route::middleware(RoleMiddleware::using('admin'))->group(function () {
@@ -38,6 +44,8 @@ Route::middleware(RoleMiddleware::using('admin'))->group(function () {
     Route::get('admin/podcasts-users-centers', [AdminController::class, 'podcastsUsersCenters'])->name('admin.podcasts-users-centers');
     Route::get('admin/videos-users-centers', [AdminController::class, 'videosUsersCenters'])->name('admin.videos-users-centers');
     Route::get('admin/users-centers', [AdminController::class, 'usersCenters'])->name('admin.users-centers');
+    Route::resource('users', UserController::class);
+    Route::resource('centers', CenterController::class);
 });
 
 //Rutas teacher (dashboard )
@@ -76,38 +84,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
     Route::resource('posts', PostController::class)->except(['index', 'show']);
     Route::resource('video', VideoController::class)->except(['index', 'show']);
+    Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
+    Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
+    Route::post('/tags', [TagsController::class, 'store'])->name('tags.store');
+    Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
+    Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
+    Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 });
 
 
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);
-Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
-Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
-Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
-Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 Route::resource('video', VideoController::class)->only(['index', 'show']);
-
 Route::get('/languages/{lang}', LanguageController::class)->name('languages');
 
-Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
-Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
-Route::post('/tags', [TagsController::class, 'store'])->name('tags.store');
-Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
-Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
-Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
 
-Route::get('users/export', [UserController::class, 'exportUsers'])->name('users.export');
-Route::post('users/import', [UserController::class, 'importUsers'])->name('users.import');
-Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
-Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
-
-
-Route::middleware(['auth', 'role:admin,superadmin'])->group(function () {
-    Route::resource('users', UserController::class);
-    Route::resource('centers', CenterController::class);
-});
 
 
 require __DIR__ . '/auth.php';

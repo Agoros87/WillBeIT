@@ -1,18 +1,17 @@
 <div>
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($posts as $post)
-            <div class="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+            <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
                 <div class="space-y-2">
-                    <h3 class="header-3 text-lg font-semibold text-blue-600">
+                    <h3 class="header-3 font-semibold">
                         <a href="{{ route('posts.show', $post) }}" class="hover:underline">
                             {{ $post->title }}
                         </a>
-
                         @if($post->image)
                             <img src="{{ asset('storage/' . $post->image) }}" alt="Post image" class="w-full h-40 object-cover rounded-md mt-2">
                         @endif
                     </h3>
-                    <div class="text-gray-700 text-sm max-h-24 overflow-hidden prose max-w-none">
+                    <div class="text-gray-700 text-sm max-h-24 overflow-hidden prose max-w-none dark:text-gray-300">
                         {!! Str::limit(strip_tags($post->body), 150) !!}
                     </div>
                 </div>

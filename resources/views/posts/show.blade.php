@@ -1,24 +1,22 @@
 <x-public-layout title="{{ __('Post details') }}">
-    <div class="min-h-screen w-full bg-white dark:bg-neutral-900 p-6 flex flex-col items-center">
-
+    <div class="min-h-screen w-full bg-white dark:bg-neutral-900 p-6 flex flex-col">
+        <h1 class="header-1 py-4">{{ __('Post details') }}</h1>
         <div class="w-full max-w-7xl mx-auto bg-white dark:bg-neutral-900 rounded-xl shadow-lg p-8">
 
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-3xl font-bold text-blue-700">{{ __('Post details') }}</h1>
+                @livewire('favorite-button', ['model' => $post])
                 <a href="{{ route('posts.index') }}"
                    class="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition text-sm font-medium">
                     {{ __('Back') }}
                 </a>
             </div>
-
+            <h3 class="header-2 text-center mb-10">{{ $post->title }}</h3>
             @if ($post->image)
                 <div class="mb-6 flex justify-center">
                     <img src="{{ asset('storage/' . $post->image) }}" alt="{{ __('Post image') }}"
                          class="w-full max-w-4xl rounded shadow">
                 </div>
             @endif
-
-            @livewire('favorite-button', ['model' => $post])
 
             <div class="text-gray-700 mb-4 prose max-w-none dark:text-gray-200">{!! $post->body !!}</div>
 

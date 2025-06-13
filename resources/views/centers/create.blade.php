@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centers</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-100 text-gray-900">
-@include('partials.navigation')
-<div class="p-8">
-    <h1 class="text-2xl font-bold mb-6">Crear nuevo Centro</h1>
-    <form action="{{ route('centers.store') }}" method="POST" class="space-y-4">
-        @csrf
-        <fieldset class="border p-6 rounded shadow-md bg-white">
-            <legend class="font-semibold text-xl p-4">Datos del Centro</legend>
-            <x-input label="Nombre del Centro" name="name"/>
-            <x-input label="Dirección del Centro" name="address"/>
-            <x-input label="Ciudad" name="city"/>
-            <x-input label="Provincia" name="province"/>
-            <x-input label="Código Postal" name="postal_code"/>
-            <x-input label="Email del centro" name="email" type="email"/>
-            <x-input label="Teléfono del Centro" name="phone"/>
-        </fieldset>
-        <fieldset class="border p-6 rounded shadow-md bg-white">
-            <legend class="font-semibold text-xl p-4">Datos del Director y Coordinador</legend>
-            <x-input label="Nombre del Director" name="director_name"/>
-            <x-input label="Email del Director" name="director_email" type="email"/>
-            <x-input label="Coordinador de Erasmus" name="erasmus_coordinator"/>
-        </fieldset>
-        <div class="p-4">
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Crear
-            </button>
-            <a href="{{ route('centers.index') }}" class="text-gray-700 hover:underline ml-4">Cancelar</a>
-        </div>
-    </form>
-</div>
-</body>
-</html>
+<x-public-layout :title="__('Create Center')">
+    <div class="p-8">
+        <h1 class="header-1">{{__('Create new Center')}}</h1>
+        <form action="{{ route('centers.store') }}" method="POST" class="space-y-4 px-2 md:px-4 lg:px-8">
+            @csrf
+            <section class="flex flex-col md:flex-row gap-4 w-full *:flex-1">
+                <fieldset class="p-6 rounded-lg shadow-md bg-white dark:bg-zinc-900 lg:*:flex *:gap-2 *:justify-between">
+                    <legend class="header-2 p-4">{{__('Center Data')}}</legend>
+                    <x-input label="Nombre del Centro:" name="name"/>
+                    <x-input label="Dirección del Centro:" name="address"/>
+                    <x-input label="Ciudad:" name="city"/>
+                    <x-input label="Provincia:" name="province"/>
+                    <x-input label="Código Postal:" name="postal_code"/>
+                    <x-input label="Email del centro:" name="email" type="email"/>
+                    <x-input label="Teléfono del Centro:" name="phone"/>
+                </fieldset>
+                <fieldset class="p-6 rounded-lg shadow-md bg-white dark:bg-zinc-900 lg:*:flex *:gap-2 *:justify-between">
+                    <legend class="header-2 p-4">{{ __('Director and Coordinator data') }}</legend>
+                    <x-input label="Nombre del Director:" name="director_name"/>
+                    <x-input label="Email del Director:" name="director_email" type="email"/>
+                    <x-input label="Coordinador de Erasmus:" name="erasmus_coordinator"/>
+                </fieldset>
+            </section>
+            <div class="p-4">
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    {{ __('Create') }}
+                </button>
+                <a href="{{ route('centers.index') }}" class="text-gray-700 hover:underline ml-4">{{__('Cancel')}}</a>
+            </div>
+        </form>
+    </div>
+</x-public-layout>>
 

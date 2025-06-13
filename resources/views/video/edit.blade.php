@@ -1,4 +1,4 @@
-<x-public-layout title="Editar Video">
+<x-public-layout title="{{__('Edit Video')}}">
     <div class="p-8 max-w-3xl mx-auto bg-white rounded-xl shadow mt-10">
         <h1 class="header-1 mb-6">Editar video</h1>
 

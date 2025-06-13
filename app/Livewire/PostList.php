@@ -14,7 +14,7 @@ class PostList extends Component
     public $selectedTags = [];
     protected $listeners = ['tagsUpdated' => 'updateTagsFilter'];
 
-    public function updateTagsFilter($data)
+    public function updateTagsFilter($data): void
     {
         $this->selectedTags = $data;
         $this->resetPage();
@@ -31,7 +31,7 @@ class PostList extends Component
                 });
             }
         }
-        return $query->paginate(9);
+        return $query->latest()->paginate(9);
     }
 
     public function render()

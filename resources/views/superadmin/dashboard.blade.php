@@ -6,9 +6,9 @@
 
     <div class="flex flex-col gap-6">
 
-        <h2 class="text-center font-bold text-2xl text-blue-500" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
+        <h1 class="text-center header-1" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
             {{__('Dashboard')}}
-        </h2>
+        </h1>
         {{-- Header Estadísticas 1ºFILA--}}
         <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">

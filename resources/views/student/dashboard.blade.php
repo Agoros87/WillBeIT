@@ -4,7 +4,7 @@
 
     <div class="flex flex-col gap-6">
 
-        <h2 class="text-center font-bold text-2xl text-blue-500" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
+        <h2 class="text-center header-1" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
             {{ __('Dashboard') }}
         </h2>
 
@@ -61,22 +61,22 @@
             </div>
         </div>
 
-        {{-- Content Chart - MOVIDO AQUÍ --}}
-        <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg max-w-md mx-auto">
-            <div class="flex justify-between items-center mb-4 dark:text-white">
-                <h2 class="text-lg font-semibold dark:text-white">{{ __('My Content') }}</h2>
-            </div>
-            <div class="aspect-video bg-gray-50 dark:bg-neutral-800 rounded-xl flex items-center justify-center">
-                <canvas id="miContenido" class="max-w-xs w-full h-auto"></canvas>
-            </div>
-        </div>
 
         {{-- Main --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {{-- Left --}}
-            <div class="lg:col-span-2 space-y-6">
+            <div class="lg:col-span-2 space-y-6 place-items-center">
+                {{-- Content Chart - MOVIDO AQUÍ --}}
+                <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg w-full max-w-lg">
+                    <div class="flex justify-between items-center mb-4 dark:text-white">
+                        <h2 class="text-lg font-semibold dark:text-white">{{ __('My Content') }}</h2>
+                    </div>
+                    <div class="aspect-square bg-gray-50 dark:bg-neutral-800 rounded-xl flex items-center justify-center p-4">
+                        <canvas id="miContenido" class="w-full h-full"></canvas>
+                    </div>
+                </div>
                 {{-- Recent Activity --}}
-                <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
+                <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg w-full">
                     <h2 class="text-lg font-semibold mb-4 dark:text-white">{{ __('My Recent Activity in the Last Week') }}</h2>
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-neutral-800 rounded-lg">

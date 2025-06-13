@@ -1,19 +1,16 @@
 <x-layouts.app :title="__('Admin Dashboard')">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <div class="flex flex-col gap-6">
-        <h2 class="text-center font-bold text-2xl text-blue-500" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
+        <h2 class="text-center header-1" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
             {{ __('Dashboard') }} - {{ $center->name }}
         </h2>
-
         {{-- Estadísticas del centro --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             {{-- Total Usuarios del Centro --}}
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium">Usuarios del Centro</p>
+                        <p class="text-sm font-medium">{{ __('Center Users') }}</p>
                         <p class="text-3xl font-bold mt-2">{{ $totalUsuarios }}</p>
                     </div>
                     <svg class="w-8 h-8 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,7 +18,6 @@
                     </svg>
                 </div>
             </div>
-
             {{-- Nuevos Usuarios Hoy --}}
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
@@ -35,13 +31,12 @@
                 </div>
             </div>
         </div>
-
         {{-- Contenido Multimedia del Centro --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium">Videos del Centro</p>
+                        <p class="text-sm font-medium">{{__('Center Videos')}}</p>
                         <p class="text-3xl font-bold mt-2">{{ $totalVideos }}</p>
                     </div>
                     <svg class="w-8 h-8 text-red-500 opacity-75" fill="currentColor" viewBox="0 0 24 24">
@@ -49,11 +44,10 @@
                     </svg>
                 </div>
             </div>
-
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white">Posts del Centro</p>
+                        <p class="text-sm text-white">{{ __('Center Posts') }}</p>
                         <p class="text-3xl font-bold mt-2">{{ $totalPost }}</p>
                     </div>
                     <svg class="w-8 h-8 text-orange-500 opacity-75" fill="currentColor" viewBox="0 0 24 24">
@@ -61,11 +55,10 @@
                     </svg>
                 </div>
             </div>
-
             <div class="rounded-xl border p-5 bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-white">Podcasts del Centro</p>
+                        <p class="text-sm text-white">{{ __('Center Podcasts') }}</p>
                         <p class="text-3xl font-bold mt-2">{{ $totalPodcast }}</p>
                     </div>
                     <svg class="w-8 h-8 text-yellow-500 opacity-75" fill="currentColor" viewBox="0 0 24 24">
@@ -74,7 +67,6 @@
                 </div>
             </div>
         </div>
-
         {{-- Gráficos --}}
         <div class="rounded-xl border p-5 bg-white shadow-lg">
             <div class="flex justify-between items-center mb-4">
@@ -84,7 +76,6 @@
                 <canvas id="usuariosMensuales"></canvas>
             </div>
         </div>
-
         <div class="rounded-xl border p-5 bg-white shadow-lg">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-semibold">Contenido del Centro</h2>
@@ -94,7 +85,6 @@
             </div>
         </div>
     </div>
-
     <script>
         // Gráfico de usuarios por mes
         const ctxUsuariosMensuales = document.getElementById('usuariosMensuales').getContext('2d');

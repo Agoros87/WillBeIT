@@ -23,18 +23,41 @@
                     </video>
                 </div>
 
-                <p class="text-sm text-gray-500 mb-2">
-                    {{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}
-                </p>
-                <p class="text-sm text-gray-500 mb-4">
-                    {{ __('By') }}: {{ $video->user->name }}
-                </p>
 
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                     {{ __('Description') }}
                 </h3>
-                <p class="text-gray-700 dark:text-gray-200">
+                <p class=" text-xl text-gray-700 dark:text-gray-200">
                     {{ $video->description }}
+                </p>
+                <p class="mt-6"></p>
+                @canany(['update', 'delete'], $video)
+                    <div class="flex gap-4 mb-4">
+                        @can('update', $video)
+                            <a href="{{ route('video.edit', $video->id) }}"
+                               class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700">
+                                {{ __("Edit") }}
+                            </a>
+                        @endcan
+                        @can('delete', $video)
+                            <form action="{{ route('video.destroy', $video->id) }}" method="POST"
+                                  onsubmit="return confirm('{{ __('Delete this post?') }}')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                                    {{ __("Delete") }}
+                                </button>
+                            </form>
+                        @endcan
+
+                    </div>
+                @endcanany
+                <p class="text-xs text-gray-500 mb-2 mt-4">
+                    {{ __('Uploaded') }}: {{ $video->created_at->format('d/m/Y') }}
+                </p>
+                <p class="text-xs text-gray-500 mb-4">
+                    {{ __('By') }}: {{ $video->user->name }}
                 </p>
             </div>
         </div>

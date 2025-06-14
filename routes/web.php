@@ -52,8 +52,11 @@ Route::middleware(RoleMiddleware::using('teacher'))->group(function () {
     Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
     Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
     Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
-    Route::post('/students/{student}/accept', [TeacherController::class, 'accept'])->name('students.accept');
-    Route::post('/students/{student}/reject', [TeacherController::class, 'reject'])->name('students.reject');
+    Route::post('/students/{student}/accept', [TeacherController::class, 'acceptStudent'])->name('students.accept');
+    Route::post('/students/{student}/reject', [TeacherController::class, 'rejectStudent'])->name('students.reject');
+    Route::post('/post/{post}/accept', [TeacherController::class, 'acceptPost'])->name('post.accept');
+    Route::post('/post/{post}/reject', [TeacherController::class, 'rejectPost'])->name('post.reject');
+
 });
 
 //Rutas Student (dashboard)

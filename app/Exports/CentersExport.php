@@ -23,7 +23,6 @@ class CentersExport implements FromCollection
             'director_name',
             'erasmus_coordinator',
             'phone',
-            'badge',
             'status',
         )->get();
 

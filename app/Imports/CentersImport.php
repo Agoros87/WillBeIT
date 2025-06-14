@@ -30,8 +30,7 @@ class CentersImport implements ToModel
             'director_name' => $row[7],
             'erasmus_coordinator' => $row[8],
             'phone' => $row[9],
-            'badge' => $row[10],
-            'status' => $row[11],
+            'status' => $row[10],
         ]);
     }
 }

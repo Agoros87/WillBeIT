@@ -28,13 +28,12 @@ Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.reje
 
 //Ruta dashboard Superadmin
 Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
-    Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
-    Route::resource('users', UserController::class);
-    Route::resource('centers', CenterController::class);
     Route::get('users/export', [UserController::class, 'exportUsers'])->name('users.export');
     Route::post('users/import', [UserController::class, 'importUsers'])->name('users.import');
     Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
     Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
+    Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
+    Route::resource('centers', CenterController::class);
 });
 //Ruta dashboard  admin
 Route::middleware(RoleMiddleware::using('admin'))->group(function () {
@@ -44,7 +43,6 @@ Route::middleware(RoleMiddleware::using('admin'))->group(function () {
     Route::get('admin/podcasts-users-centers', [AdminController::class, 'podcastsUsersCenters'])->name('admin.podcasts-users-centers');
     Route::get('admin/videos-users-centers', [AdminController::class, 'videosUsersCenters'])->name('admin.videos-users-centers');
     Route::get('admin/users-centers', [AdminController::class, 'usersCenters'])->name('admin.users-centers');
-    Route::resource('users', UserController::class);
 });
 
 //Rutas teacher (dashboard )
@@ -103,6 +101,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 });
 
+Route::middleware([RoleMiddleware::using(['superadmin', 'admin'])])->group(function () {
+    Route::resource('users', UserController::class);
+});
 
 // Rutas publicas
 Route::resource('posts', PostController::class)->only(['index', 'show']);

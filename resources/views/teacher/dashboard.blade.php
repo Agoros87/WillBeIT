@@ -166,19 +166,19 @@
                 @forelse($videoPending as $video)
                     <li class="py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                         <div>
-                            <a href="{{ route('video.show', $video) }}" class="hover:underline">
+                            <a href="{{ route('video.show', $video->id) }}" class="hover:underline">
                                 {{ $video->title }}
                             </a>
                             <span class="text-sm text-gray-500">{{ $video->user->name }}</span>
                         </div>
                         <div class="flex gap-2">
-                            <form method="POST" action="{{ route('video.accept', $video) }}" >
+                            <form method="POST" action="{{ route('video.accept', $video->id) }}" >
                                 @csrf
                                 <button type="submit" class="px-3 py-1 rounded bg-green-500 text-white text-xs hover:bg-green-600 transition">
                                     <x-svg.check-icon/>
                                 </button>
                             </form>
-                            <form method="POST" action="{{ route('video.reject', $video) }}" >
+                            <form method="POST" action="{{ route('video.reject', $video->id) }}" >
                                 @csrf
                                 <button type="submit" class="px-3 py-1 rounded bg-red-500 text-white text-xs hover:bg-red-600 transition">
                                     <x-svg.cross-icon/>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('slug')->default('');
             $table->string('video_path')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->nullable()->default(null);

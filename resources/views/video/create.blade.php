@@ -43,6 +43,7 @@
                             {{ $tag->name }}
                         </option>
                 @endforeach
+                </select>
             </div>
 
             <div class="mb-5">

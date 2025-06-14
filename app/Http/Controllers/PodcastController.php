@@ -32,15 +32,23 @@ class PodcastController extends Controller
             $validated['image_path'] = $request->file('image')->store('podcasts/img', 'public');
         }
 
+        // Crear el podcast
         $podcast = auth()->user()->podcasts()->make($validated);
-        $podcast['slug'] = Str::slug($podcast ['title'].'-'.Str::random(6));
-        $podcast->tags()->sync($request->tags);
-        $podcast['status'] = 'pending';
-        $podcast->save();
+        $podcast->slug = Str::slug($podcast->title . '-' . Str::random(6));
+        $podcast->status = 'pending';
+        $podcast->save(); // 👈 PRIMERO guarda
+
+        // Luego sincroniza los tags (ya tiene ID)
+        if ($request->filled('tags')) {
+            $podcast->tags()->sync($request->tags);
+        }
+
+        // Opcional: actualizar la fecha de creación a null si es necesario
         $podcast->update(['created_at' => null]);
 
         return to_route('podcasts.index')->with('success', 'Podcast creado correctamente.');
     }
+
 
     public function show(Podcast $podcast)
     {

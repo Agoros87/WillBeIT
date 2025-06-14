@@ -36,7 +36,7 @@ class VideoController extends Controller
             // Ruta para acceso web
             $data['video_path'] = "storage/videos/$fileName";
         }
-
+        $data['status'] = 'pending'; // Asignar estado por defecto
         $video = Video::create($data);
         $video->tags()->sync($request->tags);
 

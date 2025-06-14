@@ -1,5 +1,5 @@
 <x-public-layout title="{{__('Edit Video')}}">
-    <div class="p-8 max-w-3xl mx-auto bg-white rounded-xl shadow mt-10">
+    <div class="p-8 max-w-3xl mx-auto bg-white dark:bg-zinc-900 rounded-xl shadow mt-10 text-gray-800 dark:text-gray-200">
         <h1 class="header-1 mb-6">Editar video</h1>
 
         <form action="{{ route('video.update', $video->id) }}" method="POST" enctype="multipart/form-data">
@@ -7,7 +7,7 @@
             @method('PUT')
 
             <div class="mb-5">
-                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Título del video</label>
+                <label for="title" class="block text-sm font-medium mb-1">Título del video</label>
                 <input
                     type="text"
                     id="title"
@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-5">
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                <label for="description" class="block text-sm font-medium mb-1">Descripción</label>
                 <textarea
                     id="description"
                     name="description"
@@ -37,9 +37,9 @@
 
             <div class="mb-5">
                 <p>{{ __('Tags').': '. $video->tags->pluck('name')->join(', ') }}</p>
-                <label for="tags" class="block mb-1 font-semibold text-gray-700"></label>
+                <label for="tags" class="block mb-1 font-semibold"></label>
                 <select name="tags[]" id="tags" multiple
-                        class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}"
                             {{ in_array($tag->id, old('tags', $video->tags->pluck('id')->toArray())) ? 'selected' : '' }}>
@@ -50,7 +50,7 @@
             </div>
             <!-- Video actual -->
             <div id="current-video-container" class="mb-5">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Video actual</label>
+                <label class="block text-sm font-medium mb-2">Video actual</label>
                 <video controls class="w-full max-w-md rounded-md shadow">
                     <source src="{{ asset($video->video_path) }}" type="video/mp4">
                     Tu navegador no soporta la reproducción de video.
@@ -59,18 +59,18 @@
 
             <!-- Vista previa del nuevo video -->
             <div id="new-video-preview-container" class="mb-5 hidden">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Nuevo video seleccionado</label>
+                <label class="block text-sm font-medium mb-1">Nuevo video seleccionado</label>
                 <p class="text-sm text-blue-600 mb-1">⚠️ El video actual será reemplazado por este:</p>
                 <video id="new-video-preview" controls class="w-full max-w-md rounded-md shadow"></video>
             </div>
 
             <div class="mb-5">
-                <label for="video_path" class="block text-sm font-medium text-gray-700 mb-1">Nuevo archivo de video (opcional)</label>
+                <label for="video_path" class="block text-sm font-medium mb-1">Nuevo archivo de video (opcional)</label>
                 <input
                     type="file"
                     id="video_path"
                     name="video_path"
-                    class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     accept="video/*"
                 >
                 @error('video_path')

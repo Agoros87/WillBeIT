@@ -13,7 +13,7 @@
                     id="title"
                     name="title"
                     value="{{ old('title') }}"
-                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 dark:bg-zinc-800 focus:ring-blue-500 focus:outline-none"
                     required
                 >
                 @error('title')
@@ -27,7 +27,7 @@
                     id="description"
                     name="description"
                     rows="5"
-                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 dark:bg-zinc-800 focus:outline-none"
                     required
                 >{{ old('description') }}</textarea>
                 @error('description')
@@ -35,7 +35,7 @@
                 @enderror
             </div>
             <div class="mb-5">
-                <select name="tags[]" id="tags" multiple class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <select name="tags[]" id="tags" multiple class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
                             {{ $tag->name }}
@@ -43,7 +43,7 @@
                 @endforeach
             </div>
             <div class="mb-5">
-                <label for="audio_file" class="block text-sm font-medium text-gray-700 text-gray-200 mb-1">{{__("Audio File")}}</label>
+                <label for="audio_file" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">{{__("Audio File")}}</label>
                 <input
                     type="file"
                     id="audio_file"

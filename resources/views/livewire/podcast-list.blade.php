@@ -4,7 +4,7 @@
     @else
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             @foreach($podcasts as $podcast)
-                <div class="bg-white dark:bg-zinc-900 dark:text-gray-200 rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+                <div class="bg-white dark:bg-zinc-900 dark:text-gray-200 rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between reveal-scroll">
                     <div class="space-y-2">
                         <h2 class=" header-3 hover:underline">
                             <a href="{{ route('podcasts.show', $podcast) }}">{{ $podcast->title }}</a>

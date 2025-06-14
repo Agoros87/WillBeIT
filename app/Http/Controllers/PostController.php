@@ -52,7 +52,9 @@ class PostController extends Controller
         $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
         $validated['user_id'] = Auth::id();
         $validated['status'] = 'pending';
+
         $post = Post::create($validated);
+        $post->update(['created_at' => null]);
         $post->tags()->attach($request->tags);
 
 

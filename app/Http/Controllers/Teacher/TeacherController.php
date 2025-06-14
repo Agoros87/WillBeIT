@@ -62,7 +62,8 @@ class TeacherController extends Controller
 
     public function acceptPost(Post $post)
     {
-        $post->update(['status' => 'approved']);
+        $post->update(['status' => 'approved',
+                        'created_at' => now()]);
         return redirect()->route('teacher.dashboard')->with('success', 'Acción realizada correctamente.');
     }
 

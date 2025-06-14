@@ -104,13 +104,13 @@
                             <span class="text-sm text-gray-500">{{ $post->user->name }}</span>
                         </div>
                         <div class="flex gap-2">
-                            <form method="POST" action="{{ route('post.accept', $post->id) }}" >
+                            <form method="POST" action="{{ route('post.accept', $post) }}" >
                                 @csrf
                                 <button type="submit" class="px-3 py-1 rounded bg-green-500 text-white text-xs hover:bg-green-600 transition">
                                     <x-svg.check-icon/>
                                 </button>
                             </form>
-                            <form method="POST" action="{{ route('post.reject', $post->id) }}">
+                            <form method="POST" action="{{ route('post.reject', $post) }}" >
                                 @csrf
                                 <button type="submit" class="px-3 py-1 rounded bg-red-500 text-white text-xs hover:bg-red-600 transition">
                                     <x-svg.cross-icon/>

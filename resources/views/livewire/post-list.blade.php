@@ -19,7 +19,7 @@
                     <p>{{ __('Author') }}: {{ $post->user->name }} {{ $post->user->surname ?? 'Desconocido' }}</p>
                 </div>
                 <div class="mt-4 text-sm text-gray-500">
-                    <p>{{ __('Uploaded') }}: {{ $post->user->created_at ?? 'Desconocido' }}</p>
+                    <p>{{ __('Uploaded') }}: {{ $post->updated_at ?? 'Desconocido' }}</p>
                 </div>
                 <div class="flex items-center justify-between mt-4 text-sm">
                     @can('update', $post)

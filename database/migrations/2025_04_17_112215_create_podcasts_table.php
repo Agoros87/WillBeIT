@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug')->default('');
             $table->string('podcast_path')->nullable();
             $table->string('image_path')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->nullable()->default(null);
             $table->timestamps();
         });
     }

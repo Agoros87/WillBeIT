@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug')->default('');
             $table->text('body');
             $table->string('image')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->nullable()->default(null);
             $table->timestamps();
         });
     }

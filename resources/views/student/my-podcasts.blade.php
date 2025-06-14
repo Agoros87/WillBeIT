@@ -57,6 +57,16 @@
                                         <span>{{ __('Updated:') }} {{ $podcast->updated_at ? $podcast->updated_at->diffForHumans() : 'Date not available' }}</span>
                                     @endif
                                 </div>
+                                <div>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                                        {{ __('Status:') }}
+                                        <span class="{{
+   $podcast->status == 'approved' ? 'text-green-600' : ($podcast->status == 'pending' ? 'text-yellow-600' : 'text-red-600') }} font-semibold">
+
+                                            {{__(ucfirst($podcast->status))}}
+                                        </span>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="flex items-center gap-2 ml-4">

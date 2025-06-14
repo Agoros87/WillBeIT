@@ -23,8 +23,6 @@ class UsersImport implements ToModel
             'email'       => $row[2],
             'type'        => $row[3] ?? null,
             'password'    => $row[4],
-            'status'      => 'approved',
-            'email_verified_at' => now(),
         ];
 
 
@@ -42,6 +40,8 @@ class UsersImport implements ToModel
             'email'     => $data['email'],
             'type'      => $data['type'],
             'password'  => Hash::make($data['password']),
+            'status'    => 'approved',
+            'email_verified_at' => now(),
         ]);
     }
 }

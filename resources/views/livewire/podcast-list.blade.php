@@ -21,7 +21,7 @@
                                 : {{ $podcast->user->name }} {{ $podcast->user->surname ?? 'Desconocido' }}</p>
                         </div>
                         <div class="mt-4 text-sm text-gray-500">
-                            <p>{{ __('Uploaded') }}: {{ $podcast->user->created_at ?? 'Desconocido' }}</p>
+                            <p>{{ __('Uploaded') }}: {{ $podcast->created_at ?? 'Desconocido' }}</p>
                         </div>
                     </div>
                     <div class="flex items-center justify-between mt-4 text-sm">

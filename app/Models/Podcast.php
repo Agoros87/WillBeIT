@@ -15,7 +15,7 @@ class Podcast extends Model
     {
         return 'slug';
     }
-    protected $fillable = ['user_id', 'title', 'description', 'slug', 'podcast_path' , 'image_path'];
+    protected $fillable = ['user_id', 'title', 'description', 'slug', 'podcast_path' , 'image_path', 'status', 'created_at'];
 
     public function user(): BelongsTo
     {

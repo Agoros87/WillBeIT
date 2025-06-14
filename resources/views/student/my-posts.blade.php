@@ -57,6 +57,16 @@
                                         <span>{{ __('Updated:') }} {{ $post->updated_at ? $post->updated_at->diffForHumans() : 'Date not available' }}</span>
                                     @endif
                                 </div>
+                                <div>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                                        {{ __('Status:') }}
+                                        <span class="{{
+   $post->status == 'approved' ? 'text-green-600' : ($post->status == 'pending' ? 'text-yellow-600' : 'text-red-600') }} font-semibold">
+
+                                            {{__(ucfirst($post->status))}}
+                                        </span>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="flex items-center gap-2 ml-4">

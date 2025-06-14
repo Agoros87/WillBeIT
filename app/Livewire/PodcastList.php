@@ -33,7 +33,7 @@ class PodcastList extends Component
             }, '=', count($this->selectedTags));
         }
 
-        return $query->latest()->paginate(9);
+        return $query->where('status', '=','approved')->latest()->paginate(9);
     }
 
     public function render()

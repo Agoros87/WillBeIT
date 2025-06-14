@@ -97,16 +97,22 @@ class TeacherController extends Controller
         return back()->with('success', 'Student rejected.');
     }
 
-    public function acceptVideo(Video $video)
+    public function acceptVideo(int $id)
     {
-        $video->update(['status' => 'approved',
-            'created_at' => now()]);
+        $video = Video::findOrFail($id);
+        $video->update([
+            'status' => 'approved',
+            'created_at' => now()
+        ]);
+
         return redirect()->route('teacher.dashboard')->with('success', 'Acción realizada correctamente.');
     }
 
-    public function rejectVideo(Video $video)
+    public function rejectVideo(int $id)
     {
+        $video = Video::findOrFail($id);
         $video->update(['status' => 'rejected']);
+
         return back()->with('success', 'Student rejected.');
     }
 }

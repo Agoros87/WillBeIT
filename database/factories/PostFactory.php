@@ -18,15 +18,14 @@ class PostFactory extends Factory
     {
         $title = $this->faker->city();
         return [
-            'video_id' => Video::inRandomOrder()->first()->id,  // Obtener un video aleatorio existente
-            'podcasts_id' => Podcast::inRandomOrder()->first()->id,  // Obtener un podcast aleatorio existente
-            'user_id' => User::inRandomOrder()->first()->id,  // Obtener un usuario aleatorio existente
+            'video_id' => Video::inRandomOrder()->first()->id,
+            'podcasts_id' => Podcast::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
             'title' => ucfirst($title),
             'slug' => Str::slug($title . '-' . Str::random(6)),
             'body' => $this->faker->realText(),
             'image' => $this->faker->imageUrl(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            ];
+            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
+        ];
     }
 }

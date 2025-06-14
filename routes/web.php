@@ -27,7 +27,7 @@ Route::view('invitation/pending', 'invitation.pending')->name('invitation.pendin
 Route::view('invitation/rejected', 'invitation.rejected')->name('invitation.rejected');
 
 //Ruta dashboard Superadmin
-Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
+Route::middleware(['auth', RoleMiddleware::using('superadmin')])->group(function () {
     Route::get('users/export', [UserController::class, 'exportUsers'])->name('users.export');
     Route::post('users/import', [UserController::class, 'importUsers'])->name('users.import');
     Route::get('centers/export', [CenterController::class, 'exportCenters'])->name('centers.export');
@@ -36,7 +36,7 @@ Route::middleware(RoleMiddleware::using('superadmin'))->group(function () {
     Route::resource('centers', CenterController::class);
 });
 //Ruta dashboard  admin
-Route::middleware(RoleMiddleware::using('admin'))->group(function () {
+Route::middleware(['auth', RoleMiddleware::using('admin')])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('admin/my-center', [AdminController::class, 'myCenter'])->name('admin.my-center');
     Route::get('admin/posts-users-centers', [AdminController::class, 'postsUsersCenters'])->name('admin.posts-users-centers');
@@ -46,7 +46,7 @@ Route::middleware(RoleMiddleware::using('admin'))->group(function () {
 });
 
 //Rutas teacher (dashboard )
-Route::middleware(RoleMiddleware::using('teacher'))->group(function () {
+Route::middleware(['auth', RoleMiddleware::using('teacher')])->group(function () {
     Route::get('teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
     Route::get('invitation/create', [InvitationController::class, 'show'])->name('invitation.create');
     Route::post('invitation', [InvitationController::class, 'invite'])->name('invitations.send');
@@ -101,7 +101,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/comments/reactions', [CommentReactionController::class, 'store'])->name('comments.reactions.store');
 });
 
-Route::middleware([RoleMiddleware::using(['superadmin', 'admin'])])->group(function () {
+Route::middleware(['auth', RoleMiddleware::using(['superadmin', 'admin'])])->group(function () {
     Route::resource('users', UserController::class);
 });
 
@@ -110,8 +110,6 @@ Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::resource('podcasts', PodcastController::class)->only(['index', 'show']);
 Route::resource('video', VideoController::class)->only(['index', 'show']);
 Route::get('/languages/{lang}', LanguageController::class)->name('languages');
-
-
 
 
 require __DIR__ . '/auth.php';

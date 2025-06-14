@@ -15,7 +15,7 @@ class PodcastSeeder extends Seeder
      */
     public function run(): void
     {
-        Podcast::factory(20)->create();
+        Podcast::factory(100)->create();
 
         // Asegurarsme que funciona la actividad reciente del estudiante
         // Buscar al usuario que se llama 'student'

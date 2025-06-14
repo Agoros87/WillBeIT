@@ -51,13 +51,15 @@ class PostController extends Controller
 
         $validated['slug'] = Str::slug($validated['title'] . '-' . Str::random(6));
         $validated['user_id'] = Auth::id();
+        $validated['status'] = 'pending';
         $post = Post::create($validated);
         $post->tags()->attach($request->tags);
+
 
         event(new PostCreated($post));
 
 
-        return redirect()->route('posts.index')->with('success', 'Post creado correctamente');
+        return redirect()->route('posts.index')->with('success', __('Your post is pending approval'));
     }
 
     /**

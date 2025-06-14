@@ -18,6 +18,7 @@ class Post extends Model
         'title',
         'body',
         'image',
+        'status',
     ];
     public function getRouteKeyName() // Me ahorro poner en las rutas {modelo:slug} para que sea por slug en lugar de id
     {

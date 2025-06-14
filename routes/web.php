@@ -58,6 +58,8 @@ Route::middleware(RoleMiddleware::using('teacher'))->group(function () {
     Route::post('/post/{post}/reject', [TeacherController::class, 'rejectPost'])->name('post.reject');
     Route::post('/podcast/{podcast}/accept', [TeacherController::class, 'acceptPodcast'])->name('podcast.accept');
     Route::post('/podcast/{podcast}/reject', [TeacherController::class, 'rejectPodcast'])->name('podcast.reject');
+    Route::post('/video/{video}/accept', [TeacherController::class, 'acceptVideo'])->name('video.accept');
+    Route::post('/video/{video}/reject', [TeacherController::class, 'rejectVideo'])->name('video.reject');
 
 });
 

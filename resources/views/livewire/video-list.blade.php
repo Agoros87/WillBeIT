@@ -22,7 +22,7 @@
                             : {{ $video->user->name }} {{ $video->user->surname ?? 'Desconocido' }}</p>
                     </div>
                     <p class="text-sm text-gray-500 mt-auto">{{ __('Uploaded') }}
-                        : {{ $video->created_at->format('d/m/Y') }}</p>
+                        : {{ $video->created_at }}</p>
                     <div class="flex gap-2 mt-2 justify-between">
                         @can('update', $video)
                             <a href="{{ route('video.edit', $video->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-sm">

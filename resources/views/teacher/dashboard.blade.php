@@ -160,5 +160,39 @@
                 </div>
             </ul>
         </div>
+        <div class="rounded-xl border p-5 bg-white dark:bg-neutral-900 shadow-lg">
+            <h3 class="text-lg font-semibold mb-4 text-yellow-600">{{ __('Pending Video') }}</h3>
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                @forelse($videoPending as $video)
+                    <li class="py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                        <div>
+                            <a href="{{ route('video.show', $video) }}" class="hover:underline">
+                                {{ $video->title }}
+                            </a>
+                            <span class="text-sm text-gray-500">{{ $video->user->name }}</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <form method="POST" action="{{ route('video.accept', $video) }}" >
+                                @csrf
+                                <button type="submit" class="px-3 py-1 rounded bg-green-500 text-white text-xs hover:bg-green-600 transition">
+                                    <x-svg.check-icon/>
+                                </button>
+                            </form>
+                            <form method="POST" action="{{ route('video.reject', $video) }}" >
+                                @csrf
+                                <button type="submit" class="px-3 py-1 rounded bg-red-500 text-white text-xs hover:bg-red-600 transition">
+                                    <x-svg.cross-icon/>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                @empty
+                    <li class="py-2 text-gray-500">{{ __('There are no pending video.') }}</li>
+                @endforelse
+                <div class="mt-4">
+                    {{ $videoPending->appends(request()->except('video_pending_page'))->links() }}
+                </div>
+            </ul>
+        </div>
     </div>
 </x-layouts.app>

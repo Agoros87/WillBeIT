@@ -32,7 +32,7 @@ class VideoList extends Component
                 $query->whereIn('tags.name', $this->selectedTags);
             }, '=', count($this->selectedTags));
         }
-        return $query->latest()->paginate(6);
+        return $query->where('status', '=', 'approved')->latest()->paginate(6);
     }
 
     public function render()

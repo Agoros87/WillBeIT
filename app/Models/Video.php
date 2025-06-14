@@ -11,7 +11,7 @@ class Video extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'description', 'slug', 'video_path'];
+    protected $fillable = ['user_id', 'title', 'description', 'slug', 'video_path', 'status', 'created_at'];
 
     public function getRouteKeyName() // Me ahorro poner en las rutas {modelo:slug} para que sea por slug en lugar de id
     {

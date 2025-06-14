@@ -1,6 +1,7 @@
 import {initRevealScroll} from './features/reveal-scroll.js';
 import {centerDataRevealScroll} from './features/center-data-reveal-scroll.js';
 import {darkModeToggleButtonAction, initializeDarkMode} from './features/dark-mode.js';
+import {initRevealTextAnimation} from "./features/reveal-text-animation.js";
 
 // Importar Trix
 import "trix";
@@ -11,8 +12,8 @@ function initializeFeatures() {
     centerDataRevealScroll();
     initializeDarkMode();
     darkModeToggleButtonAction();
+    initRevealTextAnimation();
 }
-
 
 document.addEventListener('DOMContentLoaded', initializeFeatures);
 document.addEventListener('livewire:navigated', initializeFeatures);

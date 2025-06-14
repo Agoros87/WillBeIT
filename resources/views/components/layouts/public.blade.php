@@ -36,6 +36,7 @@
     <!-- Contenido Principal -->
     <main class="w-full h-full">
         {{ $slot }}
+        <x-public-footer/>
     </main>
 </div>
 <!-- Scripts adicionales -->

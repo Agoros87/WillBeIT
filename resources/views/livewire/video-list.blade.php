@@ -4,7 +4,7 @@
     @else
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($videos as $video)
-                <div class="bg-white dark:bg-zinc-900 rounded shadow p-4 flex flex-col">
+                <div class="bg-white dark:bg-zinc-900 rounded shadow p-4 flex flex-col reveal-scroll">
                     <h2 class="header-3 hover:underline mb-2">
                         <a href="{{ route('video.show', $video->id) }}">{{ $video->title }}</a>
                     </h2>

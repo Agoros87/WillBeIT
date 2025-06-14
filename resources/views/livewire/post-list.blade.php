@@ -1,7 +1,7 @@
 <div>
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($posts as $post)
-            <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between">
+            <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-md p-4 hover:shadow-lg transition duration-300 flex flex-col justify-between reveal-scroll">
                 <div class="space-y-2">
                     <h3 class="header-3 font-semibold">
                         <a href="{{ route('posts.show', $post) }}" class="hover:underline">

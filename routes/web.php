@@ -45,7 +45,6 @@ Route::middleware(RoleMiddleware::using('admin'))->group(function () {
     Route::get('admin/videos-users-centers', [AdminController::class, 'videosUsersCenters'])->name('admin.videos-users-centers');
     Route::get('admin/users-centers', [AdminController::class, 'usersCenters'])->name('admin.users-centers');
     Route::resource('users', UserController::class);
-    Route::resource('centers', CenterController::class);
 });
 
 //Rutas teacher (dashboard )

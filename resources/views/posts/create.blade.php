@@ -1,5 +1,5 @@
 <x-public-layout title="{{ __('Create Post') }}">
-    <div class="p-8 max-w-3xl mx-auto bg-white rounded-xl shadow mt-10">
+    <div class="p-8 max-w-3xl mx-auto bg-white dark:bg-zinc-900 rounded-xl shadow mt-10 text-gray-700 dark:text-gray-200">
 
         <h1 class="header-1 mb-6">{{ __('Create Post') }}</h1>
 
@@ -7,13 +7,13 @@
             @csrf
 
             <div class="mb-5">
-                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Title') }}</label>
+                <label for="title" class="block text-sm font-medium mb-1">{{ __('Title') }}</label>
                 <input
                     type="text"
                     id="title"
                     name="title"
                     value="{{ old('title') }}"
-                    class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border dark:bg-zinc-800 border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     required
                 >
                 @error('title')
@@ -22,15 +22,16 @@
             </div>
 
             <div class="mb-5">
-                <label for="body" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Content') }}</label>
+                <label for="body" class="block text-sm font-medium mb-1">{{ __('Content') }}</label>
                 <input id="body" type="hidden" name="body" value="{{ old('body') }}">
-                <trix-editor input="body" class="trix-content border rounded min-h-[200px]"></trix-editor>
+                <trix-editor input="body" class="trix-content border rounded min-h-[200px] dark:bg-zinc-800"></trix-editor>
                 @error('body')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-5">
-                <select name="tags[]" id="tags" multiple class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <label for="tags" class="block text-sm font-medium mb-1">{{ __('Tags') }}</label>
+                <select name="tags[]" id="tags" multiple class="w-full border border-gray-300 rounded-md p-2 mb-4 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}>
                             {{ $tag->name }}
@@ -40,12 +41,12 @@
 
 
             <div class="mb-5">
-                <label for="image" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Image') }}</label>
+                <label for="image" class="block text-sm font-medium mb-1">{{ __('Image') }}</label>
                 <input
                     type="file"
                     id="image"
                     name="image"
-                    class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 >
                 @error('image')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -53,11 +54,11 @@
             </div>
 
             <div class="mb-5">
-                <label for="video_id" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Video') }}</label>
+                <label for="video_id" class="block text-sm font-medium mb-1">{{ __('Video') }}</label>
                 <select
                     id="video_id"
                     name="video_id"
-                    class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     required
                 >
                     @foreach ($videos as $video)
@@ -69,11 +70,11 @@
             </div>
 
             <div class="mb-5">
-                <label for="podcasts_id" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Podcast') }}</label>
+                <label for="podcasts_id" class="block text-sm font-medium mb-1">{{ __('Podcast') }}</label>
                 <select
                     id="podcasts_id"
                     name="podcasts_id"
-                    class="w-full border border-gray-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     required
                 >
                     @foreach ($podcasts as $podcast)

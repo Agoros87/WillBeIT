@@ -24,7 +24,8 @@
                     <!--Damos diferente dashboard según el rol que tenga-->
                     <flux:menu.radio.group>
                         @php $role = auth()->user()->roles?->first()?->name.'.' ?? '' @endphp
-                        <a href="{{ route($role.'dashboard') }}" class="flex gap-2 text-sm px-2 group hover:bg-gray-50"><x-svg.home-icon class="w-5 stroke-gray-500 group-hover:stroke-current"/>{{ __('Dashboard') }}</a>
+                        <a href="{{ route($role.'dashboard') }}" class="flex gap-2 text-sm p-2 group hover:bg-gray-50 dark:hover:bg-zinc-600 text-gray-700 dark:text-gray-200 rounded-md">
+                            <x-svg.home-icon class="w-5 stroke-gray-500 dark:stroke-gray-400 group-hover:stroke-current"/>{{ __('Dashboard') }}</a>
                         <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                     </flux:menu.radio.group>
                     <flux:menu.separator/>

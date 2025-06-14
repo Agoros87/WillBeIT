@@ -27,6 +27,7 @@ class PodcastFactory extends Factory
             'slug' => Str::slug($title . '-' . Str::random(6)),
             'podcast_path' => $this->faker->optional()->url(),
             'image_path' => $this->faker->optional()->imageUrl(),
+            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         ];
     }
 

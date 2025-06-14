@@ -19,8 +19,7 @@ class VideoFactory extends Factory
             'title' => $this->faker->sentence(),
             'description' => $this->faker->text(),
             'slug' => $this->faker->slug(),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         ];
     }
 }

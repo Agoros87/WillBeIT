@@ -275,6 +275,10 @@
     "Log in to your account": "Inicia sesión en tu cuenta",
     "Enter your email and password below to log in": "Ingrese su correo electrónico y contraseña a continuación para iniciar sesión",
     "Forgot your password?": "¿Olvidaste tu contraseña?",
-    "Remember me": "Recuérdame"
+    "Remember me": "Recuérdame",
+    "Student": "Estudiante",
+    "Teacher": "Profesor",
+    "Admin": "Administrador",
+    "Superadmin": "Superadministrador"
 
 }

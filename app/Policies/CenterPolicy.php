@@ -11,16 +11,16 @@ class CenterPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasRole('super-superadmin');
+        return $user->hasRole('superadmin');
     }
 
     public function update(User $user): bool
     {
-        return $user->hasRole('super-superadmin');
+        return $user->hasRole('superadmin');
     }
 
     public function delete(User $user): bool
     {
-        return $user->hasRole('super-superadmin');
+        return $user->hasRole('superadmin');
     }
 }

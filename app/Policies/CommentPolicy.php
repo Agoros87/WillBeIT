@@ -11,22 +11,23 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment): bool
     {
-        return (
-                $user->hasRole('superadmin') ||
+        return ( $user->hasRole('superadmin') ||
                 $user->hasRole('admin') ||
-                $user->id === $comment->user_id
-            );
+                $user->hasRole('teacher') ||
+                $user->id === $comment->user_id ) &&
+            ($user->center_id === $comment->user->center_id || $user->hasRole('superadmin'));
     }
+
 
     /**
      * Determine whether the user can delete the comment.
      */
     public function delete(User $user, Comment $comment): bool
     {
-        return (
-                $user->hasRole('superadmin') ||
+        return ( $user->hasRole('superadmin') ||
                 $user->hasRole('admin') ||
-                $user->id === $comment->user_id
-            );
+                $user->hasRole('teacher') ||
+                $user->id === $comment->user_id ) &&
+            ($user->center_id === $comment->user->center_id || $user->hasRole('superadmin'));
     }
 }

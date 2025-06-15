@@ -60,7 +60,7 @@
                     id="video_id"
                     name="video_id"
                     class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required
+
                 >
                     @foreach ($videos as $video)
                         <option value="{{ $video->id }}" {{ old('video_id') == $video->id ? 'selected' : '' }}>
@@ -76,7 +76,7 @@
                     id="podcasts_id"
                     name="podcasts_id"
                     class="w-full border border-gray-300 rounded-md p-2 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    required
+                    
                 >
                     @foreach ($podcasts as $podcast)
                         <option value="{{ $podcast->id }}" {{ old('podcasts_id') == $podcast->id ? 'selected' : '' }}>

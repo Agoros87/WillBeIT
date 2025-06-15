@@ -34,6 +34,12 @@ Route::middleware(['auth', RoleMiddleware::using('superadmin')])->group(function
     Route::post('centers/import', [CenterController::class, 'importCenters'])->name('centers.import');
     Route::get('superadmin/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
     Route::resource('centers', CenterController::class);
+    Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
+    Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
+    Route::post('/tags', [TagsController::class, 'store'])->name('tags.store');
+    Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
+    Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
+    Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
 });
 //Ruta dashboard  admin
 Route::middleware(['auth', RoleMiddleware::using('admin')])->group(function () {
@@ -88,12 +94,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('podcasts', PodcastController::class)->except(['index', 'show']);
     Route::resource('posts', PostController::class)->except(['index', 'show']);
     Route::resource('video', VideoController::class)->except(['index', 'show']);
-    Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
-    Route::get('/tags/create', [TagsController::class, 'create'])->name('tags.create');
-    Route::post('/tags', [TagsController::class, 'store'])->name('tags.store');
-    Route::get('/tags/{tag}/edit', [TagsController::class, 'edit'])->name('tags.edit');
-    Route::put('/tags/{tag}', [TagsController::class, 'update'])->name('tags.update');
-    Route::delete('/tags/{tag}', [TagsController::class, 'destroy'])->name('tags.destroy');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');

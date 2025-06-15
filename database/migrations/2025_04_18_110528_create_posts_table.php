@@ -13,8 +13,18 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('video_id')->constrained();
-            $table->foreignId('podcasts_id')->constrained();
+
+            // Ahora ambos son nullable y con onDelete('set null')
+            $table->foreignId('video_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+
+            $table->foreignId('podcasts_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->string('slug')->default('');

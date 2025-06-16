@@ -104,7 +104,7 @@ class PostController extends Controller
                 Storage::delete($post->image);
             }
 
-            $validated['image'] = $request->file('image')->store('posts');
+            $validated['image'] = $request->file('image')->store('posts/img', 'public');
         }
 
         $post->update($validated);

@@ -15,7 +15,7 @@ class PodcastRequest extends FormRequest
         // Si hay un podcasts en la ruta
         $podcast = $this->route('podcasts');
         return $podcast
-            // Es una actualización, solo puede el dueño del podcasts o los teachers, admins y super-admins
+            // Es una actualización, solo puede el dueño del podcasts o los teachers, admins y superadmins
             ? $this->user()->can('update', $podcast)
             // Si no hay podcasts, es una creación y pueden los student, teachers, admins y superadmins
             : $this->user()->can('create', Podcast::class);

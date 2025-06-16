@@ -156,7 +156,7 @@
 
             const ctx = document.getElementById('miContenido').getContext('2d');
             new Chart(ctx, {
-                type: 'doughnut',
+                type: 'doughnut', //Tipo de gráfico (rosquilla)
                 data: {
                     labels: [
                         '{{ __("Posts") }}',
@@ -172,10 +172,10 @@
                     }]
                 },
                 options: {
-                    responsive: true,
+                    responsive: true, // Adaptable a móviles
                     plugins: {
                         legend: {
-                            position: 'bottom',
+                            position: 'bottom', // Ubicación de etiquetas
                         },
                         tooltip: {
                             callbacks: {

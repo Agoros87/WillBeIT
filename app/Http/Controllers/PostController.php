@@ -128,7 +128,7 @@ class PostController extends Controller
     public function uploadTrixImage(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:20480'
         ]);
 
         if ($request->hasFile('file')) {

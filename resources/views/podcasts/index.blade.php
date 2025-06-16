@@ -18,6 +18,11 @@
                 </a>
             @endcan
         </div>
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded shadow mb-6 alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <livewire:podcast-list/>
     </div>
 </x-public-layout>

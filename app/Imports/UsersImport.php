@@ -6,6 +6,7 @@ use App\Http\Requests\ImportUserRequest;
 use App\Models\Center;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Log;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Validator;
 
@@ -20,9 +21,10 @@ class UsersImport implements ToModel
         $data = [
             'center_name' => $row[0],
             'name'        => $row[1],
-            'email'       => $row[2],
-            'type'        => $row[3] ?? null,
-            'password'    => $row[4],
+            'surname'     => $row[2],
+            'email'       => $row[3],
+            'type'        => $row[4] ?? null,
+            'password'    => (string)$row[5]
         ];
 
 
@@ -34,14 +36,17 @@ class UsersImport implements ToModel
 
         $center = Center::where('name', $data['center_name'])->first();
 
-        return new User([
-            'center_id' => $center?->id,
+        $user = new User([
+            'center_id' => $center->id,
             'name'      => $data['name'],
+            'surname'   => $data['surname'],
             'email'     => $data['email'],
             'type'      => $data['type'],
             'password'  => Hash::make($data['password']),
             'status'    => 'approved',
             'email_verified_at' => now(),
         ]);
+        $user->assignRole('student');
+        $user->save();
     }
 }
